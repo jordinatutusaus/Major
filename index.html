@@ -17,11 +17,10 @@
 
     body {
       min-height: 100vh;
-      background: linear-gradient(135deg, #eef4ff, #f3eaff);
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      background: linear-gradient(135deg, #eef4ff, #f4edff);
     }
+
+    /* LOGIN */
 
     .login {
       width: 90%;
@@ -31,6 +30,11 @@
       border-radius: 24px;
       box-shadow: 0 15px 40px rgba(0,0,0,.12);
       text-align: center;
+
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
 
     .logo {
@@ -49,7 +53,6 @@
 
     h1 {
       font-size: 38px;
-      color: #222;
       margin-bottom: 8px;
     }
 
@@ -85,12 +88,11 @@
       color: white;
       font-size: 17px;
       font-weight: bold;
-      margin-top: 5px;
     }
 
     .create {
       margin-top: 20px;
-      color: #5b5b5b;
+      color: #555;
       font-size: 14px;
     }
 
@@ -109,7 +111,6 @@
       border-radius: 10px;
       border: 1px solid #ddd;
       background: white;
-      cursor: pointer;
     }
 
     .message {
@@ -118,9 +119,10 @@
       font-size: 14px;
     }
 
+    /* APP */
+
     .app {
       display: none;
-      width: 100%;
       min-height: 100vh;
       padding: 25px;
     }
@@ -130,30 +132,206 @@
       justify-content: flex-end;
     }
 
+    /* CERCLE DE L'USUARI */
+
     .user-button {
-      width: 55px;
-      height: 55px;
+      width: 58px;
+      height: 58px;
       border-radius: 50%;
       border: none;
       background: linear-gradient(135deg, #4f7cff, #8b5cf6);
       color: white;
-      font-size: 22px;
+      font-size: 23px;
+      font-weight: bold;
+      box-shadow: 0 8px 20px rgba(91,108,255,.3);
+    }
+
+    /* CENTRE */
+
+    .welcome {
+      text-align: center;
+      margin-top: 130px;
+    }
+
+    .welcome h2 {
+      font-size: 46px;
+      margin-bottom: 12px;
+    }
+
+    .welcome p {
+      color: #777;
+      font-size: 18px;
+    }
+
+    /* PANELL LILA */
+
+    .panel {
+      display: none;
+
+      position: fixed;
+      top: 0;
+      right: 0;
+
+      width: 390px;
+      max-width: 90%;
+
+      height: 100vh;
+
+      background: linear-gradient(160deg, #725cff, #9b5de5);
+
+      color: white;
+
+      padding: 25px;
+
+      box-shadow: -10px 0 35px rgba(0,0,0,.2);
+
+      z-index: 10;
+    }
+
+    .panel-header {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .close-button {
+      width: 45px;
+      height: 45px;
+
+      border-radius: 50%;
+      border: none;
+
+      background: rgba(255,255,255,.18);
+
+      color: white;
+
+      font-size: 28px;
+    }
+
+    .panel-content {
+      height: calc(100% - 70px);
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .panel-title {
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+
+    .panel-description {
+      text-align: center;
+      opacity: .85;
+      margin-bottom: 45px;
+      line-height: 1.5;
+    }
+
+    /* BOTÓ MICRÒFON */
+
+    .mic-button {
+      width: 125px;
+      height: 125px;
+
+      border-radius: 50%;
+      border: none;
+
+      background: white;
+      color: #765cff;
+
+      font-size: 50px;
+
+      box-shadow: 0 12px 30px rgba(0,0,0,.22);
+
+      margin-bottom: 30px;
+    }
+
+    .mic-button:active {
+      transform: scale(.94);
+    }
+
+    .mic-text {
+      font-size: 15px;
+      opacity: .9;
+      text-align: center;
+    }
+
+    /* BOTÓ + */
+
+    .add-button {
+      position: absolute;
+
+      bottom: 30px;
+      right: 30px;
+
+      width: 62px;
+      height: 62px;
+
+      border-radius: 50%;
+      border: none;
+
+      background: white;
+      color: #765cff;
+
+      font-size: 38px;
+
+      box-shadow: 0 10px 25px rgba(0,0,0,.2);
+    }
+
+    /* FINESTRA AFEGIR */
+
+    .add-box {
+      display: none;
+
+      position: absolute;
+
+      bottom: 105px;
+      left: 25px;
+      right: 25px;
+
+      background: white;
+      color: #222;
+
+      border-radius: 18px;
+
+      padding: 20px;
+
+      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+    }
+
+    .add-box h3 {
+      margin-bottom: 15px;
+    }
+
+    .add-box input {
+      margin-bottom: 10px;
+    }
+
+    .save-button {
+      width: 100%;
+      padding: 12px;
+
+      border: none;
+      border-radius: 10px;
+
+      background: #765cff;
+      color: white;
+
       font-weight: bold;
     }
 
-    .app-content {
-      text-align: center;
-      margin-top: 120px;
-    }
-
-    .app-content h2 {
-      font-size: 42px;
-      margin-bottom: 15px;
+    @media (max-width: 500px) {
+      .welcome h2 {
+        font-size: 38px;
+      }
     }
   </style>
 </head>
 
 <body>
+
+  <!-- LOGIN -->
 
   <div class="login" id="loginScreen">
 
@@ -165,9 +343,17 @@
       El teu assistent personal
     </p>
 
-    <input type="email" id="email" placeholder="Correu electrònic">
+    <input
+      type="email"
+      id="email"
+      placeholder="Correu electrònic"
+    >
 
-    <input type="password" id="password" placeholder="Contrasenya">
+    <input
+      type="password"
+      id="password"
+      placeholder="Contrasenya"
+    >
 
     <button class="login-button" onclick="login()">
       Iniciar sessió
@@ -191,21 +377,107 @@
   </div>
 
 
+  <!-- APP -->
+
   <div class="app" id="appScreen">
 
     <div class="topbar">
-      <button class="user-button" id="userNumber">1</button>
+
+      <button
+        class="user-button"
+        onclick="openPanel()"
+      >
+        1
+      </button>
+
     </div>
 
-    <div class="app-content">
-      <h2>Benvingut a Major 👋</h2>
-      <p>El teu assistent personal</p>
+    <div class="welcome">
+
+      <h2>Hola! 👋</h2>
+
+      <p>Què necessites avui?</p>
+
+    </div>
+
+  </div>
+
+
+  <!-- PANELL -->
+
+  <div class="panel" id="panel">
+
+    <div class="panel-header">
+
+      <button
+        class="close-button"
+        onclick="closePanel()"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <div class="panel-content">
+
+      <div class="panel-title">
+        Major
+      </div>
+
+      <div class="panel-description">
+        Digues-me què necessites<br>
+        i jo m'encarrego de la resta.
+      </div>
+
+
+      <button
+        class="mic-button"
+        onclick="startMicrophone()"
+      >
+        🎙️
+      </button>
+
+      <div class="mic-text" id="micText">
+        Prem el micròfon i parla
+      </div>
+
+    </div>
+
+
+    <button
+      class="add-button"
+      onclick="openAddBox()"
+    >
+      +
+    </button>
+
+
+    <div class="add-box" id="addBox">
+
+      <h3>Afegir una cosa</h3>
+
+      <input
+        type="text"
+        id="newThing"
+        placeholder="Què vols afegir?"
+      >
+
+      <button
+        class="save-button"
+        onclick="saveThing()"
+      >
+        Afegir
+      </button>
+
     </div>
 
   </div>
 
 
   <script>
+
+    /* SUPABASE */
 
     const SUPABASE_URL =
       "https://vogfwuvdlusuzofvlmoj.supabase.co";
@@ -219,6 +491,8 @@
         SUPABASE_KEY
       );
 
+
+    /* LOGIN */
 
     function showMessage(text) {
       document.getElementById("message").textContent = text;
@@ -247,8 +521,9 @@
         });
 
       if (error) {
-        showMessage("El correu o la contrasenya no són correctes.");
-        console.error(error);
+        showMessage(
+          "El correu o la contrasenya no són correctes."
+        );
         return;
       }
 
@@ -269,22 +544,14 @@
         return;
       }
 
-      if (password.length < 6) {
-        showMessage("La contrasenya ha de tenir almenys 6 caràcters.");
-        return;
-      }
-
-      showMessage("Creant el compte...");
-
       const { data, error } =
         await supabaseClient.auth.signUp({
-          email: email,
-          password: password
+          email,
+          password
         });
 
       if (error) {
         showMessage(error.message);
-        console.error(error);
         return;
       }
 
@@ -292,7 +559,7 @@
         entrar(data.user);
       } else {
         showMessage(
-          "Compte creat! Revisa el teu correu per confirmar-lo."
+          "Compte creat! Revisa el teu correu."
         );
       }
     }
@@ -300,12 +567,94 @@
 
     function entrar(user) {
 
-      document.getElementById("loginScreen").style.display = "none";
-      document.getElementById("appScreen").style.display = "block";
+      document.getElementById("loginScreen").style.display =
+        "none";
 
-      console.log("Usuari connectat:", user.email);
+      document.getElementById("appScreen").style.display =
+        "block";
     }
 
+
+    /* PANELL */
+
+    function openPanel() {
+
+      document.getElementById("panel").style.display =
+        "block";
+    }
+
+
+    function closePanel() {
+
+      document.getElementById("panel").style.display =
+        "none";
+
+      document.getElementById("addBox").style.display =
+        "none";
+    }
+
+
+    /* + */
+
+    function openAddBox() {
+
+      const box =
+        document.getElementById("addBox");
+
+      if (box.style.display === "block") {
+        box.style.display = "none";
+      } else {
+        box.style.display = "block";
+      }
+    }
+
+
+    function saveThing() {
+
+      const thing =
+        document.getElementById("newThing").value.trim();
+
+      if (!thing) {
+        return;
+      }
+
+      alert(
+        "Major ha rebut: " + thing
+      );
+
+      document.getElementById("newThing").value = "";
+
+      document.getElementById("addBox").style.display =
+        "none";
+    }
+
+
+    /* MICROFON */
+
+    async function startMicrophone() {
+
+      const text =
+        document.getElementById("micText");
+
+      try {
+
+        await navigator.mediaDevices.getUserMedia({
+          audio: true
+        });
+
+        text.textContent =
+          "🎙️ T'estic escoltant...";
+
+      } catch (error) {
+
+        text.textContent =
+          "No has donat permís al micròfon.";
+
+      }
+    }
+
+
+    /* IDIOMES */
 
     function changeLanguage() {
 
@@ -327,6 +676,7 @@
       const create =
         document.querySelector(".create");
 
+
       if (language === "ca") {
 
         subtitle.textContent =
@@ -344,7 +694,9 @@
         create.innerHTML =
           'Encara no tens compte? <span onclick="createAccount()">Crear compte</span>';
 
-      } else if (language === "es") {
+      }
+
+      else if (language === "es") {
 
         subtitle.textContent =
           "Tu asistente personal";
@@ -361,7 +713,9 @@
         create.innerHTML =
           '¿Todavía no tienes cuenta? <span onclick="createAccount()">Crear cuenta</span>';
 
-      } else {
+      }
+
+      else {
 
         subtitle.textContent =
           "Your personal assistant";
