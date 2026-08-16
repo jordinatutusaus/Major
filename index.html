@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Major</title>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
   <style>
     * {
       box-sizing: border-box;
@@ -27,7 +29,7 @@
       background: white;
       padding: 40px 32px;
       border-radius: 24px;
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+      box-shadow: 0 15px 40px rgba(0,0,0,.12);
       text-align: center;
     }
 
@@ -70,6 +72,10 @@
       border-color: #6d5dfc;
     }
 
+    button {
+      cursor: pointer;
+    }
+
     .login-button {
       width: 100%;
       padding: 15px;
@@ -79,12 +85,7 @@
       color: white;
       font-size: 17px;
       font-weight: bold;
-      cursor: pointer;
       margin-top: 5px;
-    }
-
-    .login-button:hover {
-      background: #4859e8;
     }
 
     .create {
@@ -111,8 +112,43 @@
       cursor: pointer;
     }
 
-    .welcome {
+    .message {
+      margin-top: 15px;
+      min-height: 20px;
+      font-size: 14px;
+    }
+
+    .app {
       display: none;
+      width: 100%;
+      min-height: 100vh;
+      padding: 25px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .user-button {
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      border: none;
+      background: linear-gradient(135deg, #4f7cff, #8b5cf6);
+      color: white;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .app-content {
+      text-align: center;
+      margin-top: 120px;
+    }
+
+    .app-content h2 {
+      font-size: 42px;
+      margin-bottom: 15px;
     }
   </style>
 </head>
@@ -129,17 +165,9 @@
       El teu assistent personal
     </p>
 
-    <input
-      type="email"
-      id="email"
-      placeholder="Correu electrònic"
-    >
+    <input type="email" id="email" placeholder="Correu electrònic">
 
-    <input
-      type="password"
-      id="password"
-      placeholder="Contrasenya"
-    >
+    <input type="password" id="password" placeholder="Contrasenya">
 
     <button class="login-button" onclick="login()">
       Iniciar sessió
@@ -147,9 +175,7 @@
 
     <p class="create">
       Encara no tens compte?
-      <span onclick="alert('Aviat podràs crear el teu compte!')">
-        Crear compte
-      </span>
+      <span onclick="createAccount()">Crear compte</span>
     </p>
 
     <div class="language">
@@ -160,67 +186,197 @@
       </select>
     </div>
 
+    <div class="message" id="message"></div>
+
   </div>
 
 
-  <div class="welcome" id="welcomeScreen">
-    <h1>Benvingut a Major 👋</h1>
+  <div class="app" id="appScreen">
+
+    <div class="topbar">
+      <button class="user-button" id="userNumber">1</button>
+    </div>
+
+    <div class="app-content">
+      <h2>Benvingut a Major 👋</h2>
+      <p>El teu assistent personal</p>
+    </div>
+
   </div>
 
 
   <script>
 
-    function login() {
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
+    const SUPABASE_URL =
+      "https://vogfwuvdlusuzofvlmoj.supabase.co";
 
-      if (email === "" || password === "") {
-        alert("Omple el correu i la contrasenya.");
+    const SUPABASE_KEY =
+      "sb_publishable__F0Kohyak7yCiF5pSDe2uw_wKJkJnfn";
+
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+      );
+
+
+    function showMessage(text) {
+      document.getElementById("message").textContent = text;
+    }
+
+
+    async function login() {
+
+      const email =
+        document.getElementById("email").value.trim();
+
+      const password =
+        document.getElementById("password").value;
+
+      if (!email || !password) {
+        showMessage("Escriu el correu i la contrasenya.");
         return;
       }
 
+      showMessage("Iniciant sessió...");
+
+      const { data, error } =
+        await supabaseClient.auth.signInWithPassword({
+          email: email,
+          password: password
+        });
+
+      if (error) {
+        showMessage("El correu o la contrasenya no són correctes.");
+        console.error(error);
+        return;
+      }
+
+      entrar(data.user);
+    }
+
+
+    async function createAccount() {
+
+      const email =
+        document.getElementById("email").value.trim();
+
+      const password =
+        document.getElementById("password").value;
+
+      if (!email || !password) {
+        showMessage("Escriu un correu i una contrasenya.");
+        return;
+      }
+
+      if (password.length < 6) {
+        showMessage("La contrasenya ha de tenir almenys 6 caràcters.");
+        return;
+      }
+
+      showMessage("Creant el compte...");
+
+      const { data, error } =
+        await supabaseClient.auth.signUp({
+          email: email,
+          password: password
+        });
+
+      if (error) {
+        showMessage(error.message);
+        console.error(error);
+        return;
+      }
+
+      if (data.session) {
+        entrar(data.user);
+      } else {
+        showMessage(
+          "Compte creat! Revisa el teu correu per confirmar-lo."
+        );
+      }
+    }
+
+
+    function entrar(user) {
+
       document.getElementById("loginScreen").style.display = "none";
-      document.getElementById("welcomeScreen").style.display = "block";
+      document.getElementById("appScreen").style.display = "block";
+
+      console.log("Usuari connectat:", user.email);
     }
 
 
     function changeLanguage() {
 
-      const language = document.getElementById("language").value;
+      const language =
+        document.getElementById("language").value;
 
-      const subtitle = document.getElementById("subtitle");
-      const email = document.getElementById("email");
-      const password = document.getElementById("password");
-      const button = document.querySelector(".login-button");
-      const create = document.querySelector(".create");
+      const subtitle =
+        document.getElementById("subtitle");
+
+      const email =
+        document.getElementById("email");
+
+      const password =
+        document.getElementById("password");
+
+      const button =
+        document.querySelector(".login-button");
+
+      const create =
+        document.querySelector(".create");
 
       if (language === "ca") {
 
-        subtitle.textContent = "El teu assistent personal";
-        email.placeholder = "Correu electrònic";
-        password.placeholder = "Contrasenya";
-        button.textContent = "Iniciar sessió";
+        subtitle.textContent =
+          "El teu assistent personal";
+
+        email.placeholder =
+          "Correu electrònic";
+
+        password.placeholder =
+          "Contrasenya";
+
+        button.textContent =
+          "Iniciar sessió";
+
         create.innerHTML =
-          'Encara no tens compte? <span onclick="alert(\'Aviat podràs crear el teu compte!\')">Crear compte</span>';
+          'Encara no tens compte? <span onclick="createAccount()">Crear compte</span>';
 
       } else if (language === "es") {
 
-        subtitle.textContent = "Tu asistente personal";
-        email.placeholder = "Correo electrónico";
-        password.placeholder = "Contraseña";
-        button.textContent = "Iniciar sesión";
+        subtitle.textContent =
+          "Tu asistente personal";
+
+        email.placeholder =
+          "Correo electrónico";
+
+        password.placeholder =
+          "Contraseña";
+
+        button.textContent =
+          "Iniciar sesión";
+
         create.innerHTML =
-          '¿Todavía no tienes cuenta? <span onclick="alert(\'¡Pronto podrás crear tu cuenta!\')">Crear cuenta</span>';
+          '¿Todavía no tienes cuenta? <span onclick="createAccount()">Crear cuenta</span>';
 
       } else {
 
-        subtitle.textContent = "Your personal assistant";
-        email.placeholder = "Email";
-        password.placeholder = "Password";
-        button.textContent = "Log in";
-        create.innerHTML =
-          'Don’t have an account? <span onclick="alert(\'You will soon be able to create your account!\')">Create account</span>';
+        subtitle.textContent =
+          "Your personal assistant";
 
+        email.placeholder =
+          "Email";
+
+        password.placeholder =
+          "Password";
+
+        button.textContent =
+          "Log in";
+
+        create.innerHTML =
+          'Don’t have an account? <span onclick="createAccount()">Create account</span>';
       }
     }
 
