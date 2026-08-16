@@ -251,8 +251,10 @@
 
     .mic-button.listening {
       transform: scale(1.08);
-      box-shadow: 0 0 0 12px rgba(255,255,255,.18),
-                  0 12px 30px rgba(0,0,0,.22);
+
+      box-shadow:
+        0 0 0 12px rgba(255,255,255,.18),
+        0 12px 30px rgba(0,0,0,.22);
     }
 
     .mic-text {
@@ -357,31 +359,49 @@
       placeholder="Contrasenya"
     >
 
-    <button class="login-button" onclick="login()">
+    <button
+      class="login-button"
+      onclick="login()"
+    >
       Iniciar sessió
     </button>
 
     <p class="create">
       Encara no tens compte?
-      <span onclick="createAccount()">Crear compte</span>
+      <span onclick="createAccount()">
+        Crear compte
+      </span>
     </p>
 
     <div class="language">
-      <select id="language" onchange="changeLanguage()">
+
+      <select
+        id="language"
+        onchange="changeLanguage()"
+      >
+
         <option value="ca">Català</option>
         <option value="es">Castellà</option>
         <option value="en">English</option>
+
       </select>
+
     </div>
 
-    <div class="message" id="message"></div>
+    <div
+      class="message"
+      id="message"
+    ></div>
 
   </div>
 
 
   <!-- APP -->
 
-  <div class="app" id="appScreen">
+  <div
+    class="app"
+    id="appScreen"
+  >
 
     <div class="topbar">
 
@@ -396,9 +416,13 @@
 
     <div class="welcome">
 
-      <h2>Hola! 👋</h2>
+      <h2>
+        Hola! 👋
+      </h2>
 
-      <p>Què necessites avui?</p>
+      <p>
+        Què necessites avui?
+      </p>
 
     </div>
 
@@ -407,7 +431,10 @@
 
   <!-- PANELL LILA -->
 
-  <div class="panel" id="panel">
+  <div
+    class="panel"
+    id="panel"
+  >
 
     <div class="panel-header">
 
@@ -441,7 +468,10 @@
         🎙️
       </button>
 
-      <div class="mic-text" id="micText">
+      <div
+        class="mic-text"
+        id="micText"
+      >
         Prem el micròfon i parla
       </div>
 
@@ -456,9 +486,14 @@
     </button>
 
 
-    <div class="add-box" id="addBox">
+    <div
+      class="add-box"
+      id="addBox"
+    >
 
-      <h3>Afegir una cosa</h3>
+      <h3>
+        Afegir una cosa
+      </h3>
 
       <input
         type="text"
@@ -503,7 +538,8 @@
 
     function showMessage(text) {
 
-      document.getElementById("message").textContent = text;
+      document.getElementById("message").textContent =
+        text;
 
     }
 
@@ -525,12 +561,16 @@
         return;
       }
 
-      showMessage("Iniciant sessió...");
+      showMessage(
+        "Iniciant sessió..."
+      );
 
       const { data, error } =
         await supabaseClient.auth.signInWithPassword({
+
           email: email,
           password: password
+
         });
 
       if (error) {
@@ -543,6 +583,7 @@
       }
 
       entrar(data.user);
+
     }
 
 
@@ -572,17 +613,23 @@
         return;
       }
 
-      showMessage("Creant el compte...");
+      showMessage(
+        "Creant el compte..."
+      );
 
       const { data, error } =
         await supabaseClient.auth.signUp({
+
           email: email,
           password: password
+
         });
 
       if (error) {
 
-        showMessage(error.message);
+        showMessage(
+          error.message
+        );
 
         return;
       }
@@ -596,17 +643,22 @@
         showMessage(
           "Compte creat! Revisa el teu correu."
         );
+
       }
+
     }
 
 
     function entrar(user) {
 
-      document.getElementById("loginScreen").style.display =
-        "none";
+      document.getElementById(
+        "loginScreen"
+      ).style.display = "none";
 
-      document.getElementById("appScreen").style.display =
-        "block";
+      document.getElementById(
+        "appScreen"
+      ).style.display = "block";
+
     }
 
 
@@ -616,18 +668,23 @@
 
     function openPanel() {
 
-      document.getElementById("panel").style.display =
-        "block";
+      document.getElementById(
+        "panel"
+      ).style.display = "block";
+
     }
 
 
     function closePanel() {
 
-      document.getElementById("panel").style.display =
-        "none";
+      document.getElementById(
+        "panel"
+      ).style.display = "none";
 
-      document.getElementById("addBox").style.display =
-        "none";
+      document.getElementById(
+        "addBox"
+      ).style.display = "none";
+
     }
 
 
@@ -647,14 +704,18 @@
       } else {
 
         box.style.display = "block";
+
       }
+
     }
 
 
     function saveThing() {
 
       const thing =
-        document.getElementById("newThing").value.trim();
+        document.getElementById(
+          "newThing"
+        ).value.trim();
 
       if (!thing) {
         return;
@@ -664,10 +725,14 @@
         "Major ha rebut: " + thing
       );
 
-      document.getElementById("newThing").value = "";
+      document.getElementById(
+        "newThing"
+      ).value = "";
 
-      document.getElementById("addBox").style.display =
-        "none";
+      document.getElementById(
+        "addBox"
+      ).style.display = "none";
+
     }
 
 
@@ -678,10 +743,14 @@
     function startMicrophone() {
 
       const text =
-        document.getElementById("micText");
+        document.getElementById(
+          "micText"
+        );
 
       const button =
-        document.getElementById("micButton");
+        document.getElementById(
+          "micButton"
+        );
 
 
       const SpeechRecognition =
@@ -704,17 +773,22 @@
 
       /* Català */
 
-      recognition.lang = "ca-ES";
+      recognition.lang =
+        "ca-ES";
 
-      recognition.continuous = false;
+      recognition.continuous =
+        false;
 
-      recognition.interimResults = false;
+      recognition.interimResults =
+        false;
 
 
       text.textContent =
         "🎙️ T'estic escoltant...";
 
-      button.classList.add("listening");
+      button.classList.add(
+        "listening"
+      );
 
 
       try {
@@ -723,7 +797,9 @@
 
       } catch (error) {
 
-        button.classList.remove("listening");
+        button.classList.remove(
+          "listening"
+        );
 
         text.textContent =
           "Torna a prémer el micròfon.";
@@ -732,31 +808,133 @@
       }
 
 
+      /* =========================
+         RESULTAT DE LA VEU
+      ========================= */
+
       recognition.onresult =
         function(event) {
 
           const resultat =
-            event.results[0][0].transcript;
-
-
-          text.textContent =
-            "Has dit: " + resultat;
+            event.results[0][0].transcript
+              .trim();
 
 
           console.log(
             "Major ha escoltat:",
             resultat
           );
+
+
+          /*
+             Primer mostrem
+             el que has dit.
+          */
+
+          text.textContent =
+            "Has dit: " + resultat;
+
+
+          /*
+             Paraules que poden indicar
+             que estàs dient una tasca.
+          */
+
+          const paraulesTasca = [
+
+            "he de",
+            "tinc de",
+            "recorda'm",
+            "recorda",
+            "demà",
+            "avui",
+
+            "dilluns",
+            "dimarts",
+            "dimecres",
+            "dijous",
+            "divendres",
+            "dissabte",
+            "diumenge"
+
+          ];
+
+
+          /*
+             Convertim el text
+             a minúscules.
+          */
+
+          const resultatMinuscules =
+            resultat.toLowerCase();
+
+
+          /*
+             Mirem si alguna paraula
+             de la llista apareix
+             dins del que has dit.
+          */
+
+          const esTasca =
+            paraulesTasca.some(
+              function(paraula) {
+
+                return resultatMinuscules
+                  .includes(paraula);
+
+              }
+            );
+
+
+          /*
+             SI ÉS UNA TASCA
+          */
+
+          if (esTasca) {
+
+            text.textContent =
+              "✅ Tasca detectada: " +
+              resultat;
+
+
+            alert(
+              "Major ha detectat una tasca:\n\n" +
+              resultat
+            );
+
+          }
+
+
+          /*
+             SI NO ÉS UNA TASCA
+          */
+
+          else {
+
+            text.textContent =
+              "Has dit: " + resultat;
+
+          }
+
         };
 
+
+      /* =========================
+         ERROR
+      ========================= */
 
       recognition.onerror =
         function(event) {
 
-          button.classList.remove("listening");
+          button.classList.remove(
+            "listening"
+          );
 
 
-          if (event.error === "not-allowed") {
+          if (
+            event.error ===
+            "not-allowed"
+          ) {
 
             text.textContent =
               "Has de donar permís al micròfon.";
@@ -765,19 +943,29 @@
 
             text.textContent =
               "No he pogut escoltar-te. Torna-ho a provar.";
+
           }
+
         };
 
+
+      /* =========================
+         FINAL DEL MICROFON
+      ========================= */
 
       recognition.onend =
         function() {
 
-          button.classList.remove("listening");
+          button.classList.remove(
+            "listening"
+          );
 
           console.log(
             "Micròfon aturat"
           );
+
         };
+
     }
 
 
@@ -788,22 +976,34 @@
     function changeLanguage() {
 
       const language =
-        document.getElementById("language").value;
+        document.getElementById(
+          "language"
+        ).value;
 
       const subtitle =
-        document.getElementById("subtitle");
+        document.getElementById(
+          "subtitle"
+        );
 
       const email =
-        document.getElementById("email");
+        document.getElementById(
+          "email"
+        );
 
       const password =
-        document.getElementById("password");
+        document.getElementById(
+          "password"
+        );
 
       const button =
-        document.querySelector(".login-button");
+        document.querySelector(
+          ".login-button"
+        );
 
       const create =
-        document.querySelector(".create");
+        document.querySelector(
+          ".create"
+        );
 
 
       if (language === "ca") {
@@ -825,6 +1025,7 @@
 
       }
 
+
       else if (language === "es") {
 
         subtitle.textContent =
@@ -844,6 +1045,7 @@
 
       }
 
+
       else {
 
         subtitle.textContent =
@@ -860,7 +1062,9 @@
 
         create.innerHTML =
           'Don’t have an account? <span onclick="createAccount()">Create account</span>';
+
       }
+
     }
 
   </script>
