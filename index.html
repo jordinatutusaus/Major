@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Major</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #eef4ff, #f3eaff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .login {
+      width: 90%;
+      max-width: 420px;
+      background: white;
+      padding: 40px 32px;
+      border-radius: 24px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+      text-align: center;
+    }
+
+    .logo {
+      width: 85px;
+      height: 85px;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #4f7cff, #8b5cf6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 38px;
+      font-weight: bold;
+    }
+
+    h1 {
+      font-size: 38px;
+      color: #222;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      color: #777;
+      margin-bottom: 30px;
+    }
+
+    input {
+      width: 100%;
+      padding: 15px;
+      margin-bottom: 14px;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #6d5dfc;
+    }
+
+    .login-button {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 12px;
+      background: #5b6cff;
+      color: white;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 5px;
+    }
+
+    .login-button:hover {
+      background: #4859e8;
+    }
+
+    .create {
+      margin-top: 20px;
+      color: #5b5b5b;
+      font-size: 14px;
+    }
+
+    .create span {
+      color: #6d5dfc;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .language {
+      margin-top: 25px;
+    }
+
+    select {
+      padding: 9px 14px;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      background: white;
+      cursor: pointer;
+    }
+
+    .welcome {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="login" id="loginScreen">
+
+    <div class="logo">M</div>
+
+    <h1>Major</h1>
+
+    <p class="subtitle" id="subtitle">
+      El teu assistent personal
+    </p>
+
+    <input
+      type="email"
+      id="email"
+      placeholder="Correu electrònic"
+    >
+
+    <input
+      type="password"
+      id="password"
+      placeholder="Contrasenya"
+    >
+
+    <button class="login-button" onclick="login()">
+      Iniciar sessió
+    </button>
+
+    <p class="create">
+      Encara no tens compte?
+      <span onclick="alert('Aviat podràs crear el teu compte!')">
+        Crear compte
+      </span>
+    </p>
+
+    <div class="language">
+      <select id="language" onchange="changeLanguage()">
+        <option value="ca">Català</option>
+        <option value="es">Castellà</option>
+        <option value="en">English</option>
+      </select>
+    </div>
+
+  </div>
+
+
+  <div class="welcome" id="welcomeScreen">
+    <h1>Benvingut a Major 👋</h1>
+  </div>
+
+
+  <script>
+
+    function login() {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      if (email === "" || password === "") {
+        alert("Omple el correu i la contrasenya.");
+        return;
+      }
+
+      document.getElementById("loginScreen").style.display = "none";
+      document.getElementById("welcomeScreen").style.display = "block";
+    }
+
+
+    function changeLanguage() {
+
+      const language = document.getElementById("language").value;
+
+      const subtitle = document.getElementById("subtitle");
+      const email = document.getElementById("email");
+      const password = document.getElementById("password");
+      const button = document.querySelector(".login-button");
+      const create = document.querySelector(".create");
+
+      if (language === "ca") {
+
+        subtitle.textContent = "El teu assistent personal";
+        email.placeholder = "Correu electrònic";
+        password.placeholder = "Contrasenya";
+        button.textContent = "Iniciar sessió";
+        create.innerHTML =
+          'Encara no tens compte? <span onclick="alert(\'Aviat podràs crear el teu compte!\')">Crear compte</span>';
+
+      } else if (language === "es") {
+
+        subtitle.textContent = "Tu asistente personal";
+        email.placeholder = "Correo electrónico";
+        password.placeholder = "Contraseña";
+        button.textContent = "Iniciar sesión";
+        create.innerHTML =
+          '¿Todavía no tienes cuenta? <span onclick="alert(\'¡Pronto podrás crear tu cuenta!\')">Crear cuenta</span>';
+
+      } else {
+
+        subtitle.textContent = "Your personal assistant";
+        email.placeholder = "Email";
+        password.placeholder = "Password";
+        button.textContent = "Log in";
+        create.innerHTML =
+          'Don’t have an account? <span onclick="alert(\'You will soon be able to create your account!\')">Create account</span>';
+
+      }
+    }
+
+  </script>
+
+</body>
+</html>
