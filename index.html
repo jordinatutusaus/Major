@@ -20,6 +20,10 @@
       background: linear-gradient(135deg, #eef4ff, #f4edff);
     }
 
+    button {
+      cursor: pointer;
+    }
+
     /* LOGIN */
 
     .login {
@@ -75,10 +79,6 @@
       border-color: #6d5dfc;
     }
 
-    button {
-      cursor: pointer;
-    }
-
     .login-button {
       width: 100%;
       padding: 15px;
@@ -132,8 +132,6 @@
       justify-content: flex-end;
     }
 
-    /* CERCLE DE L'USUARI */
-
     .user-button {
       width: 58px;
       height: 58px;
@@ -145,8 +143,6 @@
       font-weight: bold;
       box-shadow: 0 8px 20px rgba(91,108,255,.3);
     }
-
-    /* CENTRE */
 
     .welcome {
       text-align: center;
@@ -228,7 +224,7 @@
       line-height: 1.5;
     }
 
-    /* BOTÓ MICRÒFON */
+    /* MICROFON */
 
     .mic-button {
       width: 125px;
@@ -245,19 +241,29 @@
       box-shadow: 0 12px 30px rgba(0,0,0,.22);
 
       margin-bottom: 30px;
+
+      transition: transform .15s;
     }
 
     .mic-button:active {
       transform: scale(.94);
     }
 
+    .mic-button.listening {
+      transform: scale(1.08);
+      box-shadow: 0 0 0 12px rgba(255,255,255,.18),
+                  0 12px 30px rgba(0,0,0,.22);
+    }
+
     .mic-text {
       font-size: 15px;
       opacity: .9;
       text-align: center;
+      max-width: 280px;
+      line-height: 1.5;
     }
 
-    /* BOTÓ + */
+    /* + */
 
     .add-button {
       position: absolute;
@@ -279,7 +285,7 @@
       box-shadow: 0 10px 25px rgba(0,0,0,.2);
     }
 
-    /* FINESTRA AFEGIR */
+    /* AFEGIR */
 
     .add-box {
       display: none;
@@ -302,10 +308,6 @@
 
     .add-box h3 {
       margin-bottom: 15px;
-    }
-
-    .add-box input {
-      margin-bottom: 10px;
     }
 
     .save-button {
@@ -403,7 +405,7 @@
   </div>
 
 
-  <!-- PANELL -->
+  <!-- PANELL LILA -->
 
   <div class="panel" id="panel">
 
@@ -433,6 +435,7 @@
 
       <button
         class="mic-button"
+        id="micButton"
         onclick="startMicrophone()"
       >
         🎙️
@@ -477,7 +480,9 @@
 
   <script>
 
-    /* SUPABASE */
+    /* =========================
+       SUPABASE
+    ========================= */
 
     const SUPABASE_URL =
       "https://vogfwuvdlusuzofvlmoj.supabase.co";
@@ -492,10 +497,14 @@
       );
 
 
-    /* LOGIN */
+    /* =========================
+       LOGIN
+    ========================= */
 
     function showMessage(text) {
+
       document.getElementById("message").textContent = text;
+
     }
 
 
@@ -508,7 +517,11 @@
         document.getElementById("password").value;
 
       if (!email || !password) {
-        showMessage("Escriu el correu i la contrasenya.");
+
+        showMessage(
+          "Escriu el correu i la contrasenya."
+        );
+
         return;
       }
 
@@ -521,9 +534,11 @@
         });
 
       if (error) {
+
         showMessage(
           "El correu o la contrasenya no són correctes."
         );
+
         return;
       }
 
@@ -540,24 +555,44 @@
         document.getElementById("password").value;
 
       if (!email || !password) {
-        showMessage("Escriu un correu i una contrasenya.");
+
+        showMessage(
+          "Escriu un correu i una contrasenya."
+        );
+
         return;
       }
 
+      if (password.length < 6) {
+
+        showMessage(
+          "La contrasenya ha de tenir almenys 6 caràcters."
+        );
+
+        return;
+      }
+
+      showMessage("Creant el compte...");
+
       const { data, error } =
         await supabaseClient.auth.signUp({
-          email,
-          password
+          email: email,
+          password: password
         });
 
       if (error) {
+
         showMessage(error.message);
+
         return;
       }
 
       if (data.session) {
+
         entrar(data.user);
+
       } else {
+
         showMessage(
           "Compte creat! Revisa el teu correu."
         );
@@ -575,7 +610,9 @@
     }
 
 
-    /* PANELL */
+    /* =========================
+       PANELL
+    ========================= */
 
     function openPanel() {
 
@@ -594,7 +631,9 @@
     }
 
 
-    /* + */
+    /* =========================
+       BOTÓ +
+    ========================= */
 
     function openAddBox() {
 
@@ -602,8 +641,11 @@
         document.getElementById("addBox");
 
       if (box.style.display === "block") {
+
         box.style.display = "none";
+
       } else {
+
         box.style.display = "block";
       }
     }
@@ -629,32 +671,119 @@
     }
 
 
-    /* MICROFON */
+    /* =========================
+       MICROFON 🎙️
+    ========================= */
 
-    async function startMicrophone() {
+    function startMicrophone() {
 
       const text =
         document.getElementById("micText");
 
-      try {
+      const button =
+        document.getElementById("micButton");
 
-        await navigator.mediaDevices.getUserMedia({
-          audio: true
-        });
+
+      const SpeechRecognition =
+        window.SpeechRecognition ||
+        window.webkitSpeechRecognition;
+
+
+      if (!SpeechRecognition) {
 
         text.textContent =
-          "🎙️ T'estic escoltant...";
+          "El teu navegador no suporta el reconeixement de veu.";
+
+        return;
+      }
+
+
+      const recognition =
+        new SpeechRecognition();
+
+
+      /* Català */
+
+      recognition.lang = "ca-ES";
+
+      recognition.continuous = false;
+
+      recognition.interimResults = false;
+
+
+      text.textContent =
+        "🎙️ T'estic escoltant...";
+
+      button.classList.add("listening");
+
+
+      try {
+
+        recognition.start();
 
       } catch (error) {
 
-        text.textContent =
-          "No has donat permís al micròfon.";
+        button.classList.remove("listening");
 
+        text.textContent =
+          "Torna a prémer el micròfon.";
+
+        return;
       }
+
+
+      recognition.onresult =
+        function(event) {
+
+          const resultat =
+            event.results[0][0].transcript;
+
+
+          text.textContent =
+            "Has dit: " + resultat;
+
+
+          console.log(
+            "Major ha escoltat:",
+            resultat
+          );
+        };
+
+
+      recognition.onerror =
+        function(event) {
+
+          button.classList.remove("listening");
+
+
+          if (event.error === "not-allowed") {
+
+            text.textContent =
+              "Has de donar permís al micròfon.";
+
+          } else {
+
+            text.textContent =
+              "No he pogut escoltar-te. Torna-ho a provar.";
+          }
+        };
+
+
+      recognition.onend =
+        function() {
+
+          button.classList.remove("listening");
+
+          console.log(
+            "Micròfon aturat"
+          );
+        };
     }
 
 
-    /* IDIOMES */
+    /* =========================
+       IDIOMES
+    ========================= */
 
     function changeLanguage() {
 
