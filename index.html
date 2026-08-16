@@ -24,7 +24,9 @@
       cursor: pointer;
     }
 
-    /* LOGIN */
+    /* =========================
+       LOGIN
+    ========================= */
 
     .login {
       width: 90%;
@@ -119,7 +121,9 @@
       font-size: 14px;
     }
 
-    /* APP */
+    /* =========================
+       APP
+    ========================= */
 
     .app {
       display: none;
@@ -130,23 +134,49 @@
     .topbar {
       display: flex;
       justify-content: flex-end;
+      align-items: center;
+      gap: 8px;
     }
 
-    .user-button {
+    /* PERFIL */
+
+    .profile-button {
       width: 58px;
       height: 58px;
       border-radius: 50%;
       border: none;
       background: linear-gradient(135deg, #4f7cff, #8b5cf6);
       color: white;
-      font-size: 23px;
+      font-size: 25px;
       font-weight: bold;
       box-shadow: 0 8px 20px rgba(91,108,255,.3);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
+
+    .profile-button img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .edit-profile-button {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: none;
+      background: white;
+      font-size: 18px;
+      box-shadow: 0 5px 15px rgba(0,0,0,.12);
+    }
+
+    /* BENVINGUDA */
 
     .welcome {
       text-align: center;
-      margin-top: 130px;
+      margin-top: 90px;
     }
 
     .welcome h2 {
@@ -159,7 +189,65 @@
       font-size: 18px;
     }
 
-    /* PANELL LILA */
+    /* =========================
+       DEMANDES
+    ========================= */
+
+    .demands-container {
+      width: 90%;
+      max-width: 650px;
+      margin: 45px auto 0;
+    }
+
+    .demands-title {
+      font-size: 24px;
+      margin-bottom: 15px;
+      color: #333;
+    }
+
+    .demand-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .demand {
+      background: white;
+      border-radius: 16px;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 5px 18px rgba(0,0,0,.07);
+    }
+
+    .demand-text {
+      flex: 1;
+      font-size: 16px;
+      color: #333;
+      line-height: 1.4;
+    }
+
+    .delete-demand {
+      border: none;
+      background: transparent;
+      font-size: 19px;
+      opacity: .65;
+    }
+
+    .delete-demand:hover {
+      opacity: 1;
+    }
+
+    .empty-demands {
+      color: #888;
+      text-align: center;
+      padding: 20px;
+    }
+
+    /* =========================
+       PANELL LILA
+    ========================= */
 
     .panel {
       display: none;
@@ -214,17 +302,26 @@
 
     .panel-title {
       font-size: 30px;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
+    }
+
+    .panel-question {
+      font-size: 23px;
+      font-weight: bold;
+      margin-bottom: 12px;
+      text-align: center;
     }
 
     .panel-description {
       text-align: center;
       opacity: .85;
-      margin-bottom: 45px;
+      margin-bottom: 30px;
       line-height: 1.5;
     }
 
-    /* MICROFON */
+    /* =========================
+       MICROFON
+    ========================= */
 
     .mic-button {
       width: 125px;
@@ -240,7 +337,7 @@
 
       box-shadow: 0 12px 30px rgba(0,0,0,.22);
 
-      margin-bottom: 30px;
+      margin-bottom: 22px;
 
       transition: transform .15s;
     }
@@ -263,9 +360,99 @@
       text-align: center;
       max-width: 280px;
       line-height: 1.5;
+      min-height: 45px;
     }
 
-    /* + */
+    /* =========================
+       DEMANDES DINS DEL PANELL
+    ========================= */
+
+    .demands-button {
+      margin-top: 25px;
+
+      width: 100%;
+      max-width: 280px;
+
+      padding: 14px;
+
+      border: none;
+      border-radius: 14px;
+
+      background: rgba(255,255,255,.18);
+
+      color: white;
+
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .demands-button:hover {
+      background: rgba(255,255,255,.25);
+    }
+
+    /* =========================
+       CAIXA DE DEMANDES
+    ========================= */
+
+    .demands-box {
+      display: none;
+
+      position: absolute;
+
+      top: 90px;
+      left: 25px;
+      right: 25px;
+      bottom: 25px;
+
+      background: white;
+      color: #222;
+
+      border-radius: 20px;
+
+      padding: 20px;
+
+      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+
+      overflow-y: auto;
+    }
+
+    .demands-box h3 {
+      margin-bottom: 18px;
+    }
+
+    .panel-demand-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .panel-demand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      padding: 12px;
+
+      background: #f5f3ff;
+
+      border-radius: 12px;
+    }
+
+    .panel-demand-text {
+      flex: 1;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    .panel-delete-button {
+      border: none;
+      background: transparent;
+      font-size: 18px;
+    }
+
+    /* =========================
+       +
+    ========================= */
 
     .add-button {
       position: absolute;
@@ -287,7 +474,9 @@
       box-shadow: 0 10px 25px rgba(0,0,0,.2);
     }
 
-    /* AFEGIR */
+    /* =========================
+       AFEGIR DEMANDA
+    ========================= */
 
     .add-box {
       display: none;
@@ -325,9 +514,104 @@
       font-weight: bold;
     }
 
+    /* =========================
+       PERFIL / EMOJI
+    ========================= */
+
+    .profile-box {
+      display: none;
+
+      position: fixed;
+
+      top: 50%;
+      left: 50%;
+
+      transform: translate(-50%, -50%);
+
+      width: 90%;
+      max-width: 400px;
+
+      background: white;
+
+      color: #222;
+
+      border-radius: 22px;
+
+      padding: 25px;
+
+      box-shadow: 0 15px 40px rgba(0,0,0,.25);
+
+      z-index: 30;
+    }
+
+    .profile-box h3 {
+      margin-bottom: 18px;
+      text-align: center;
+    }
+
+    .profile-options {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .emoji-option {
+      border: none;
+      background: #f3f1ff;
+      border-radius: 12px;
+      font-size: 27px;
+      padding: 10px;
+    }
+
+    .emoji-option:hover {
+      background: #e7e2ff;
+    }
+
+    .photo-button {
+      width: 100%;
+      padding: 13px;
+
+      border: none;
+      border-radius: 12px;
+
+      background: #765cff;
+
+      color: white;
+
+      font-weight: bold;
+
+      margin-bottom: 10px;
+    }
+
+    .close-profile {
+      width: 100%;
+      padding: 12px;
+
+      border: none;
+      border-radius: 12px;
+
+      background: #eee;
+
+      color: #333;
+    }
+
+    #photoInput {
+      display: none;
+    }
+
     @media (max-width: 500px) {
+
       .welcome h2 {
         font-size: 38px;
+      }
+
+      .demands-container {
+        width: 100%;
+      }
+
+      .profile-options {
+        grid-template-columns: repeat(4, 1fr);
       }
     }
   </style>
@@ -335,7 +619,9 @@
 
 <body>
 
-  <!-- LOGIN -->
+  <!-- =========================
+       LOGIN
+  ========================= -->
 
   <div class="login" id="loginScreen">
 
@@ -396,7 +682,9 @@
   </div>
 
 
-  <!-- APP -->
+  <!-- =========================
+       APP
+  ========================= -->
 
   <div
     class="app"
@@ -406,13 +694,22 @@
     <div class="topbar">
 
       <button
-        class="user-button"
+        class="profile-button"
+        id="profileButton"
         onclick="openPanel()"
       >
-        1
+        🙂
+      </button>
+
+      <button
+        class="edit-profile-button"
+        onclick="openProfileEditor()"
+      >
+        ✏️
       </button>
 
     </div>
+
 
     <div class="welcome">
 
@@ -426,10 +723,28 @@
 
     </div>
 
+
+    <!-- DEMANDES -->
+
+    <div class="demands-container">
+
+      <div class="demands-title">
+        📋 Les meves demandes
+      </div>
+
+      <div
+        class="demand-list"
+        id="demandList"
+      ></div>
+
+    </div>
+
   </div>
 
 
-  <!-- PANELL LILA -->
+  <!-- =========================
+       PANELL LILA
+  ========================= -->
 
   <div
     class="panel"
@@ -454,11 +769,17 @@
         Major
       </div>
 
-      <div class="panel-description">
-        Digues-me què necessites<br>
-        i jo m'encarrego de la resta.
+      <div class="panel-question">
+        Què farem avui? ✨
       </div>
 
+      <div class="panel-description">
+        Parla amb Major i jo guardaré<br>
+        les teves demandes.
+      </div>
+
+
+      <!-- MICROFON -->
 
       <button
         class="mic-button"
@@ -475,8 +796,20 @@
         Prem el micròfon i parla
       </div>
 
+
+      <!-- DEMANDES -->
+
+      <button
+        class="demands-button"
+        onclick="openDemandsBox()"
+      >
+        📋 Les meves demandes
+      </button>
+
     </div>
 
+
+    <!-- + -->
 
     <button
       class="add-button"
@@ -486,13 +819,15 @@
     </button>
 
 
+    <!-- AFEGIR -->
+
     <div
       class="add-box"
       id="addBox"
     >
 
       <h3>
-        Afegir una cosa
+        Afegir una demanda
       </h3>
 
       <input
@@ -509,6 +844,140 @@
       </button>
 
     </div>
+
+
+    <!-- LLISTA DEMANDES -->
+
+    <div
+      class="demands-box"
+      id="demandsBox"
+    >
+
+      <h3>
+        📋 Les meves demandes
+      </h3>
+
+      <div
+        class="panel-demand-list"
+        id="panelDemandList"
+      ></div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       EDITOR PERFIL
+  ========================= -->
+
+  <div
+    class="profile-box"
+    id="profileBox"
+  >
+
+    <h3>
+      Personalitza el teu perfil
+    </h3>
+
+
+    <div class="profile-options">
+
+      <button
+        class="emoji-option"
+        onclick="chooseEmoji('😀')"
+      >
+        😀
+      </button>
+
+      <button
+        class="emoji-option"
+        onclick="chooseEmoji('😎')"
+      >
+        😎
+      </button>
+
+      <button
+        class="emoji-option"
+        onclick="chooseEmoji('🐶')"
+      >
+        🐶
+      </button>
+
+      <button
+        class="emoji-option"
+        onclick="chooseEmoji('🐱')"
+      >
+        🐱
+      </button>
+
+      <button
+        class="emoji-option"
+        onclick="chooseEmoji('🦊')"
+      >
+        🦊
+      </button>
+
+      <button
+        class="emoji-option"
+        onclick="chooseEmoji('🌸')"
+      >
+        🌸
+      </button>
+
+      <button
+        class="emoji-option"
+        onclick="chooseEmoji('⭐')"
+      >
+        ⭐
+      </button>
+
+      <button
+        class="emoji-option"
+        onclick="chooseEmoji('💜')"
+      >
+        💜
+      </button>
+
+      <button
+        class="emoji-option"
+        onclick="chooseEmoji('⚽')"
+      >
+        ⚽
+      </button>
+
+      <button
+        class="emoji-option"
+        onclick="chooseEmoji('🎮')"
+      >
+        🎮
+      </button>
+
+    </div>
+
+
+    <button
+      class="photo-button"
+      onclick="document.getElementById('photoInput').click()"
+    >
+      📷 Escollir una foto
+    </button>
+
+
+    <input
+      type="file"
+      id="photoInput"
+      accept="image/*"
+      onchange="choosePhoto(event)"
+    >
+
+
+    <button
+      class="close-profile"
+      onclick="closeProfileEditor()"
+    >
+      Tancar
+    </button>
 
   </div>
 
@@ -533,12 +1002,224 @@
 
 
     /* =========================
+       DEMANDES
+    ========================= */
+
+    let demands =
+      JSON.parse(
+        localStorage.getItem("majorDemands") || "[]"
+      );
+
+
+    function saveDemands() {
+
+      localStorage.setItem(
+        "majorDemands",
+        JSON.stringify(demands)
+      );
+
+    }
+
+
+    function renderDemands() {
+
+      const list =
+        document.getElementById(
+          "demandList"
+        );
+
+      list.innerHTML = "";
+
+
+      if (demands.length === 0) {
+
+        list.innerHTML =
+          '<div class="empty-demands">Encara no tens cap demanda. 😊</div>';
+
+        return;
+      }
+
+
+      demands.forEach(
+        function(demand, index) {
+
+          const element =
+            document.createElement("div");
+
+          element.className =
+            "demand";
+
+
+          const text =
+            document.createElement("div");
+
+          text.className =
+            "demand-text";
+
+          text.textContent =
+            demand;
+
+
+          const deleteButton =
+            document.createElement("button");
+
+          deleteButton.className =
+            "delete-demand";
+
+          deleteButton.textContent =
+            "🗑️";
+
+
+          deleteButton.onclick =
+            function() {
+
+              deleteDemand(index);
+
+            };
+
+
+          element.appendChild(
+            text
+          );
+
+          element.appendChild(
+            deleteButton
+          );
+
+
+          list.appendChild(
+            element
+          );
+
+        }
+      );
+
+    }
+
+
+    function renderPanelDemands() {
+
+      const list =
+        document.getElementById(
+          "panelDemandList"
+        );
+
+      list.innerHTML = "";
+
+
+      if (demands.length === 0) {
+
+        list.innerHTML =
+          '<div class="empty-demands">Encara no tens cap demanda. 😊</div>';
+
+        return;
+      }
+
+
+      demands.forEach(
+        function(demand, index) {
+
+          const element =
+            document.createElement("div");
+
+          element.className =
+            "panel-demand";
+
+
+          const text =
+            document.createElement("div");
+
+          text.className =
+            "panel-demand-text";
+
+          text.textContent =
+            demand;
+
+
+          const deleteButton =
+            document.createElement("button");
+
+          deleteButton.className =
+            "panel-delete-button";
+
+          deleteButton.textContent =
+            "🗑️";
+
+
+          deleteButton.onclick =
+            function() {
+
+              deleteDemand(index);
+
+            };
+
+
+          element.appendChild(
+            text
+          );
+
+          element.appendChild(
+            deleteButton
+          );
+
+
+          list.appendChild(
+            element
+          );
+
+        }
+      );
+
+    }
+
+
+    function addDemand(text) {
+
+      if (!text || !text.trim()) {
+        return;
+      }
+
+
+      demands.push(
+        text.trim()
+      );
+
+
+      saveDemands();
+
+      renderDemands();
+
+      renderPanelDemands();
+
+    }
+
+
+    function deleteDemand(index) {
+
+      demands.splice(
+        index,
+        1
+      );
+
+
+      saveDemands();
+
+      renderDemands();
+
+      renderPanelDemands();
+
+    }
+
+
+    /* =========================
        LOGIN
     ========================= */
 
     function showMessage(text) {
 
-      document.getElementById("message").textContent =
+      document.getElementById(
+        "message"
+      ).textContent =
         text;
 
     }
@@ -547,10 +1228,15 @@
     async function login() {
 
       const email =
-        document.getElementById("email").value.trim();
+        document.getElementById(
+          "email"
+        ).value.trim();
 
       const password =
-        document.getElementById("password").value;
+        document.getElementById(
+          "password"
+        ).value;
+
 
       if (!email || !password) {
 
@@ -561,17 +1247,21 @@
         return;
       }
 
+
       showMessage(
         "Iniciant sessió..."
       );
+
 
       const { data, error } =
         await supabaseClient.auth.signInWithPassword({
 
           email: email,
+
           password: password
 
         });
+
 
       if (error) {
 
@@ -582,6 +1272,7 @@
         return;
       }
 
+
       entrar(data.user);
 
     }
@@ -590,10 +1281,15 @@
     async function createAccount() {
 
       const email =
-        document.getElementById("email").value.trim();
+        document.getElementById(
+          "email"
+        ).value.trim();
 
       const password =
-        document.getElementById("password").value;
+        document.getElementById(
+          "password"
+        ).value;
+
 
       if (!email || !password) {
 
@@ -604,6 +1300,7 @@
         return;
       }
 
+
       if (password.length < 6) {
 
         showMessage(
@@ -613,17 +1310,21 @@
         return;
       }
 
+
       showMessage(
         "Creant el compte..."
       );
+
 
       const { data, error } =
         await supabaseClient.auth.signUp({
 
           email: email,
+
           password: password
 
         });
+
 
       if (error) {
 
@@ -633,6 +1334,7 @@
 
         return;
       }
+
 
       if (data.session) {
 
@@ -653,11 +1355,17 @@
 
       document.getElementById(
         "loginScreen"
-      ).style.display = "none";
+      ).style.display =
+        "none";
+
 
       document.getElementById(
         "appScreen"
-      ).style.display = "block";
+      ).style.display =
+        "block";
+
+
+      renderDemands();
 
     }
 
@@ -670,7 +1378,11 @@
 
       document.getElementById(
         "panel"
-      ).style.display = "block";
+      ).style.display =
+        "block";
+
+
+      renderPanelDemands();
 
     }
 
@@ -679,11 +1391,50 @@
 
       document.getElementById(
         "panel"
-      ).style.display = "none";
+      ).style.display =
+        "none";
+
 
       document.getElementById(
         "addBox"
-      ).style.display = "none";
+      ).style.display =
+        "none";
+
+
+      document.getElementById(
+        "demandsBox"
+      ).style.display =
+        "none";
+
+    }
+
+
+    /* =========================
+       DEMANDES
+    ========================= */
+
+    function openDemandsBox() {
+
+      const box =
+        document.getElementById(
+          "demandsBox"
+        );
+
+
+      renderPanelDemands();
+
+
+      if (box.style.display === "block") {
+
+        box.style.display =
+          "none";
+
+      } else {
+
+        box.style.display =
+          "block";
+
+      }
 
     }
 
@@ -695,15 +1446,20 @@
     function openAddBox() {
 
       const box =
-        document.getElementById("addBox");
+        document.getElementById(
+          "addBox"
+        );
+
 
       if (box.style.display === "block") {
 
-        box.style.display = "none";
+        box.style.display =
+          "none";
 
       } else {
 
-        box.style.display = "block";
+        box.style.display =
+          "block";
 
       }
 
@@ -712,32 +1468,46 @@
 
     function saveThing() {
 
-      const thing =
+      const input =
         document.getElementById(
           "newThing"
-        ).value.trim();
+        );
+
+
+      const thing =
+        input.value.trim();
+
 
       if (!thing) {
         return;
       }
 
-      alert(
-        "Major ha rebut: " + thing
+
+      addDemand(
+        thing
       );
 
-      document.getElementById(
-        "newThing"
-      ).value = "";
+
+      input.value =
+        "";
+
 
       document.getElementById(
         "addBox"
-      ).style.display = "none";
+      ).style.display =
+        "none";
+
+
+      document.getElementById(
+        "micText"
+      ).textContent =
+        "✅ Demanda afegida!";
 
     }
 
 
     /* =========================
-       MICROFON 🎙️
+       MICROFON
     ========================= */
 
     function startMicrophone() {
@@ -746,6 +1516,7 @@
         document.getElementById(
           "micText"
         );
+
 
       const button =
         document.getElementById(
@@ -771,8 +1542,6 @@
         new SpeechRecognition();
 
 
-      /* Català */
-
       recognition.lang =
         "ca-ES";
 
@@ -785,6 +1554,7 @@
 
       text.textContent =
         "🎙️ T'estic escoltant...";
+
 
       button.classList.add(
         "listening"
@@ -808,16 +1578,18 @@
       }
 
 
-      /* =========================
-         RESULTAT DE LA VEU
-      ========================= */
-
       recognition.onresult =
         function(event) {
 
           const resultat =
-            event.results[0][0].transcript
+            event.results[0][0]
+              .transcript
               .trim();
+
+
+          if (!resultat) {
+            return;
+          }
 
 
           console.log(
@@ -826,102 +1598,17 @@
           );
 
 
-          /*
-             Primer mostrem
-             el que has dit.
-          */
+          addDemand(
+            resultat
+          );
+
 
           text.textContent =
-            "Has dit: " + resultat;
-
-
-          /*
-             Paraules que poden indicar
-             que estàs dient una tasca.
-          */
-
-          const paraulesTasca = [
-
-            "he de",
-            "tinc de",
-            "recorda'm",
-            "recorda",
-            "demà",
-            "avui",
-
-            "dilluns",
-            "dimarts",
-            "dimecres",
-            "dijous",
-            "divendres",
-            "dissabte",
-            "diumenge"
-
-          ];
-
-
-          /*
-             Convertim el text
-             a minúscules.
-          */
-
-          const resultatMinuscules =
-            resultat.toLowerCase();
-
-
-          /*
-             Mirem si alguna paraula
-             de la llista apareix
-             dins del que has dit.
-          */
-
-          const esTasca =
-            paraulesTasca.some(
-              function(paraula) {
-
-                return resultatMinuscules
-                  .includes(paraula);
-
-              }
-            );
-
-
-          /*
-             SI ÉS UNA TASCA
-          */
-
-          if (esTasca) {
-
-            text.textContent =
-              "✅ Tasca detectada: " +
-              resultat;
-
-
-            alert(
-              "Major ha detectat una tasca:\n\n" +
-              resultat
-            );
-
-          }
-
-
-          /*
-             SI NO ÉS UNA TASCA
-          */
-
-          else {
-
-            text.textContent =
-              "Has dit: " + resultat;
-
-          }
+            "✅ Demanda guardada: " +
+            resultat;
 
         };
 
-
-      /* =========================
-         ERROR
-      ========================= */
 
       recognition.onerror =
         function(event) {
@@ -949,10 +1636,6 @@
         };
 
 
-      /* =========================
-         FINAL DEL MICROFON
-      ========================= */
-
       recognition.onend =
         function() {
 
@@ -960,11 +1643,163 @@
             "listening"
           );
 
-          console.log(
-            "Micròfon aturat"
+        };
+
+    }
+
+
+    /* =========================
+       PERFIL
+    ========================= */
+
+    let profile =
+      JSON.parse(
+        localStorage.getItem(
+          "majorProfile"
+        ) || "null"
+      );
+
+
+    function saveProfile() {
+
+      localStorage.setItem(
+        "majorProfile",
+        JSON.stringify(profile)
+      );
+
+    }
+
+
+    function renderProfile() {
+
+      const button =
+        document.getElementById(
+          "profileButton"
+        );
+
+
+      button.innerHTML = "";
+
+
+      if (
+        profile &&
+        profile.type === "photo" &&
+        profile.value
+      ) {
+
+        const img =
+          document.createElement(
+            "img"
           );
 
+
+        img.src =
+          profile.value;
+
+
+        button.appendChild(
+          img
+        );
+
+
+      } else if (
+        profile &&
+        profile.type === "emoji"
+      ) {
+
+        button.textContent =
+          profile.value;
+
+
+      } else {
+
+        button.textContent =
+          "🙂";
+
+      }
+
+    }
+
+
+    function openProfileEditor() {
+
+      document.getElementById(
+        "profileBox"
+      ).style.display =
+        "block";
+
+    }
+
+
+    function closeProfileEditor() {
+
+      document.getElementById(
+        "profileBox"
+      ).style.display =
+        "none";
+
+    }
+
+
+    function chooseEmoji(emoji) {
+
+      profile = {
+
+        type: "emoji",
+
+        value: emoji
+
+      };
+
+
+      saveProfile();
+
+      renderProfile();
+
+      closeProfileEditor();
+
+    }
+
+
+    function choosePhoto(event) {
+
+      const file =
+        event.target.files[0];
+
+
+      if (!file) {
+        return;
+      }
+
+
+      const reader =
+        new FileReader();
+
+
+      reader.onload =
+        function(e) {
+
+          profile = {
+
+            type: "photo",
+
+            value: e.target.result
+
+          };
+
+
+          saveProfile();
+
+          renderProfile();
+
+          closeProfileEditor();
+
         };
+
+
+      reader.readAsDataURL(
+        file
+      );
 
     }
 
@@ -980,25 +1815,30 @@
           "language"
         ).value;
 
+
       const subtitle =
         document.getElementById(
           "subtitle"
         );
+
 
       const email =
         document.getElementById(
           "email"
         );
 
+
       const password =
         document.getElementById(
           "password"
         );
 
+
       const button =
         document.querySelector(
           ".login-button"
         );
+
 
       const create =
         document.querySelector(
@@ -1066,6 +1906,15 @@
       }
 
     }
+
+
+    /* =========================
+       INICIAR
+    ========================= */
+
+    renderDemands();
+
+    renderProfile();
 
   </script>
 
