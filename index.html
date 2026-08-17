@@ -291,15 +291,11 @@
     }
 
     .panel-menu {
-      height: calc(100% - 70px);
-
       display: flex;
-
       flex-direction: column;
-
-      justify-content: center;
-
-      gap: 18px;
+      gap: 14px;
+      margin-top: 25px;
+      padding-bottom: 95px;
     }
 
     .menu-button {
@@ -342,16 +338,11 @@
 
     .mic-section {
       display: flex;
-
       flex-direction: column;
-
       align-items: center;
-
       justify-content: center;
-
-      height: 100%;
-
       text-align: center;
+      padding-top: 25px;
     }
 
     .mic-button {
@@ -522,15 +513,10 @@
     .white-close {
       width: 42px;
       height: 42px;
-
       border-radius: 50%;
-
       border: none;
-
-      background: #f0f0f5;
-
-      color: #555;
-
+      background: #765cff;
+      color: white;
       font-size: 25px;
     }
 
@@ -594,20 +580,24 @@
       line-height: 1.4;
     }
 
+    .demand-actions {
+      display: flex;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .edit-button,
     .delete-button {
       width: 34px;
       height: 34px;
-
       flex-shrink: 0;
-
       border: none;
-
       border-radius: 9px;
-
-      background: #ffe8e8;
-
       font-size: 17px;
     }
+
+    .edit-button { background: #eeeaff; }
+    .delete-button { background: #ffe8e8; }
 
     /* =========================
        PERFIL
@@ -844,134 +834,52 @@
      PANELL LILA
 ========================= -->
 
-<div
-  class="panel"
-  id="panel"
->
+<div class="panel" id="panel">
 
   <div class="panel-header">
-
-    <button
-      class="close-button"
-      onclick="closePanel()"
-    >
-      ×
-    </button>
-
+    <button class="close-button" onclick="closePanel()">×</button>
   </div>
 
+  <div class="mic-section">
+    <div style="font-size:30px; margin-bottom:10px;">Major</div>
+
+    <div style="opacity:.85; margin-bottom:35px; text-align:center;">
+      Digues-me què necessites<br>
+      i jo ho guardaré a les teves demandes.
+    </div>
+
+    <button class="mic-button" id="micButton" onclick="startMicrophone()">🎙️</button>
+
+    <div class="mic-text" id="micText">Prem el micròfon i parla</div>
+  </div>
 
   <div class="panel-menu">
-
-    <button
-      class="menu-button"
-      onclick="openProfile()"
-    >
-
-      <span class="menu-icon">
-        👤
-      </span>
-
-      Perfil
-
+    <button class="menu-button" onclick="openProfile()">
+      <span class="menu-icon">👤</span> Perfil
     </button>
 
-
-    <button
-      class="menu-button"
-      onclick="openDemands()"
-    >
-
-      <span class="menu-icon">
-        📋
-      </span>
-
-      Demandes
-
+    <button class="menu-button" onclick="openDemands()">
+      <span class="menu-icon">📋</span> Demandes
     </button>
-
-
-    <button
-      class="menu-button"
-      onclick="openMicrophone()"
-    >
-
-      <span class="menu-icon">
-        🎙️
-      </span>
-
-      Microfon
-
-    </button>
-
   </div>
 
+  <button class="add-button" onclick="openAddBox()">+</button>
 
-  <!-- + -->
+  <div class="add-box" id="addBox">
+    <h3>Afegir una demanda</h3>
 
-  <button
-    class="add-button"
-    onclick="openAddBox()"
-  >
-    +
-  </button>
+    <input type="text" id="newThing" placeholder="Què vols afegir?">
 
-
-  <!-- AFEGIR MANUALMENT -->
-
-  <div
-    class="add-box"
-    id="addBox"
-  >
-
-    <h3>
-      Afegir una demanda
-    </h3>
-
-    <input
-      type="text"
-      id="newThing"
-      placeholder="Què vols afegir?"
-    >
-
-    <select
-      id="manualCategory"
-      style="width:100%; padding:12px; margin-bottom:12px;"
-    >
-
-      <option value="tasques">
-        📝 Tasques
-      </option>
-
-      <option value="compra">
-        🛒 Llista de la compra
-      </option>
-
-      <option value="recordatoris">
-        🔔 Recordatoris
-      </option>
-
-      <option value="dates">
-        📅 Dates importants
-      </option>
-
-      <option value="galeria">
-        📸 Galeria
-      </option>
-
-      <option value="altres">
-        📂 Altres
-      </option>
-
+    <select id="manualCategory" style="width:100%; padding:12px; margin-bottom:12px;">
+      <option value="tasques">📝 Tasques</option>
+      <option value="compra">🛒 Llista de la compra</option>
+      <option value="recordatoris">🔔 Recordatoris</option>
+      <option value="dates">📅 Dates importants</option>
+      <option value="galeria">📸 Galeria</option>
+      <option value="altres">📂 Altres</option>
     </select>
 
-    <button
-      class="save-button"
-      onclick="saveThing()"
-    >
-      Afegir
-    </button>
-
+    <button class="save-button" onclick="saveThing()">Afegir</button>
   </div>
 
 </div>
@@ -1421,6 +1329,10 @@ function closeDemands() {
     "demandsPanel"
   ).style.display = "none";
 
+  document.getElementById(
+    "panel"
+  ).style.display = "block";
+
 }
 
 
@@ -1502,6 +1414,35 @@ function renderDemands() {
             demanda.text;
 
 
+          const actions =
+            document.createElement(
+              "div"
+            );
+
+          actions.className =
+            "demand-actions";
+
+          const editButton =
+            document.createElement(
+              "button"
+            );
+
+          editButton.className =
+            "edit-button";
+
+          editButton.textContent =
+            "✏️";
+
+          editButton.title =
+            "Editar demanda";
+
+          editButton.onclick =
+            function() {
+              editarDemanda(
+                demanda.id
+              );
+            };
+
           const deleteButton =
             document.createElement(
               "button"
@@ -1513,24 +1454,21 @@ function renderDemands() {
           deleteButton.textContent =
             "🗑️";
 
+          deleteButton.title =
+            "Eliminar demanda";
 
           deleteButton.onclick =
             function() {
-
               eliminarDemanda(
                 demanda.id
               );
-
             };
 
+          actions.appendChild(editButton);
+          actions.appendChild(deleteButton);
 
-          item.appendChild(
-            text
-          );
-
-          item.appendChild(
-            deleteButton
-          );
+          item.appendChild(text);
+          item.appendChild(actions);
 
           list.appendChild(
             item
@@ -1542,6 +1480,47 @@ function renderDemands() {
     }
   );
 
+}
+
+
+function editarDemanda(id) {
+
+  const demanda =
+    demandes.find(
+      function(item) {
+        return item.id === id;
+      }
+    );
+
+  if (!demanda) {
+    return;
+  }
+
+  const nouText =
+    prompt(
+      "Edita la demanda:",
+      demanda.text
+    );
+
+  if (nouText === null) {
+    return;
+  }
+
+  const textNet =
+    nouText.trim();
+
+  if (!textNet) {
+    return;
+  }
+
+  demanda.text = textNet;
+
+  localStorage.setItem(
+    "majorDemandes",
+    JSON.stringify(demandes)
+  );
+
+  renderDemands();
 }
 
 
@@ -1675,77 +1654,7 @@ function afegirDemanda(
 ========================= */
 
 function openMicrophone() {
-
-  document.getElementById(
-    "panel"
-  ).innerHTML = `
-
-    <div class="panel-header">
-
-      <button
-        class="close-button"
-        onclick="closePanel()"
-      >
-        ×
-      </button>
-
-    </div>
-
-    <div class="mic-section">
-
-      <div
-        style="
-          font-size:30px;
-          margin-bottom:10px;
-        "
-      >
-        Major
-      </div>
-
-      <div
-        style="
-          opacity:.85;
-          margin-bottom:40px;
-          text-align:center;
-        "
-      >
-        Digues-me una demanda
-        i jo intentaré organitzar-la.
-      </div>
-
-      <button
-        class="mic-button"
-        id="micButton"
-        onclick="startMicrophone()"
-      >
-        🎙️
-      </button>
-
-      <div
-        class="mic-text"
-        id="micText"
-      >
-        Prem el micròfon i parla
-      </div>
-
-    </div>
-
-    <button
-      class="add-button"
-      onclick="restorePanel()"
-    >
-      +
-    </button>
-
-  `;
-
-}
-
-
-function restorePanel() {
-
-  location.reload();
-
+  document.getElementById("panel").style.display = "block";
 }
 
 
@@ -1916,34 +1825,8 @@ function startMicrophone() {
       );
 
 
-      const noms = {
-
-        tasques:
-          "📝 Tasca",
-
-        compra:
-          "🛒 Llista de la compra",
-
-        recordatoris:
-          "🔔 Recordatori",
-
-        dates:
-          "📅 Data important",
-
-        galeria:
-          "📸 Galeria",
-
-        altres:
-          "📂 Altres"
-
-      };
-
-
       text.textContent =
-        "✅ " +
-        noms[categoria] +
-        ": " +
-        resultat;
+        "✅ Guardat a Demandes";
 
     };
 
@@ -2015,6 +1898,11 @@ function closeProfile() {
     "profilePanel"
   ).style.display =
     "none";
+
+  document.getElementById(
+    "panel"
+  ).style.display =
+    "block";
 
 }
 
