@@ -3,12 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Major — El teu assistent personal</title>
-
-  <meta
-    name="description"
-    content="Major és el teu assistent personal per organitzar demandes, tasques, llistes, recordatoris, dates importants i fotos."
-  >
+  <title>Major</title>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -75,9 +70,10 @@
       margin-bottom: 30px;
     }
 
-    input {
+    input,
+    select {
       width: 100%;
-      padding: 15px;
+      padding: 14px;
       margin-bottom: 14px;
 
       border: 1px solid #ddd;
@@ -85,6 +81,7 @@
 
       font-size: 16px;
       outline: none;
+      background: white;
     }
 
     input:focus {
@@ -121,11 +118,8 @@
       margin-top: 25px;
     }
 
-    select {
-      padding: 9px 14px;
-      border-radius: 10px;
-      border: 1px solid #ddd;
-      background: white;
+    .language select {
+      width: auto;
     }
 
     .message {
@@ -133,6 +127,7 @@
       min-height: 20px;
       font-size: 14px;
     }
+
 
     /* =========================
        APP PRINCIPAL
@@ -147,67 +142,43 @@
     .topbar {
       display: flex;
       justify-content: flex-end;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .profile-wrapper {
-      display: flex;
-      align-items: center;
-      gap: 6px;
     }
 
     .user-button {
-      width: 58px;
-      height: 58px;
-
-      border-radius: 50%;
-      border: none;
-
-      background: linear-gradient(135deg, #4f7cff, #8b5cf6);
-
-      color: white;
-      font-size: 27px;
-
-      box-shadow: 0 8px 20px rgba(91,108,255,.3);
-    }
-
-    .edit-profile-button {
-      width: 34px;
-      height: 34px;
+      width: 62px;
+      height: 62px;
 
       border-radius: 50%;
       border: none;
 
       background: white;
-      color: #765cff;
 
-      font-size: 17px;
+      font-size: 30px;
 
-      box-shadow: 0 5px 15px rgba(0,0,0,.12);
+      box-shadow: 0 8px 20px rgba(91,108,255,.25);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-
-    /* =========================
-       CENTRE
-    ========================= */
 
     .welcome {
       text-align: center;
-
-      margin-top: 180px;
+      margin-top: 150px;
     }
 
-    .current-time {
-      font-size: 72px;
+    .clock {
+      font-size: 64px;
       font-weight: bold;
-      letter-spacing: -3px;
+      letter-spacing: -2px;
     }
 
-    .user-name {
-      margin-top: 10px;
+    .username-display {
+      margin-top: 8px;
       color: #777;
-      font-size: 20px;
+      font-size: 17px;
     }
+
 
     /* =========================
        PANELL LILA
@@ -221,7 +192,7 @@
       right: 0;
 
       width: 430px;
-      max-width: 92%;
+      max-width: 94%;
 
       height: 100vh;
 
@@ -240,7 +211,13 @@
 
     .panel-header {
       display: flex;
-      justify-content: flex-end;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .panel-logo {
+      font-size: 25px;
+      font-weight: bold;
     }
 
     .close-button {
@@ -258,67 +235,26 @@
     }
 
     .panel-main {
+      padding-top: 35px;
+    }
+
+    .panel-question {
       text-align: center;
-      margin-top: 40px;
+
+      font-size: 29px;
+      font-weight: bold;
+
+      margin-bottom: 25px;
     }
 
-    .panel-title {
-      font-size: 32px;
-      margin-bottom: 8px;
-    }
 
-    .panel-description {
-      opacity: .85;
-      line-height: 1.5;
+    /* =========================
+       MICROFON
+    ========================= */
+
+    .mic-area {
+      text-align: center;
       margin-bottom: 35px;
-    }
-
-    /* =========================
-       OPCIONS DEL PANELL
-    ========================= */
-
-    .panel-options {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .panel-option {
-      width: 100%;
-
-      padding: 18px;
-
-      border: none;
-      border-radius: 16px;
-
-      background: rgba(255,255,255,.16);
-
-      color: white;
-
-      text-align: left;
-
-      font-size: 17px;
-
-      transition: .15s;
-    }
-
-    .panel-option:hover {
-      background: rgba(255,255,255,.25);
-      transform: translateY(-1px);
-    }
-
-    .option-icon {
-      margin-right: 10px;
-      font-size: 22px;
-    }
-
-    /* =========================
-       MICRO
-    ========================= */
-
-    .micro-section {
-      text-align: center;
-      margin-top: 35px;
     }
 
     .mic-button {
@@ -359,72 +295,55 @@
       line-height: 1.5;
     }
 
+
     /* =========================
-       DEMANDES
+       SECCIONS
     ========================= */
 
     .section {
-      display: none;
+      margin-top: 25px;
     }
 
     .section-title {
-      font-size: 28px;
-      margin: 25px 0;
-    }
-
-    .back-button {
-      border: none;
-      background: rgba(255,255,255,.16);
-
-      color: white;
-
-      padding: 10px 14px;
-      border-radius: 10px;
-
-      margin-bottom: 20px;
-    }
-
-    .filters {
       display: flex;
-      gap: 7px;
-      flex-wrap: wrap;
-      margin-bottom: 20px;
+      justify-content: space-between;
+      align-items: center;
+
+      margin-bottom: 12px;
     }
 
-    .filter-button {
-      border: none;
-      border-radius: 20px;
-
-      padding: 8px 12px;
-
-      background: rgba(255,255,255,.16);
-      color: white;
+    .section-title h3 {
+      font-size: 20px;
     }
 
-    .filter-button.active {
-      background: white;
-      color: #765cff;
+    .section-card {
+      background: rgba(255,255,255,.14);
+
+      border-radius: 16px;
+
+      padding: 14px;
+
+      margin-bottom: 10px;
     }
 
-    .request-list {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
+
+    /* =========================
+       DEMANDES
+    ========================= */
 
     .request {
       background: white;
       color: #222;
 
-      border-radius: 16px;
+      border-radius: 14px;
 
-      padding: 15px;
+      padding: 13px;
+
+      margin-bottom: 10px;
 
       display: flex;
       align-items: center;
-      justify-content: space-between;
-
-      gap: 12px;
+      gap: 10px;
     }
 
     .request-info {
@@ -435,124 +354,76 @@
       font-size: 12px;
       color: #765cff;
       font-weight: bold;
-      margin-bottom: 5px;
+      margin-bottom: 4px;
     }
 
     .request-text {
       font-size: 15px;
+      line-height: 1.35;
     }
 
     .delete-button {
-      width: 38px;
-      height: 38px;
+      width: 35px;
+      height: 35px;
 
       border: none;
-      border-radius: 50%;
+      border-radius: 9px;
 
-      background: #f2f2f2;
+      background: #f3f3f3;
 
       font-size: 17px;
     }
 
     .empty {
       text-align: center;
-      opacity: .8;
-      padding: 30px 10px;
+      opacity: .75;
+      font-size: 14px;
+      padding: 15px;
     }
+
 
     /* =========================
-       GALERIA
+       BOTÓ +
     ========================= */
 
-    .album-list {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
+    .add-button {
+      position: fixed;
 
-    .album {
-      background: rgba(255,255,255,.16);
+      bottom: 30px;
+      right: 30px;
 
-      border-radius: 15px;
+      width: 62px;
+      height: 62px;
 
-      padding: 16px;
-
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .album button {
+      border-radius: 50%;
       border: none;
-      background: white;
-      color: #765cff;
-
-      padding: 8px 12px;
-      border-radius: 9px;
-    }
-
-    .gallery-actions {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-
-    .gallery-actions button {
-      flex: 1;
-
-      padding: 12px;
-
-      border: none;
-      border-radius: 12px;
 
       background: white;
       color: #765cff;
 
-      font-weight: bold;
+      font-size: 38px;
+
+      box-shadow: 0 10px 25px rgba(0,0,0,.2);
+
+      z-index: 20;
     }
 
-    .photo-grid {
-      display: grid;
-
-      grid-template-columns:
-        repeat(2, 1fr);
-
-      gap: 10px;
-    }
-
-    .photo-card {
-      background: white;
-      border-radius: 14px;
-      overflow: hidden;
-      color: #222;
-    }
-
-    .photo-card img {
-      width: 100%;
-      height: 140px;
-      object-fit: cover;
-      display: block;
-    }
-
-    .photo-card-bottom {
-      padding: 8px;
-
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .photo-delete {
-      border: none;
-      background: transparent;
-      font-size: 16px;
-    }
 
     /* =========================
-       PERFIL
+       CAIXA AFEGIR
     ========================= */
 
-    .profile-editor {
+    .add-box {
+      display: none;
+
+      position: fixed;
+
+      bottom: 105px;
+      right: 25px;
+
+      width: 360px;
+      max-width: calc(100% - 50px);
+
       background: white;
       color: #222;
 
@@ -560,55 +431,20 @@
 
       padding: 20px;
 
-      margin-top: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+
+      z-index: 30;
     }
 
-    .profile-preview {
-      width: 80px;
-      height: 80px;
-
-      margin: 0 auto 15px;
-
-      border-radius: 50%;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      background: linear-gradient(135deg,#4f7cff,#8b5cf6);
-
-      color: white;
-
-      font-size: 38px;
+    .add-box h3 {
+      margin-bottom: 15px;
     }
 
-    .emoji-options {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-
-      justify-content: center;
-
-      margin: 15px 0;
+    .add-box select {
+      margin-bottom: 10px;
     }
 
-    .emoji-choice {
-      width: 45px;
-      height: 45px;
-
-      border: none;
-      border-radius: 50%;
-
-      background: #f1f1f1;
-
-      font-size: 23px;
-    }
-
-    .name-input {
-      width: 100%;
-    }
-
-    .save-profile {
+    .save-button {
       width: 100%;
 
       padding: 12px;
@@ -622,23 +458,130 @@
       font-weight: bold;
     }
 
+
+    /* =========================
+       PERFIL
+    ========================= */
+
+    .profile-editor {
+      display: none;
+
+      background: white;
+      color: #222;
+
+      border-radius: 18px;
+
+      padding: 20px;
+
+      margin-top: 15px;
+    }
+
+    .profile-editor h3 {
+      margin-bottom: 15px;
+    }
+
+    .emoji-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 8px;
+
+      margin-bottom: 15px;
+    }
+
+    .emoji-option {
+      border: none;
+      background: #f4f4f4;
+
+      border-radius: 10px;
+
+      padding: 8px;
+
+      font-size: 24px;
+    }
+
+    .emoji-option:hover {
+      background: #e9e5ff;
+    }
+
+
+    /* =========================
+       GALERIA
+    ========================= */
+
+    .gallery-box {
+      background: rgba(255,255,255,.14);
+
+      border-radius: 16px;
+
+      padding: 15px;
+    }
+
+    .gallery-button {
+      width: 100%;
+
+      padding: 12px;
+
+      border: none;
+      border-radius: 10px;
+
+      background: white;
+      color: #765cff;
+
+      font-weight: bold;
+    }
+
+    .gallery-preview {
+      display: grid;
+
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 8px;
+
+      margin-top: 12px;
+    }
+
+    .gallery-preview div {
+      height: 80px;
+
+      background: rgba(255,255,255,.2);
+
+      border-radius: 10px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 28px;
+    }
+
+    .album-title {
+      font-size: 14px;
+      opacity: .8;
+      margin-top: 12px;
+    }
+
+
     /* =========================
        RESPONSIVE
     ========================= */
 
     @media (max-width: 500px) {
 
-      .current-time {
-        font-size: 55px;
+      .clock {
+        font-size: 50px;
       }
 
       .welcome {
-        margin-top: 170px;
+        margin-top: 130px;
       }
 
       .panel {
         width: 100%;
         max-width: 100%;
+      }
+
+      .add-box {
+        width: auto;
       }
 
     }
@@ -647,15 +590,20 @@
 
 <body>
 
+
   <!-- =========================
        LOGIN
   ========================= -->
 
   <div class="login" id="loginScreen">
 
-    <div class="logo">M</div>
+    <div class="logo">
+      M
+    </div>
 
-    <h1>Major</h1>
+    <h1>
+      Major
+    </h1>
 
     <p class="subtitle" id="subtitle">
       El teu assistent personal
@@ -693,9 +641,19 @@
         id="language"
         onchange="changeLanguage()"
       >
-        <option value="ca">Català</option>
-        <option value="es">Castellà</option>
-        <option value="en">English</option>
+
+        <option value="ca">
+          Català
+        </option>
+
+        <option value="es">
+          Castellà
+        </option>
+
+        <option value="en">
+          English
+        </option>
+
       </select>
 
     </div>
@@ -719,42 +677,30 @@
 
     <div class="topbar">
 
-      <div class="profile-wrapper">
-
-        <button
-          class="user-button"
-          id="userButton"
-          onclick="openPanel()"
-        >
-          😊
-        </button>
-
-        <button
-          class="edit-profile-button"
-          onclick="openProfileEditor()"
-        >
-          ✏️
-        </button>
-
-      </div>
+      <button
+        class="user-button"
+        id="userButton"
+        onclick="openPanel()"
+      >
+        🙂
+      </button>
 
     </div>
-
 
     <div class="welcome">
 
       <div
-        class="current-time"
-        id="currentTime"
+        class="clock"
+        id="clock"
       >
         00:00
       </div>
 
       <div
-        class="user-name"
-        id="userName"
+        class="username-display"
+        id="usernameDisplay"
       >
-        El teu nom
+        Usuari
       </div>
 
     </div>
@@ -773,6 +719,10 @@
 
     <div class="panel-header">
 
+      <div class="panel-logo">
+        Major
+      </div>
+
       <button
         class="close-button"
         onclick="closePanel()"
@@ -783,64 +733,164 @@
     </div>
 
 
-    <!-- MENU PRINCIPAL -->
+    <div class="panel-main">
 
-    <div
-      class="section"
-      id="mainSection"
-      style="display:block;"
-    >
+      <div class="panel-question">
+        Què farem avui?
+      </div>
 
-      <div class="panel-main">
 
-        <div class="panel-title">
-          Què farem avui?
+      <!-- MICRO -->
+
+      <div class="mic-area">
+
+        <button
+          class="mic-button"
+          id="micButton"
+          onclick="startMicrophone()"
+        >
+          🎙️
+        </button>
+
+        <div
+          class="mic-text"
+          id="micText"
+        >
+          Prem el micròfon i explica'm què necessites
         </div>
 
-        <div class="panel-description">
-          Digues-me què necessites i Major ho organitzarà.
+      </div>
+
+
+      <!-- PERFIL -->
+
+      <div class="section">
+
+        <div class="section-title">
+
+          <h3>
+            👤 Perfil
+          </h3>
+
+          <button
+            onclick="toggleProfileEditor()"
+            style="
+              border:none;
+              background:rgba(255,255,255,.18);
+              color:white;
+              border-radius:8px;
+              padding:7px 10px;
+            "
+          >
+            ✏️
+          </button>
+
         </div>
 
 
-        <div class="panel-options">
+        <div
+          class="profile-editor"
+          id="profileEditor"
+        >
 
-          <button
-            class="panel-option"
-            onclick="showRequests()"
-          >
-            <span class="option-icon">📋</span>
-            Demandes
-          </button>
+          <h3>
+            Escull el teu emoji
+          </h3>
 
+          <div class="emoji-grid">
 
-          <button
-            class="panel-option"
-            onclick="showGallery()"
-          >
-            <span class="option-icon">📸</span>
-            Fotos i àlbums
-          </button>
+            <button class="emoji-option" onclick="changeEmoji('🙂')">🙂</button>
+            <button class="emoji-option" onclick="changeEmoji('😀')">😀</button>
+            <button class="emoji-option" onclick="changeEmoji('😎')">😎</button>
+            <button class="emoji-option" onclick="changeEmoji('🥰')">🥰</button>
+            <button class="emoji-option" onclick="changeEmoji('🤩')">🤩</button>
+            <button class="emoji-option" onclick="changeEmoji('😂')">😂</button>
+
+            <button class="emoji-option" onclick="changeEmoji('😇')">😇</button>
+            <button class="emoji-option" onclick="changeEmoji('🤓')">🤓</button>
+            <button class="emoji-option" onclick="changeEmoji('😜')">😜</button>
+            <button class="emoji-option" onclick="changeEmoji('🥳')">🥳</button>
+            <button class="emoji-option" onclick="changeEmoji('🤠')">🤠</button>
+            <button class="emoji-option" onclick="changeEmoji('👻')">👻</button>
+
+            <button class="emoji-option" onclick="changeEmoji('🐶')">🐶</button>
+            <button class="emoji-option" onclick="changeEmoji('🐱')">🐱</button>
+            <button class="emoji-option" onclick="changeEmoji('🐼')">🐼</button>
+            <button class="emoji-option" onclick="changeEmoji('🦊')">🦊</button>
+            <button class="emoji-option" onclick="changeEmoji('🐸')">🐸</button>
+            <button class="emoji-option" onclick="changeEmoji('🦄')">🦄</button>
+
+          </div>
 
         </div>
 
+      </div>
 
-        <!-- MICRO -->
 
-        <div class="micro-section">
+      <!-- DEMANDES -->
+
+      <div class="section">
+
+        <div class="section-title">
+
+          <h3>
+            📋 Demandes
+          </h3>
+
+        </div>
+
+        <div id="requestsList">
+
+          <div class="empty">
+            Encara no tens demandes.
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- GALERIA -->
+
+      <div class="section">
+
+        <div class="section-title">
+
+          <h3>
+            📸 Galeria
+          </h3>
+
+        </div>
+
+        <div class="gallery-box">
 
           <button
-            class="mic-button"
-            id="micButton"
-            onclick="startMicrophone()"
+            class="gallery-button"
+            onclick="openGallery()"
           >
-            🎙️
+            📸 Afegir fotos
           </button>
+
+          <input
+            type="file"
+            id="photoInput"
+            accept="image/*"
+            multiple
+            style="display:none"
+            onchange="addPhotos(event)"
+          >
 
           <div
-            class="mic-text"
-            id="micText"
+            class="album-title"
+            id="albumTitle"
           >
-            Prem el micròfon i parla
+            Àlbum principal
+          </div>
+
+          <div
+            class="gallery-preview"
+            id="galleryPreview"
+          >
           </div>
 
         </div>
@@ -851,233 +901,70 @@
 
 
     <!-- =========================
-         DEMANDES
+         BOTÓ +
     ========================= -->
 
-    <div
-      class="section"
-      id="requestsSection"
+    <button
+      class="add-button"
+      onclick="openAddBox()"
     >
-
-      <button
-        class="back-button"
-        onclick="showMain()"
-      >
-        ← Tornar
-      </button>
-
-      <div class="section-title">
-        📋 Demandes
-      </div>
-
-
-      <div class="filters">
-
-        <button
-          class="filter-button active"
-          onclick="filterRequests('totes', this)"
-        >
-          Totes
-        </button>
-
-        <button
-          class="filter-button"
-          onclick="filterRequests('tasca', this)"
-        >
-          Tasques
-        </button>
-
-        <button
-          class="filter-button"
-          onclick="filterRequests('llista', this)"
-        >
-          Llistes
-        </button>
-
-        <button
-          class="filter-button"
-          onclick="filterRequests('recordatori', this)"
-        >
-          Recordatoris
-        </button>
-
-        <button
-          class="filter-button"
-          onclick="filterRequests('data', this)"
-        >
-          Dates
-        </button>
-
-      </div>
-
-
-      <div
-        class="request-list"
-        id="requestList"
-      ></div>
-
-    </div>
+      +
+    </button>
 
 
     <!-- =========================
-         GALERIA
+         AFEGIR MANUALMENT
     ========================= -->
 
     <div
-      class="section"
-      id="gallerySection"
+      class="add-box"
+      id="addBox"
     >
 
-      <button
-        class="back-button"
-        onclick="showMain()"
+      <h3>
+        ➕ Afegir una demanda
+      </h3>
+
+      <select id="newType">
+
+        <option value="Demanda">
+          Demanda
+        </option>
+
+        <option value="Tasca">
+          Tasca
+        </option>
+
+        <option value="Recordatori">
+          Recordatori
+        </option>
+
+        <option value="Data important">
+          Data important
+        </option>
+
+        <option value="Llista">
+          Llista
+        </option>
+
+        <option value="Compra">
+          Llista de la compra
+        </option>
+
+      </select>
+
+      <input
+        type="text"
+        id="newThing"
+        placeholder="Què vols afegir?"
       >
-        ← Tornar
-      </button>
-
-      <div class="section-title">
-        📸 Fotos i àlbums
-      </div>
-
-
-      <div class="gallery-actions">
-
-        <button
-          onclick="createAlbum()"
-        >
-          📁 Nou àlbum
-        </button>
-
-        <button
-          onclick="uploadPhoto()"
-        >
-          📷 Afegir foto
-        </button>
-
-      </div>
-
-
-      <div
-        class="album-list"
-        id="albumList"
-      ></div>
-
-
-      <div
-        class="photo-grid"
-        id="photoGrid"
-      ></div>
-
-    </div>
-
-
-    <!-- =========================
-         EDITOR PERFIL
-    ========================= -->
-
-    <div
-      class="section"
-      id="profileSection"
-    >
 
       <button
-        class="back-button"
-        onclick="showMain()"
+        class="save-button"
+        onclick="saveThing()"
       >
-        ← Tornar
+        Afegir
       </button>
-
-      <div class="section-title">
-        ✏️ Perfil
-      </div>
-
-
-      <div class="profile-editor">
-
-        <div
-          class="profile-preview"
-          id="profilePreview"
-        >
-          😊
-        </div>
-
-
-        <div class="emoji-options">
-
-          <button
-            class="emoji-choice"
-            onclick="chooseEmoji('😊')"
-          >
-            😊
-          </button>
-
-          <button
-            class="emoji-choice"
-            onclick="chooseEmoji('😎')"
-          >
-            😎
-          </button>
-
-          <button
-            class="emoji-choice"
-            onclick="chooseEmoji('🥰')"
-          >
-            🥰
-          </button>
-
-          <button
-            class="emoji-choice"
-            onclick="chooseEmoji('🤓')"
-          >
-            🤓
-          </button>
-
-          <button
-            class="emoji-choice"
-            onclick="chooseEmoji('🐶')"
-          >
-            🐶
-          </button>
-
-          <button
-            class="emoji-choice"
-            onclick="chooseEmoji('🐱')"
-          >
-            🐱
-          </button>
-
-          <button
-            class="emoji-choice"
-            onclick="chooseEmoji('🦊')"
-          >
-            🦊
-          </button>
-
-          <button
-            class="emoji-choice"
-            onclick="chooseEmoji('⭐')"
-          >
-            ⭐
-          </button>
-
-        </div>
-
-
-        <input
-          class="name-input"
-          id="profileName"
-          placeholder="El teu nom"
-        >
-
-
-        <button
-          class="save-profile"
-          onclick="saveProfile()"
-        >
-          Guardar
-        </button>
-
-      </div>
 
     </div>
 
@@ -1104,32 +991,14 @@
 
 
     /* =========================
-       DADES LOCALS
+       DADES TEMPORALS
     ========================= */
 
-    let requests =
-      JSON.parse(
-        localStorage.getItem("majorRequests") || "[]"
-      );
+    let requests = [];
 
-    let albums =
-      JSON.parse(
-        localStorage.getItem("majorAlbums") || "[]"
-      );
+    let photos = [];
 
-    let photos =
-      JSON.parse(
-        localStorage.getItem("majorPhotos") || "[]"
-      );
-
-    let profile =
-      JSON.parse(
-        localStorage.getItem("majorProfile") ||
-        '{"name":"El teu nom","emoji":"😊"}'
-      );
-
-
-    let currentFilter = "totes";
+    let currentUser = null;
 
 
     /* =========================
@@ -1271,16 +1140,29 @@
 
     function entrar(user) {
 
+      currentUser = user;
+
+
       document.getElementById(
         "loginScreen"
       ).style.display = "none";
+
 
       document.getElementById(
         "appScreen"
       ).style.display = "block";
 
 
-      loadProfile();
+      const email =
+        user.email || "Usuari";
+
+
+      document.getElementById(
+        "usernameDisplay"
+      ).textContent = email;
+
+
+      carregarDades();
 
       updateClock();
 
@@ -1305,108 +1187,19 @@
       const hours =
         String(
           now.getHours()
-        ).padStart(2,"0");
+        ).padStart(2, "0");
 
 
       const minutes =
         String(
           now.getMinutes()
-        ).padStart(2,"0");
+        ).padStart(2, "0");
 
 
       document.getElementById(
-        "currentTime"
+        "clock"
       ).textContent =
         hours + ":" + minutes;
-
-    }
-
-
-    /* =========================
-       PERFIL
-    ========================= */
-
-    function loadProfile() {
-
-      document.getElementById(
-        "userButton"
-      ).textContent =
-        profile.emoji;
-
-
-      document.getElementById(
-        "userName"
-      ).textContent =
-        profile.name;
-
-
-      document.getElementById(
-        "profilePreview"
-      ).textContent =
-        profile.emoji;
-
-
-      document.getElementById(
-        "profileName"
-      ).value =
-        profile.name;
-
-    }
-
-
-    function openProfileEditor() {
-
-      openPanel();
-
-      hideAllSections();
-
-      document.getElementById(
-        "profileSection"
-      ).style.display =
-        "block";
-
-    }
-
-
-    function chooseEmoji(emoji) {
-
-      profile.emoji =
-        emoji;
-
-
-      document.getElementById(
-        "profilePreview"
-      ).textContent =
-        emoji;
-
-    }
-
-
-    function saveProfile() {
-
-      const name =
-        document.getElementById(
-          "profileName"
-        ).value.trim();
-
-
-      if (name) {
-
-        profile.name =
-          name;
-
-      }
-
-
-      localStorage.setItem(
-        "majorProfile",
-        JSON.stringify(profile)
-      );
-
-
-      loadProfile();
-
-      showMain();
 
     }
 
@@ -1419,10 +1212,11 @@
 
       document.getElementById(
         "panel"
-      ).style.display =
-        "block";
+      ).style.display = "block";
 
-      showMain();
+      renderRequests();
+
+      renderPhotos();
 
     }
 
@@ -1431,45 +1225,125 @@
 
       document.getElementById(
         "panel"
-      ).style.display =
-        "none";
+      ).style.display = "none";
+
+
+      document.getElementById(
+        "addBox"
+      ).style.display = "none";
+
+
+      document.getElementById(
+        "profileEditor"
+      ).style.display = "none";
 
     }
 
 
-    function hideAllSections() {
+    /* =========================
+       PERFIL
+    ========================= */
 
-      document.getElementById(
-        "mainSection"
-      ).style.display =
-        "none";
+    function toggleProfileEditor() {
 
-      document.getElementById(
-        "requestsSection"
-      ).style.display =
-        "none";
+      const editor =
+        document.getElementById(
+          "profileEditor"
+        );
 
-      document.getElementById(
-        "gallerySection"
-      ).style.display =
-        "none";
 
-      document.getElementById(
-        "profileSection"
-      ).style.display =
-        "none";
+      if (
+        editor.style.display === "block"
+      ) {
+
+        editor.style.display = "none";
+
+      } else {
+
+        editor.style.display = "block";
+
+      }
 
     }
 
 
-    function showMain() {
-
-      hideAllSections();
+    function changeEmoji(emoji) {
 
       document.getElementById(
-        "mainSection"
-      ).style.display =
-        "block";
+        "userButton"
+      ).textContent = emoji;
+
+
+      localStorage.setItem(
+        "majorEmoji",
+        emoji
+      );
+
+
+      document.getElementById(
+        "profileEditor"
+      ).style.display = "none";
+
+    }
+
+
+    /* =========================
+       CARREGAR DADES
+    ========================= */
+
+    function carregarDades() {
+
+      const savedRequests =
+        localStorage.getItem(
+          "majorRequests"
+        );
+
+
+      const savedPhotos =
+        localStorage.getItem(
+          "majorPhotos"
+        );
+
+
+      const savedEmoji =
+        localStorage.getItem(
+          "majorEmoji"
+        );
+
+
+      if (savedRequests) {
+
+        requests =
+          JSON.parse(
+            savedRequests
+          );
+
+      }
+
+
+      if (savedPhotos) {
+
+        photos =
+          JSON.parse(
+            savedPhotos
+          );
+
+      }
+
+
+      if (savedEmoji) {
+
+        document.getElementById(
+          "userButton"
+        ).textContent =
+          savedEmoji;
+
+      }
+
+
+      renderRequests();
+
+      renderPhotos();
 
     }
 
@@ -1478,21 +1352,10 @@
        DEMANDES
     ========================= */
 
-    function showRequests() {
-
-      hideAllSections();
-
-      document.getElementById(
-        "requestsSection"
-      ).style.display =
-        "block";
-
-      renderRequests();
-
-    }
-
-
-    function addRequest(text, type) {
+    function addRequest(
+      text,
+      type
+    ) {
 
       const request = {
 
@@ -1505,8 +1368,10 @@
         type:
           type,
 
-        created:
-          new Date().toISOString()
+        date:
+          new Date().toLocaleString(
+            "ca-ES"
+          )
 
       };
 
@@ -1518,11 +1383,138 @@
 
       localStorage.setItem(
         "majorRequests",
-        JSON.stringify(requests)
+        JSON.stringify(
+          requests
+        )
       );
 
 
       renderRequests();
+
+    }
+
+
+    function renderRequests() {
+
+      const container =
+        document.getElementById(
+          "requestsList"
+        );
+
+
+      if (!requests.length) {
+
+        container.innerHTML =
+          '<div class="empty">Encara no tens demandes.</div>';
+
+        return;
+      }
+
+
+      container.innerHTML = "";
+
+
+      requests.forEach(
+        function(request) {
+
+          const item =
+            document.createElement(
+              "div"
+            );
+
+
+          item.className =
+            "request";
+
+
+          const info =
+            document.createElement(
+              "div"
+            );
+
+
+          info.className =
+            "request-info";
+
+
+          const type =
+            document.createElement(
+              "div"
+            );
+
+
+          type.className =
+            "request-type";
+
+
+          type.textContent =
+            request.type;
+
+
+          const text =
+            document.createElement(
+              "div"
+            );
+
+
+          text.className =
+            "request-text";
+
+
+          text.textContent =
+            request.text;
+
+
+          info.appendChild(
+            type
+          );
+
+
+          info.appendChild(
+            text
+          );
+
+
+          const deleteButton =
+            document.createElement(
+              "button"
+            );
+
+
+          deleteButton.className =
+            "delete-button";
+
+
+          deleteButton.textContent =
+            "🗑️";
+
+
+          deleteButton.onclick =
+            function() {
+
+              deleteRequest(
+                request.id
+              );
+
+            };
+
+
+          item.appendChild(
+            info
+          );
+
+
+          item.appendChild(
+            deleteButton
+          );
+
+
+          container.appendChild(
+            item
+          );
+
+        }
+      );
 
     }
 
@@ -1541,170 +1533,9 @@
 
       localStorage.setItem(
         "majorRequests",
-        JSON.stringify(requests)
-      );
-
-
-      renderRequests();
-
-    }
-
-
-    function typeName(type) {
-
-      if (type === "tasca")
-        return "TASCA";
-
-      if (type === "llista")
-        return "LLISTA";
-
-      if (type === "recordatori")
-        return "RECORDATORI";
-
-      if (type === "data")
-        return "DATA IMPORTANT";
-
-      return "DEMANDA";
-
-    }
-
-
-    function typeIcon(type) {
-
-      if (type === "tasca")
-        return "✅";
-
-      if (type === "llista")
-        return "🛒";
-
-      if (type === "recordatori")
-        return "🔔";
-
-      if (type === "data")
-        return "📅";
-
-      return "📝";
-
-    }
-
-
-    function renderRequests() {
-
-      const list =
-        document.getElementById(
-          "requestList"
-        );
-
-
-      list.innerHTML = "";
-
-
-      const filtered =
-        requests.filter(
-          function(request) {
-
-            if (
-              currentFilter ===
-              "totes"
-            ) {
-
-              return true;
-
-            }
-
-            return request.type ===
-              currentFilter;
-
-          }
-        );
-
-
-      if (
-        filtered.length === 0
-      ) {
-
-        list.innerHTML =
-          '<div class="empty">Encara no tens demandes aquí.</div>';
-
-        return;
-      }
-
-
-      filtered.forEach(
-        function(request) {
-
-          const item =
-            document.createElement(
-              "div"
-            );
-
-
-          item.className =
-            "request";
-
-
-          item.innerHTML = `
-
-            <div class="request-info">
-
-              <div class="request-type">
-                ${typeIcon(request.type)}
-                ${typeName(request.type)}
-              </div>
-
-              <div class="request-text">
-                ${escapeHTML(request.text)}
-              </div>
-
-            </div>
-
-            <button
-              class="delete-button"
-              onclick="deleteRequest(${request.id})"
-              title="Eliminar"
-            >
-              🗑️
-            </button>
-
-          `;
-
-
-          list.appendChild(
-            item
-          );
-
-        }
-      );
-
-    }
-
-
-    function filterRequests(
-      type,
-      button
-    ) {
-
-      currentFilter =
-        type;
-
-
-      document
-        .querySelectorAll(
-          ".filter-button"
+        JSON.stringify(
+          requests
         )
-        .forEach(
-          function(btn) {
-
-            btn.classList.remove(
-              "active"
-            );
-
-          }
-        );
-
-
-      button.classList.add(
-        "active"
       );
 
 
@@ -1714,155 +1545,70 @@
 
 
     /* =========================
-       DETECTAR TIPUS DE DEMANDA
+       BOTÓ +
     ========================= */
 
-    function detectRequestType(text) {
+    function openAddBox() {
 
-      const lower =
-        text.toLowerCase();
-
-
-      /* LLISTA */
-
-      const listWords = [
-
-        "llista",
-        "llista de",
-        "compra",
-        "comprar",
-        "afegeix",
-        "afegir",
-        "necessito comprar"
-
-      ];
+      const box =
+        document.getElementById(
+          "addBox"
+        );
 
 
       if (
-        listWords.some(
-          word =>
-            lower.includes(word)
-        )
+        box.style.display === "block"
       ) {
 
-        return "llista";
+        box.style.display =
+          "none";
+
+      } else {
+
+        box.style.display =
+          "block";
+
+      }
+
+    }
+
+
+    function saveThing() {
+
+      const thing =
+        document.getElementById(
+          "newThing"
+        ).value.trim();
+
+
+      const type =
+        document.getElementById(
+          "newType"
+        ).value;
+
+
+      if (!thing) {
+
+        return;
 
       }
 
 
-      /* RECORDATORI */
-
-      const reminderWords = [
-
-        "recorda'm",
-        "recordam",
-        "recorda",
-        "recordatori",
-        "no t'oblidis",
-        "no oblidis"
-
-      ];
+      addRequest(
+        thing,
+        type
+      );
 
 
-      if (
-        reminderWords.some(
-          word =>
-            lower.includes(word)
-        )
-      ) {
-
-        return "recordatori";
-
-      }
+      document.getElementById(
+        "newThing"
+      ).value = "";
 
 
-      /* DATES */
-
-      const dateWords = [
-
-        "aniversari",
-        "aniversaris",
-        "cumpleanys",
-        "aniversario",
-        "data important",
-        "el dia",
-        "el 1",
-        "el 2",
-        "el 3",
-        "el 4",
-        "el 5",
-        "el 6",
-        "el 7",
-        "el 8",
-        "el 9",
-        "el 10",
-        "el 11",
-        "el 12",
-        "el 13",
-        "el 14",
-        "el 15",
-        "el 16",
-        "el 17",
-        "el 18",
-        "el 19",
-        "el 20",
-        "el 21",
-        "el 22",
-        "el 23",
-        "el 24",
-        "el 25",
-        "el 26",
-        "el 27",
-        "el 28",
-        "el 29",
-        "el 30",
-        "el 31"
-
-      ];
-
-
-      if (
-        dateWords.some(
-          word =>
-            lower.includes(word)
-        )
-      ) {
-
-        return "data";
-
-      }
-
-
-      /* TASQUES */
-
-      const taskWords = [
-
-        "he de",
-        "tinc de",
-        "haig de",
-        "necessito fer",
-        "fer els",
-        "fer la",
-        "fer el",
-        "demà he",
-        "avui he"
-
-      ];
-
-
-      if (
-        taskWords.some(
-          word =>
-            lower.includes(word)
-        )
-      ) {
-
-        return "tasca";
-
-      }
-
-
-      return "demanda";
+      document.getElementById(
+        "addBox"
+      ).style.display =
+        "none";
 
     }
 
@@ -1877,6 +1623,7 @@
         document.getElementById(
           "micText"
         );
+
 
       const button =
         document.getElementById(
@@ -1895,6 +1642,7 @@
           "El teu navegador no suporta el reconeixement de veu.";
 
         return;
+
       }
 
 
@@ -1905,8 +1653,10 @@
       recognition.lang =
         "ca-ES";
 
+
       recognition.continuous =
         false;
+
 
       recognition.interimResults =
         false;
@@ -1931,10 +1681,12 @@
           "listening"
         );
 
+
         text.textContent =
           "Torna a prémer el micròfon.";
 
         return;
+
       }
 
 
@@ -1947,35 +1699,119 @@
               .trim();
 
 
-          const type =
-            detectRequestType(
-              resultat
-            );
+          const resultatMinuscules =
+            resultat.toLowerCase();
 
+
+          console.log(
+            "Major ha escoltat:",
+            resultat
+          );
+
+
+          /*
+             Detectem el tipus
+             de demanda.
+          */
+
+          let tipus =
+            "Demanda";
+
+
+          /* TASCA */
+
+          if (
+            resultatMinuscules.includes("he de") ||
+            resultatMinuscules.includes("tinc de") ||
+            resultatMinuscules.includes("fer ")
+          ) {
+
+            tipus =
+              "Tasca";
+
+          }
+
+
+          /* RECORDATORI */
+
+          else if (
+            resultatMinuscules.includes("recorda") ||
+            resultatMinuscules.includes("recorda'm") ||
+            resultatMinuscules.includes("no t'oblidis")
+          ) {
+
+            tipus =
+              "Recordatori";
+
+          }
+
+
+          /* COMPRA */
+
+          else if (
+            resultatMinuscules.includes("comprar") ||
+            resultatMinuscules.includes("compra") ||
+            resultatMinuscules.includes("necessito comprar") ||
+            resultatMinuscules.includes("llista de la compra")
+          ) {
+
+            tipus =
+              "Compra";
+
+          }
+
+
+          /* LLISTA */
+
+          else if (
+            resultatMinuscules.includes("llista") ||
+            resultatMinuscules.includes("apunta")
+          ) {
+
+            tipus =
+              "Llista";
+
+          }
+
+
+          /* DATA */
+
+          else if (
+            resultatMinuscules.includes("demà") ||
+            resultatMinuscules.includes("dilluns") ||
+            resultatMinuscules.includes("dimarts") ||
+            resultatMinuscules.includes("dimecres") ||
+            resultatMinuscules.includes("dijous") ||
+            resultatMinuscules.includes("divendres") ||
+            resultatMinuscules.includes("dissabte") ||
+            resultatMinuscules.includes("diumenge") ||
+            resultatMinuscules.includes("dia") ||
+            resultatMinuscules.includes("aniversari") ||
+            resultatMinuscules.includes("data important")
+          ) {
+
+            tipus =
+              "Data important";
+
+          }
+
+
+          /*
+             Guardem la demanda.
+          */
 
           addRequest(
             resultat,
-            type
+            tipus
           );
 
 
           text.textContent =
-            typeIcon(type) +
-            " " +
-            typeName(type) +
-            " detectat";
+            "✅ " +
+            tipus +
+            ": " +
+            resultat;
 
-
-          setTimeout(
-            function() {
-
-              text.textContent =
-                "Has dit: " +
-                resultat;
-
-            },
-            2500
-          );
 
         };
 
@@ -2022,164 +1858,25 @@
        GALERIA
     ========================= */
 
-    function showGallery() {
-
-      hideAllSections();
+    function openGallery() {
 
       document.getElementById(
-        "gallerySection"
-      ).style.display =
-        "block";
-
-
-      renderAlbums();
-
-      renderPhotos();
+        "photoInput"
+      ).click();
 
     }
 
 
-    function createAlbum() {
+    function addPhotos(event) {
 
-      const name =
-        prompt(
-          "Com vols anomenar l'àlbum?"
+      const files =
+        Array.from(
+          event.target.files
         );
 
 
-      if (!name) {
-        return;
-      }
-
-
-      albums.push({
-
-        id:
-          Date.now(),
-
-        name:
-          name
-
-      });
-
-
-      localStorage.setItem(
-        "majorAlbums",
-        JSON.stringify(albums)
-      );
-
-
-      renderAlbums();
-
-    }
-
-
-    function renderAlbums() {
-
-      const list =
-        document.getElementById(
-          "albumList"
-        );
-
-
-      list.innerHTML = "";
-
-
-      if (
-        albums.length === 0
-      ) {
-
-        list.innerHTML =
-          '<div class="empty">Encara no tens cap àlbum.</div>';
-
-        return;
-      }
-
-
-      albums.forEach(
-        function(album) {
-
-          const div =
-            document.createElement(
-              "div"
-            );
-
-
-          div.className =
-            "album";
-
-
-          div.innerHTML = `
-
-            <span>
-              📁 ${escapeHTML(album.name)}
-            </span>
-
-            <button
-              onclick="deleteAlbum(${album.id})"
-            >
-              🗑️
-            </button>
-
-          `;
-
-
-          list.appendChild(
-            div
-          );
-
-        }
-      );
-
-    }
-
-
-    function deleteAlbum(id) {
-
-      albums =
-        albums.filter(
-          album =>
-            album.id !== id
-        );
-
-
-      localStorage.setItem(
-        "majorAlbums",
-        JSON.stringify(albums)
-      );
-
-
-      renderAlbums();
-
-    }
-
-
-    function uploadPhoto() {
-
-      const input =
-        document.createElement(
-          "input"
-        );
-
-
-      input.type =
-        "file";
-
-      input.accept =
-        "image/*";
-
-
-      input.onchange =
-        function(event) {
-
-          const file =
-            event.target.files[0];
-
-
-          if (!file) {
-            return;
-          }
-
+      files.forEach(
+        function(file) {
 
           const reader =
             new FileReader();
@@ -2188,23 +1885,26 @@
           reader.onload =
             function(e) {
 
-              photos.push({
+              photos.push(
+                {
+                  id: Date.now() +
+                    Math.random(),
 
-                id:
-                  Date.now(),
+                  name: file.name,
 
-                name:
-                  file.name,
+                  src: e.target.result,
 
-                data:
-                  e.target.result
-
-              });
+                  album:
+                    "Àlbum principal"
+                }
+              );
 
 
               localStorage.setItem(
                 "majorPhotos",
-                JSON.stringify(photos)
+                JSON.stringify(
+                  photos
+                )
               );
 
 
@@ -2217,110 +1917,63 @@
             file
           );
 
-        };
+        }
+      );
 
 
-      input.click();
+      event.target.value = "";
 
     }
 
 
     function renderPhotos() {
 
-      const grid =
+      const container =
         document.getElementById(
-          "photoGrid"
+          "galleryPreview"
         );
 
 
-      grid.innerHTML = "";
+      container.innerHTML = "";
 
 
-      photos.forEach(
-        function(photo) {
+      photos
+        .slice(0, 9)
+        .forEach(
+          function(photo) {
 
-          const card =
-            document.createElement(
-              "div"
+            const image =
+              document.createElement(
+                "img"
+              );
+
+
+            image.src =
+              photo.src;
+
+
+            image.style.width =
+              "100%";
+
+
+            image.style.height =
+              "80px";
+
+
+            image.style.objectFit =
+              "cover";
+
+
+            image.style.borderRadius =
+              "10px";
+
+
+            container.appendChild(
+              image
             );
 
-
-          card.className =
-            "photo-card";
-
-
-          card.innerHTML = `
-
-            <img
-              src="${photo.data}"
-              alt="${escapeHTML(photo.name)}"
-            >
-
-            <div class="photo-card-bottom">
-
-              <span>
-                📷
-              </span>
-
-              <button
-                class="photo-delete"
-                onclick="deletePhoto(${photo.id})"
-              >
-                🗑️
-              </button>
-
-            </div>
-
-          `;
-
-
-          grid.appendChild(
-            card
-          );
-
-        }
-      );
-
-    }
-
-
-    function deletePhoto(id) {
-
-      photos =
-        photos.filter(
-          photo =>
-            photo.id !== id
+          }
         );
-
-
-      localStorage.setItem(
-        "majorPhotos",
-        JSON.stringify(photos)
-      );
-
-
-      renderPhotos();
-
-    }
-
-
-    /* =========================
-       SEGURETAT HTML
-    ========================= */
-
-    function escapeHTML(text) {
-
-      const div =
-        document.createElement(
-          "div"
-        );
-
-
-      div.textContent =
-        text;
-
-
-      return div.innerHTML;
 
     }
 
@@ -2336,25 +1989,30 @@
           "language"
         ).value;
 
+
       const subtitle =
         document.getElementById(
           "subtitle"
         );
+
 
       const email =
         document.getElementById(
           "email"
         );
 
+
       const password =
         document.getElementById(
           "password"
         );
 
+
       const button =
         document.querySelector(
           ".login-button"
         );
+
 
       const create =
         document.querySelector(
@@ -2362,7 +2020,9 @@
         );
 
 
-      if (language === "ca") {
+      if (
+        language === "ca"
+      ) {
 
         subtitle.textContent =
           "El teu assistent personal";
@@ -2381,7 +2041,10 @@
 
       }
 
-      else if (language === "es") {
+
+      else if (
+        language === "es"
+      ) {
 
         subtitle.textContent =
           "Tu asistente personal";
@@ -2399,6 +2062,7 @@
           '¿Todavía no tienes cuenta? <span onclick="createAccount()">Crear cuenta</span>';
 
       }
+
 
       else {
 
