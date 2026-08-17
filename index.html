@@ -2060,3 +2060,1448 @@ function changeLanguage() {
 
 </body>
 </html>
+<!-- =========================================================
+     PANELL VERD - LLIBRES
+     VERSIÓ AMB CERCADOR I PORTADES
+     
+     NO TOCAR EL CODI LILA
+========================================================= -->
+
+<style>
+
+  /* =========================================================
+     BOTÓ VERD
+  ========================================================= */
+
+  .green-book-button {
+    position: fixed;
+
+    top: 25px;
+    left: 25px;
+
+    width: 58px;
+    height: 58px;
+
+    border-radius: 50%;
+    border: none;
+
+    background: linear-gradient(
+      135deg,
+      #35b86f,
+      #159957
+    );
+
+    color: white;
+
+    font-size: 26px;
+    font-weight: bold;
+
+    box-shadow:
+      0 8px 20px rgba(21,153,87,.30);
+
+    cursor: pointer;
+
+    z-index: 20;
+
+    transition: transform .15s;
+  }
+
+
+  .green-book-button:active {
+    transform: scale(.94);
+  }
+
+
+  /* =========================================================
+     PANELL VERD
+  ========================================================= */
+
+  .green-panel {
+    display: none;
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 390px;
+    max-width: 90%;
+
+    height: 100vh;
+
+    background: linear-gradient(
+      160deg,
+      #239b5b,
+      #49c779
+    );
+
+    color: white;
+
+    padding: 25px;
+
+    box-shadow:
+      10px 0 35px rgba(0,0,0,.20);
+
+    z-index: 30;
+
+    overflow-y: auto;
+  }
+
+
+  /* =========================================================
+     CAPÇALERA
+  ========================================================= */
+
+  .green-panel-header {
+    display: flex;
+
+    justify-content: flex-end;
+  }
+
+
+  .green-close-button {
+    width: 45px;
+    height: 45px;
+
+    border-radius: 50%;
+    border: none;
+
+    background: rgba(255,255,255,.18);
+
+    color: white;
+
+    font-size: 28px;
+
+    cursor: pointer;
+  }
+
+
+  /* =========================================================
+     CONTINGUT
+  ========================================================= */
+
+  .green-content {
+    padding-top: 25px;
+  }
+
+
+  .green-title {
+    font-size: 32px;
+
+    font-weight: bold;
+
+    margin-bottom: 8px;
+  }
+
+
+  .green-description {
+    opacity: .88;
+
+    line-height: 1.5;
+
+    margin-bottom: 25px;
+  }
+
+
+  /* =========================================================
+     CERCADOR
+  ========================================================= */
+
+  .green-search-box {
+    background: white;
+
+    border-radius: 15px;
+
+    padding: 6px;
+
+    display: flex;
+
+    gap: 6px;
+
+    margin-bottom: 15px;
+
+    box-shadow:
+      0 8px 20px rgba(0,0,0,.12);
+  }
+
+
+  .green-search-input {
+    flex: 1;
+
+    border: none;
+
+    outline: none;
+
+    padding: 12px;
+
+    font-size: 15px;
+
+    margin: 0;
+
+    min-width: 0;
+  }
+
+
+  .green-search-button {
+    border: none;
+
+    border-radius: 11px;
+
+    background: #159957;
+
+    color: white;
+
+    padding: 0 15px;
+
+    font-size: 18px;
+
+    cursor: pointer;
+  }
+
+
+  /* =========================================================
+     RESULTATS DE CERCA
+  ========================================================= */
+
+  .green-search-results {
+    display: none;
+
+    margin-bottom: 25px;
+  }
+
+
+  .green-search-loading {
+    text-align: center;
+
+    padding: 20px;
+
+    opacity: .85;
+  }
+
+
+  .green-search-empty {
+    background: rgba(255,255,255,.15);
+
+    border-radius: 15px;
+
+    padding: 18px;
+
+    text-align: center;
+
+    line-height: 1.5;
+  }
+
+
+  /* =========================================================
+     RESULTAT INDIVIDUAL
+  ========================================================= */
+
+  .green-search-result {
+    background: white;
+
+    color: #222;
+
+    border-radius: 16px;
+
+    padding: 12px;
+
+    margin-bottom: 12px;
+
+    display: flex;
+
+    gap: 12px;
+
+    align-items: flex-start;
+
+    box-shadow:
+      0 8px 20px rgba(0,0,0,.12);
+  }
+
+
+  .green-search-cover {
+    width: 65px;
+
+    height: 95px;
+
+    object-fit: cover;
+
+    border-radius: 7px;
+
+    background: #eee;
+
+    flex-shrink: 0;
+  }
+
+
+  .green-search-info {
+    flex: 1;
+
+    min-width: 0;
+  }
+
+
+  .green-search-title {
+    font-weight: bold;
+
+    font-size: 15px;
+
+    line-height: 1.3;
+
+    margin-bottom: 5px;
+  }
+
+
+  .green-search-author {
+    color: #777;
+
+    font-size: 13px;
+
+    margin-bottom: 10px;
+  }
+
+
+  .green-add-result-button {
+    border: none;
+
+    border-radius: 9px;
+
+    background: #159957;
+
+    color: white;
+
+    padding: 8px 10px;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+  }
+
+
+  /* =========================================================
+     SECCIONS
+  ========================================================= */
+
+  .green-section-title {
+    font-size: 20px;
+
+    margin-top: 25px;
+
+    margin-bottom: 12px;
+  }
+
+
+  /* =========================================================
+     LLIBRE GUARDAT
+  ========================================================= */
+
+  .green-book {
+    background: rgba(255,255,255,.16);
+
+    border-radius: 17px;
+
+    padding: 15px;
+
+    margin-bottom: 15px;
+  }
+
+
+  .green-book-top {
+    display: flex;
+
+    gap: 12px;
+
+    align-items: flex-start;
+  }
+
+
+  .green-book-cover {
+    width: 58px;
+
+    height: 85px;
+
+    object-fit: cover;
+
+    border-radius: 7px;
+
+    background: rgba(255,255,255,.15);
+
+    flex-shrink: 0;
+  }
+
+
+  .green-book-main {
+    flex: 1;
+
+    min-width: 0;
+  }
+
+
+  .green-book-name {
+    font-size: 17px;
+
+    font-weight: bold;
+
+    line-height: 1.3;
+
+    margin-bottom: 4px;
+  }
+
+
+  .green-book-author {
+    font-size: 13px;
+
+    opacity: .75;
+
+    margin-bottom: 5px;
+  }
+
+
+  .green-book-status {
+    font-size: 12px;
+
+    opacity: .75;
+  }
+
+
+  /* =========================================================
+     PAPERERA
+  ========================================================= */
+
+  .green-delete-book {
+    border: none;
+
+    background: rgba(255,255,255,.15);
+
+    color: white;
+
+    width: 34px;
+    height: 34px;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    font-size: 16px;
+
+    flex-shrink: 0;
+  }
+
+
+  /* =========================================================
+     ESTRELLES
+  ========================================================= */
+
+  .green-stars {
+    display: flex;
+
+    gap: 3px;
+
+    margin-top: 13px;
+  }
+
+
+  .green-star {
+    border: none;
+
+    background: transparent;
+
+    color: rgba(255,255,255,.35);
+
+    font-size: 25px;
+
+    padding: 0;
+
+    cursor: pointer;
+  }
+
+
+  .green-star.active {
+    color: white;
+  }
+
+
+  /* =========================================================
+     DESCRIPCIÓ PERSONAL
+  ========================================================= */
+
+  .green-personal-label {
+    display: block;
+
+    font-size: 13px;
+
+    margin-top: 14px;
+
+    margin-bottom: 6px;
+
+    opacity: .85;
+  }
+
+
+  .green-personal-description {
+    width: 100%;
+
+    min-height: 75px;
+
+    resize: vertical;
+
+    border: none;
+
+    outline: none;
+
+    border-radius: 11px;
+
+    padding: 10px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 13px;
+
+    color: #222;
+
+    background: white;
+  }
+
+
+  .green-save-description {
+    width: 100%;
+
+    margin-top: 7px;
+
+    padding: 9px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background: white;
+
+    color: #159957;
+
+    font-weight: bold;
+
+    cursor: pointer;
+  }
+
+
+  /* =========================================================
+     QUAN NO HI HA LLIBRES
+  ========================================================= */
+
+  .green-empty {
+    text-align: center;
+
+    opacity: .75;
+
+    line-height: 1.5;
+
+    padding: 20px 10px;
+  }
+
+
+  @media (max-width: 500px) {
+
+    .green-book-button {
+      top: 20px;
+      left: 20px;
+    }
+
+    .green-panel {
+      width: 90%;
+      padding: 20px;
+    }
+
+  }
+
+</style>
+
+
+<!-- =========================================================
+     RODONA VERDA
+========================================================= -->
+
+<button
+  class="green-book-button"
+  onclick="openGreenBookPanel()"
+  title="Els meus llibres"
+>
+  📚
+</button>
+
+
+<!-- =========================================================
+     PANELL VERD
+========================================================= -->
+
+<div
+  class="green-panel"
+  id="greenBookPanel"
+>
+
+  <div class="green-panel-header">
+
+    <button
+      class="green-close-button"
+      onclick="closeGreenBookPanel()"
+    >
+      ×
+    </button>
+
+  </div>
+
+
+  <div class="green-content">
+
+    <div class="green-title">
+      Els meus llibres
+    </div>
+
+
+    <div class="green-description">
+      Busca llibres, guarda'ls i valora'ls
+      per recordar què t'han semblat.
+    </div>
+
+
+    <!-- =====================================================
+         CERCADOR
+    ====================================================== -->
+
+    <div class="green-search-box">
+
+      <input
+        class="green-search-input"
+        id="greenSearchInput"
+        type="text"
+        placeholder="Busca un llibre..."
+        onkeydown="greenSearchEnter(event)"
+      >
+
+      <button
+        class="green-search-button"
+        onclick="searchGreenBooks()"
+      >
+        🔎
+      </button>
+
+    </div>
+
+
+    <div
+      class="green-search-results"
+      id="greenSearchResults"
+    ></div>
+
+
+    <!-- =====================================================
+         PER LLEGIR
+    ====================================================== -->
+
+    <div class="green-section-title">
+      📖 Per llegir
+    </div>
+
+
+    <div id="greenBooksToRead">
+
+      <div class="green-empty">
+        Encara no tens llibres per llegir.
+      </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         LLEGITS
+    ====================================================== -->
+
+    <div class="green-section-title">
+      ✅ Llegits
+    </div>
+
+
+    <div id="greenBooksRead">
+
+      <div class="green-empty">
+        Encara no has afegit llibres llegits.
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+
+  /* =========================================================
+     LLIBRES GUARDATS
+  ========================================================= */
+
+  let greenBooks = [];
+
+
+  /* =========================================================
+     OBRIR PANELL
+  ========================================================= */
+
+  function openGreenBookPanel() {
+
+    document.getElementById(
+      "greenBookPanel"
+    ).style.display = "block";
+
+    renderGreenBooks();
+
+  }
+
+
+  /* =========================================================
+     TANCAR PANELL
+  ========================================================= */
+
+  function closeGreenBookPanel() {
+
+    document.getElementById(
+      "greenBookPanel"
+    ).style.display = "none";
+
+  }
+
+
+  /* =========================================================
+     ENTER AL CERCADOR
+  ========================================================= */
+
+  function greenSearchEnter(event) {
+
+    if (event.key === "Enter") {
+
+      searchGreenBooks();
+
+    }
+
+  }
+
+
+  /* =========================================================
+     BUSCAR LLIBRES
+     
+     Utilitzem Google Books API.
+  ========================================================= */
+
+  async function searchGreenBooks() {
+
+    const input =
+      document.getElementById(
+        "greenSearchInput"
+      );
+
+
+    const results =
+      document.getElementById(
+        "greenSearchResults"
+      );
+
+
+    const query =
+      input.value.trim();
+
+
+    if (!query) {
+
+      results.style.display = "none";
+
+      results.innerHTML = "";
+
+      return;
+
+    }
+
+
+    results.style.display = "block";
+
+
+    results.innerHTML =
+      '<div class="green-search-loading">' +
+      '🔎 Buscant llibres...' +
+      '</div>';
+
+
+    try {
+
+      const response =
+        await fetch(
+          "https://www.googleapis.com/books/v1/volumes" +
+          "?q=" +
+          encodeURIComponent(query) +
+          "&maxResults=8" +
+          "&langRestrict=ca"
+        );
+
+
+      if (!response.ok) {
+
+        throw new Error(
+          "Error buscant llibres"
+        );
+
+      }
+
+
+      const data =
+        await response.json();
+
+
+      if (
+        !data.items ||
+        data.items.length === 0
+      ) {
+
+        results.innerHTML =
+          '<div class="green-search-empty">' +
+          'No he trobat cap llibre amb aquesta cerca.' +
+          '</div>';
+
+        return;
+
+      }
+
+
+      results.innerHTML = "";
+
+
+      data.items.forEach(
+        function(item) {
+
+          const info =
+            item.volumeInfo || {};
+
+
+          const title =
+            info.title ||
+            "Títol desconegut";
+
+
+          const authors =
+            info.authors
+              ? info.authors.join(", ")
+              : "Autor desconegut";
+
+
+          let cover =
+            "";
+
+
+          if (
+            info.imageLinks &&
+            info.imageLinks.thumbnail
+          ) {
+
+            cover =
+              info.imageLinks.thumbnail
+                .replace(
+                  "http://",
+                  "https://"
+                );
+
+          }
+
+
+          results.innerHTML +=
+            createGreenSearchResult(
+              item.id,
+              title,
+              authors,
+              cover
+            );
+
+        }
+      );
+
+    }
+
+    catch (error) {
+
+      console.error(error);
+
+
+      results.innerHTML =
+        '<div class="green-search-empty">' +
+        'No he pogut buscar el llibre ara mateix. ' +
+        'Torna-ho a provar.' +
+        '</div>';
+
+    }
+
+  }
+
+
+  /* =========================================================
+     CREAR RESULTAT DE CERCA
+  ========================================================= */
+
+  function createGreenSearchResult(
+    id,
+    title,
+    author,
+    cover
+  ) {
+
+    const safeTitle =
+      escapeGreenBookText(title);
+
+
+    const safeAuthor =
+      escapeGreenBookText(author);
+
+
+    const safeCover =
+      cover
+        ? escapeGreenBookText(cover)
+        : "";
+
+
+    const imageHTML =
+      safeCover
+
+        ? `<img
+             class="green-search-cover"
+             src="${safeCover}"
+             alt="Portada del llibre"
+           >`
+
+        : `<div
+             class="green-search-cover"
+             style="
+               display:flex;
+               align-items:center;
+               justify-content:center;
+               font-size:25px;
+             "
+           >
+             📚
+           </div>`;
+
+
+    return `
+
+      <div class="green-search-result">
+
+        ${imageHTML}
+
+
+        <div class="green-search-info">
+
+          <div class="green-search-title">
+            ${safeTitle}
+          </div>
+
+
+          <div class="green-search-author">
+            ${safeAuthor}
+          </div>
+
+
+          <button
+            class="green-add-result-button"
+            onclick="addGreenBookFromSearch(
+              '${escapeGreenBookText(id)}',
+              '${safeTitle}',
+              '${safeAuthor}',
+              '${safeCover}'
+            )"
+          >
+            + Afegir
+          </button>
+
+        </div>
+
+      </div>
+
+    `;
+
+  }
+
+
+  /* =========================================================
+     AFEGIR LLIBRE DEL RESULTAT
+  ========================================================= */
+
+  function addGreenBookFromSearch(
+    id,
+    title,
+    author,
+    cover
+  ) {
+
+    const alreadyExists =
+      greenBooks.some(
+        function(book) {
+
+          return book.googleId === id;
+
+        }
+      );
+
+
+    if (alreadyExists) {
+
+      alert(
+        "Aquest llibre ja està als teus llibres."
+      );
+
+      return;
+
+    }
+
+
+    const status =
+      confirm(
+        "Vols guardar aquest llibre com a \"Llegit\"?\n\n" +
+        "Prem CANCEL·LAR per guardar-lo com a \"Per llegir\"."
+      )
+
+        ? "llegit"
+        : "perLlegir";
+
+
+    const book = {
+
+      id: Date.now(),
+
+      googleId: id,
+
+      name: title,
+
+      author: author,
+
+      cover: cover,
+
+      status: status,
+
+      rating: 0,
+
+      description: ""
+
+    };
+
+
+    greenBooks.push(book);
+
+
+    renderGreenBooks();
+
+
+    alert(
+      "📚 Llibre afegit!"
+    );
+
+  }
+
+
+  /* =========================================================
+     MOSTRAR LLIBRES
+  ========================================================= */
+
+  function renderGreenBooks() {
+
+    const toRead =
+      document.getElementById(
+        "greenBooksToRead"
+      );
+
+
+    const read =
+      document.getElementById(
+        "greenBooksRead"
+      );
+
+
+    toRead.innerHTML = "";
+
+    read.innerHTML = "";
+
+
+    const booksToRead =
+      greenBooks.filter(
+        function(book) {
+
+          return book.status === "perLlegir";
+
+        }
+      );
+
+
+    const booksRead =
+      greenBooks.filter(
+        function(book) {
+
+          return book.status === "llegit";
+
+        }
+      );
+
+
+    /* PER LLEGIR */
+
+    if (
+      booksToRead.length === 0
+    ) {
+
+      toRead.innerHTML =
+        '<div class="green-empty">' +
+        'Encara no tens llibres per llegir.' +
+        '</div>';
+
+    }
+
+    else {
+
+      booksToRead.forEach(
+        function(book) {
+
+          toRead.innerHTML +=
+            createGreenBookHTML(book);
+
+        }
+      );
+
+    }
+
+
+    /* LLEGITS */
+
+    if (
+      booksRead.length === 0
+    ) {
+
+      read.innerHTML =
+        '<div class="green-empty">' +
+        'Encara no has afegit llibres llegits.' +
+        '</div>';
+
+    }
+
+    else {
+
+      booksRead.forEach(
+        function(book) {
+
+          read.innerHTML +=
+            createGreenBookHTML(book);
+
+        }
+      );
+
+    }
+
+  }
+
+
+  /* =========================================================
+     CREAR TARGETA
+  ========================================================= */
+
+  function createGreenBookHTML(book) {
+
+    let stars = "";
+
+
+    for (
+      let i = 1;
+      i <= 5;
+      i++
+    ) {
+
+      stars +=
+        '<button ' +
+        'class="green-star ' +
+        (
+          i <= book.rating
+            ? "active"
+            : ""
+        ) +
+        '" ' +
+        'onclick="rateGreenBook(' +
+        book.id +
+        ',' +
+        i +
+        ')">' +
+        '★' +
+        '</button>';
+
+    }
+
+
+    const coverHTML =
+      book.cover
+
+        ? `
+          <img
+            class="green-book-cover"
+            src="${escapeGreenBookText(book.cover)}"
+            alt="Portada"
+          >
+        `
+
+        : `
+          <div
+            class="green-book-cover"
+            style="
+              display:flex;
+              align-items:center;
+              justify-content:center;
+              font-size:24px;
+            "
+          >
+            📚
+          </div>
+        `;
+
+
+    return `
+
+      <div class="green-book">
+
+        <div class="green-book-top">
+
+          ${coverHTML}
+
+
+          <div class="green-book-main">
+
+            <div class="green-book-name">
+              ${escapeGreenBookText(book.name)}
+            </div>
+
+
+            <div class="green-book-author">
+              ${escapeGreenBookText(book.author || "")}
+            </div>
+
+
+            <div class="green-book-status">
+
+              ${
+                book.status === "llegit"
+                  ? "Ja llegit"
+                  : "Per llegir"
+              }
+
+            </div>
+
+          </div>
+
+
+          <button
+            class="green-delete-book"
+            onclick="deleteGreenBook(${book.id})"
+            title="Eliminar llibre"
+          >
+            🗑️
+          </button>
+
+        </div>
+
+
+        <!-- ESTRELLES -->
+
+        <div class="green-stars">
+
+          ${stars}
+
+        </div>
+
+
+        <!-- DESCRIPCIÓ PERSONAL -->
+
+        <label class="green-personal-label">
+          📝 La meva descripció
+        </label>
+
+
+        <textarea
+          class="green-personal-description"
+          id="greenDescription_${book.id}"
+          placeholder="Escriu què t'ha semblat aquest llibre..."
+        >${escapeGreenBookText(book.description || "")}</textarea>
+
+
+        <button
+          class="green-save-description"
+          onclick="saveGreenDescription(${book.id})"
+        >
+          Guardar descripció
+        </button>
+
+      </div>
+
+    `;
+
+  }
+
+
+  /* =========================================================
+     VALORAR
+  ========================================================= */
+
+  function rateGreenBook(
+    id,
+    rating
+  ) {
+
+    const book =
+      greenBooks.find(
+        function(book) {
+
+          return book.id === id;
+
+        }
+      );
+
+
+    if (!book) {
+      return;
+    }
+
+
+    book.rating = rating;
+
+
+    renderGreenBooks();
+
+  }
+
+
+  /* =========================================================
+     GUARDAR DESCRIPCIÓ
+  ========================================================= */
+
+  function saveGreenDescription(
+    id
+  ) {
+
+    const book =
+      greenBooks.find(
+        function(book) {
+
+          return book.id === id;
+
+        }
+      );
+
+
+    if (!book) {
+      return;
+    }
+
+
+    const textarea =
+      document.getElementById(
+        "greenDescription_" + id
+      );
+
+
+    if (!textarea) {
+      return;
+    }
+
+
+    book.description =
+      textarea.value;
+
+
+    alert(
+      "📝 Descripció guardada!"
+    );
+
+  }
+
+
+  /* =========================================================
+     ELIMINAR
+  ========================================================= */
+
+  function deleteGreenBook(
+    id
+  ) {
+
+    const confirmDelete =
+      confirm(
+        "Vols eliminar aquest llibre?"
+      );
+
+
+    if (!confirmDelete) {
+      return;
+    }
+
+
+    greenBooks =
+      greenBooks.filter(
+        function(book) {
+
+          return book.id !== id;
+
+        }
+      );
+
+
+    renderGreenBooks();
+
+  }
+
+
+  /* =========================================================
+     SEGURETAT DEL TEXT
+  ========================================================= */
+
+  function escapeGreenBookText(
+    text
+  ) {
+
+    if (!text) {
+      return "";
+    }
+
+
+    return String(text)
+
+      .replace(
+        /&/g,
+        "&amp;"
+      )
+
+      .replace(
+        /</g,
+        "&lt;"
+      )
+
+      .replace(
+        />/g,
+        "&gt;"
+      )
+
+      .replace(
+        /"/g,
+        "&quot;"
+      )
+
+      .replace(
+        /'/g,
+        "&#039;"
+      );
+
+  }
+
+
+  /* =========================================================
+     INICIAR LLIBRES
+  ========================================================= */
+
+  renderGreenBooks();
+
+</script>
