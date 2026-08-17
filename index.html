@@ -3,7 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Major</title>
+  <title>Major — El teu assistent personal</title>
+
+  <meta
+    name="description"
+    content="Major és el teu assistent personal per organitzar demandes, tasques, llistes, recordatoris, dates importants i fotos."
+  >
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -18,6 +23,7 @@
     body {
       min-height: 100vh;
       background: linear-gradient(135deg, #eef4ff, #f4edff);
+      color: #222;
     }
 
     button {
@@ -49,9 +55,11 @@
       margin: 0 auto 20px;
       border-radius: 50%;
       background: linear-gradient(135deg, #4f7cff, #8b5cf6);
+
       display: flex;
       align-items: center;
       justify-content: center;
+
       color: white;
       font-size: 38px;
       font-weight: bold;
@@ -71,8 +79,10 @@
       width: 100%;
       padding: 15px;
       margin-bottom: 14px;
+
       border: 1px solid #ddd;
       border-radius: 12px;
+
       font-size: 16px;
       outline: none;
     }
@@ -84,10 +94,13 @@
     .login-button {
       width: 100%;
       padding: 15px;
+
       border: none;
       border-radius: 12px;
+
       background: #5b6cff;
       color: white;
+
       font-size: 17px;
       font-weight: bold;
     }
@@ -122,7 +135,7 @@
     }
 
     /* =========================
-       APP
+       APP PRINCIPAL
     ========================= */
 
     .app {
@@ -138,111 +151,62 @@
       gap: 8px;
     }
 
-    /* PERFIL */
-
-    .profile-button {
-      width: 58px;
-      height: 58px;
-      border-radius: 50%;
-      border: none;
-      background: linear-gradient(135deg, #4f7cff, #8b5cf6);
-      color: white;
-      font-size: 25px;
-      font-weight: bold;
-      box-shadow: 0 8px 20px rgba(91,108,255,.3);
-      overflow: hidden;
+    .profile-wrapper {
       display: flex;
       align-items: center;
-      justify-content: center;
+      gap: 6px;
     }
 
-    .profile-button img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    .user-button {
+      width: 58px;
+      height: 58px;
+
+      border-radius: 50%;
+      border: none;
+
+      background: linear-gradient(135deg, #4f7cff, #8b5cf6);
+
+      color: white;
+      font-size: 27px;
+
+      box-shadow: 0 8px 20px rgba(91,108,255,.3);
     }
 
     .edit-profile-button {
-      width: 38px;
-      height: 38px;
+      width: 34px;
+      height: 34px;
+
       border-radius: 50%;
       border: none;
+
       background: white;
-      font-size: 18px;
+      color: #765cff;
+
+      font-size: 17px;
+
       box-shadow: 0 5px 15px rgba(0,0,0,.12);
     }
 
-    /* BENVINGUDA */
+    /* =========================
+       CENTRE
+    ========================= */
 
     .welcome {
       text-align: center;
-      margin-top: 90px;
+
+      margin-top: 180px;
     }
 
-    .welcome h2 {
-      font-size: 46px;
-      margin-bottom: 12px;
+    .current-time {
+      font-size: 72px;
+      font-weight: bold;
+      letter-spacing: -3px;
     }
 
-    .welcome p {
+    .user-name {
+      margin-top: 10px;
       color: #777;
-      font-size: 18px;
-    }
-
-    /* =========================
-       DEMANDES
-    ========================= */
-
-    .demands-container {
-      width: 90%;
-      max-width: 650px;
-      margin: 45px auto 0;
-    }
-
-    .demands-title {
-      font-size: 24px;
-      margin-bottom: 15px;
-      color: #333;
-    }
-
-    .demand-list {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .demand {
-      background: white;
-      border-radius: 16px;
-      padding: 16px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      box-shadow: 0 5px 18px rgba(0,0,0,.07);
-    }
-
-    .demand-text {
-      flex: 1;
-      font-size: 16px;
-      color: #333;
-      line-height: 1.4;
-    }
-
-    .delete-demand {
-      border: none;
-      background: transparent;
-      font-size: 19px;
-      opacity: .65;
-    }
-
-    .delete-demand:hover {
-      opacity: 1;
-    }
-
-    .empty-demands {
-      color: #888;
-      text-align: center;
-      padding: 20px;
+      font-size: 20px;
     }
 
     /* =========================
@@ -256,8 +220,8 @@
       top: 0;
       right: 0;
 
-      width: 390px;
-      max-width: 90%;
+      width: 430px;
+      max-width: 92%;
 
       height: 100vh;
 
@@ -270,6 +234,8 @@
       box-shadow: -10px 0 35px rgba(0,0,0,.2);
 
       z-index: 10;
+
+      overflow-y: auto;
     }
 
     .panel-header {
@@ -291,41 +257,73 @@
       font-size: 28px;
     }
 
-    .panel-content {
-      height: calc(100% - 70px);
-
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+    .panel-main {
+      text-align: center;
+      margin-top: 40px;
     }
 
     .panel-title {
-      font-size: 30px;
-      margin-bottom: 12px;
-    }
-
-    .panel-question {
-      font-size: 23px;
-      font-weight: bold;
-      margin-bottom: 12px;
-      text-align: center;
+      font-size: 32px;
+      margin-bottom: 8px;
     }
 
     .panel-description {
-      text-align: center;
       opacity: .85;
-      margin-bottom: 30px;
       line-height: 1.5;
+      margin-bottom: 35px;
     }
 
     /* =========================
-       MICROFON
+       OPCIONS DEL PANELL
     ========================= */
 
+    .panel-options {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .panel-option {
+      width: 100%;
+
+      padding: 18px;
+
+      border: none;
+      border-radius: 16px;
+
+      background: rgba(255,255,255,.16);
+
+      color: white;
+
+      text-align: left;
+
+      font-size: 17px;
+
+      transition: .15s;
+    }
+
+    .panel-option:hover {
+      background: rgba(255,255,255,.25);
+      transform: translateY(-1px);
+    }
+
+    .option-icon {
+      margin-right: 10px;
+      font-size: 22px;
+    }
+
+    /* =========================
+       MICRO
+    ========================= */
+
+    .micro-section {
+      text-align: center;
+      margin-top: 35px;
+    }
+
     .mic-button {
-      width: 125px;
-      height: 125px;
+      width: 115px;
+      height: 115px;
 
       border-radius: 50%;
       border: none;
@@ -333,11 +331,9 @@
       background: white;
       color: #765cff;
 
-      font-size: 50px;
+      font-size: 48px;
 
       box-shadow: 0 12px 30px rgba(0,0,0,.22);
-
-      margin-bottom: 22px;
 
       transition: transform .15s;
     }
@@ -355,138 +351,208 @@
     }
 
     .mic-text {
+      margin-top: 18px;
+
       font-size: 15px;
       opacity: .9;
-      text-align: center;
-      max-width: 280px;
+
       line-height: 1.5;
-      min-height: 45px;
     }
 
     /* =========================
-       DEMANDES DINS DEL PANELL
+       DEMANDES
     ========================= */
 
-    .demands-button {
-      margin-top: 25px;
+    .section {
+      display: none;
+    }
 
-      width: 100%;
-      max-width: 280px;
+    .section-title {
+      font-size: 28px;
+      margin: 25px 0;
+    }
 
-      padding: 14px;
-
+    .back-button {
       border: none;
-      border-radius: 14px;
-
-      background: rgba(255,255,255,.18);
+      background: rgba(255,255,255,.16);
 
       color: white;
 
-      font-size: 16px;
-      font-weight: bold;
+      padding: 10px 14px;
+      border-radius: 10px;
+
+      margin-bottom: 20px;
     }
 
-    .demands-button:hover {
-      background: rgba(255,255,255,.25);
+    .filters {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
     }
 
-    /* =========================
-       CAIXA DE DEMANDES
-    ========================= */
-
-    .demands-box {
-      display: none;
-
-      position: absolute;
-
-      top: 90px;
-      left: 25px;
-      right: 25px;
-      bottom: 25px;
-
-      background: white;
-      color: #222;
-
+    .filter-button {
+      border: none;
       border-radius: 20px;
 
-      padding: 20px;
+      padding: 8px 12px;
 
-      box-shadow: 0 10px 30px rgba(0,0,0,.25);
-
-      overflow-y: auto;
+      background: rgba(255,255,255,.16);
+      color: white;
     }
 
-    .demands-box h3 {
-      margin-bottom: 18px;
+    .filter-button.active {
+      background: white;
+      color: #765cff;
     }
 
-    .panel-demand-list {
+    .request-list {
       display: flex;
       flex-direction: column;
       gap: 10px;
     }
 
-    .panel-demand {
+    .request {
+      background: white;
+      color: #222;
+
+      border-radius: 16px;
+
+      padding: 15px;
+
       display: flex;
       align-items: center;
-      gap: 8px;
+      justify-content: space-between;
 
-      padding: 12px;
-
-      background: #f5f3ff;
-
-      border-radius: 12px;
+      gap: 12px;
     }
 
-    .panel-demand-text {
+    .request-info {
       flex: 1;
-      font-size: 14px;
-      line-height: 1.4;
     }
 
-    .panel-delete-button {
+    .request-type {
+      font-size: 12px;
+      color: #765cff;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .request-text {
+      font-size: 15px;
+    }
+
+    .delete-button {
+      width: 38px;
+      height: 38px;
+
       border: none;
-      background: transparent;
-      font-size: 18px;
+      border-radius: 50%;
+
+      background: #f2f2f2;
+
+      font-size: 17px;
+    }
+
+    .empty {
+      text-align: center;
+      opacity: .8;
+      padding: 30px 10px;
     }
 
     /* =========================
-       +
+       GALERIA
     ========================= */
 
-    .add-button {
-      position: absolute;
+    .album-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
 
-      bottom: 30px;
-      right: 30px;
+    .album {
+      background: rgba(255,255,255,.16);
 
-      width: 62px;
-      height: 62px;
+      border-radius: 15px;
 
-      border-radius: 50%;
+      padding: 16px;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .album button {
       border: none;
+      background: white;
+      color: #765cff;
+
+      padding: 8px 12px;
+      border-radius: 9px;
+    }
+
+    .gallery-actions {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .gallery-actions button {
+      flex: 1;
+
+      padding: 12px;
+
+      border: none;
+      border-radius: 12px;
 
       background: white;
       color: #765cff;
 
-      font-size: 38px;
+      font-weight: bold;
+    }
 
-      box-shadow: 0 10px 25px rgba(0,0,0,.2);
+    .photo-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
+      gap: 10px;
+    }
+
+    .photo-card {
+      background: white;
+      border-radius: 14px;
+      overflow: hidden;
+      color: #222;
+    }
+
+    .photo-card img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .photo-card-bottom {
+      padding: 8px;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .photo-delete {
+      border: none;
+      background: transparent;
+      font-size: 16px;
     }
 
     /* =========================
-       AFEGIR DEMANDA
+       PERFIL
     ========================= */
 
-    .add-box {
-      display: none;
-
-      position: absolute;
-
-      bottom: 105px;
-      left: 25px;
-      right: 25px;
-
+    .profile-editor {
       background: white;
       color: #222;
 
@@ -494,15 +560,57 @@
 
       padding: 20px;
 
-      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+      margin-top: 20px;
     }
 
-    .add-box h3 {
-      margin-bottom: 15px;
+    .profile-preview {
+      width: 80px;
+      height: 80px;
+
+      margin: 0 auto 15px;
+
+      border-radius: 50%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: linear-gradient(135deg,#4f7cff,#8b5cf6);
+
+      color: white;
+
+      font-size: 38px;
     }
 
-    .save-button {
+    .emoji-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+
+      justify-content: center;
+
+      margin: 15px 0;
+    }
+
+    .emoji-choice {
+      width: 45px;
+      height: 45px;
+
+      border: none;
+      border-radius: 50%;
+
+      background: #f1f1f1;
+
+      font-size: 23px;
+    }
+
+    .name-input {
       width: 100%;
+    }
+
+    .save-profile {
+      width: 100%;
+
       padding: 12px;
 
       border: none;
@@ -515,104 +623,24 @@
     }
 
     /* =========================
-       PERFIL / EMOJI
+       RESPONSIVE
     ========================= */
-
-    .profile-box {
-      display: none;
-
-      position: fixed;
-
-      top: 50%;
-      left: 50%;
-
-      transform: translate(-50%, -50%);
-
-      width: 90%;
-      max-width: 400px;
-
-      background: white;
-
-      color: #222;
-
-      border-radius: 22px;
-
-      padding: 25px;
-
-      box-shadow: 0 15px 40px rgba(0,0,0,.25);
-
-      z-index: 30;
-    }
-
-    .profile-box h3 {
-      margin-bottom: 18px;
-      text-align: center;
-    }
-
-    .profile-options {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-
-    .emoji-option {
-      border: none;
-      background: #f3f1ff;
-      border-radius: 12px;
-      font-size: 27px;
-      padding: 10px;
-    }
-
-    .emoji-option:hover {
-      background: #e7e2ff;
-    }
-
-    .photo-button {
-      width: 100%;
-      padding: 13px;
-
-      border: none;
-      border-radius: 12px;
-
-      background: #765cff;
-
-      color: white;
-
-      font-weight: bold;
-
-      margin-bottom: 10px;
-    }
-
-    .close-profile {
-      width: 100%;
-      padding: 12px;
-
-      border: none;
-      border-radius: 12px;
-
-      background: #eee;
-
-      color: #333;
-    }
-
-    #photoInput {
-      display: none;
-    }
 
     @media (max-width: 500px) {
 
-      .welcome h2 {
-        font-size: 38px;
+      .current-time {
+        font-size: 55px;
       }
 
-      .demands-container {
+      .welcome {
+        margin-top: 170px;
+      }
+
+      .panel {
         width: 100%;
+        max-width: 100%;
       }
 
-      .profile-options {
-        grid-template-columns: repeat(4, 1fr);
-      }
     }
   </style>
 </head>
@@ -665,11 +693,9 @@
         id="language"
         onchange="changeLanguage()"
       >
-
         <option value="ca">Català</option>
         <option value="es">Castellà</option>
         <option value="en">English</option>
-
       </select>
 
     </div>
@@ -693,49 +719,43 @@
 
     <div class="topbar">
 
-      <button
-        class="profile-button"
-        id="profileButton"
-        onclick="openPanel()"
-      >
-        🙂
-      </button>
+      <div class="profile-wrapper">
 
-      <button
-        class="edit-profile-button"
-        onclick="openProfileEditor()"
-      >
-        ✏️
-      </button>
+        <button
+          class="user-button"
+          id="userButton"
+          onclick="openPanel()"
+        >
+          😊
+        </button>
+
+        <button
+          class="edit-profile-button"
+          onclick="openProfileEditor()"
+        >
+          ✏️
+        </button>
+
+      </div>
 
     </div>
 
 
     <div class="welcome">
 
-      <h2>
-        Hola! 👋
-      </h2>
-
-      <p>
-        Què necessites avui?
-      </p>
-
-    </div>
-
-
-    <!-- DEMANDES -->
-
-    <div class="demands-container">
-
-      <div class="demands-title">
-        📋 Les meves demandes
+      <div
+        class="current-time"
+        id="currentTime"
+      >
+        00:00
       </div>
 
       <div
-        class="demand-list"
-        id="demandList"
-      ></div>
+        class="user-name"
+        id="userName"
+      >
+        El teu nom
+      </div>
 
     </div>
 
@@ -743,7 +763,7 @@
 
 
   <!-- =========================
-       PANELL LILA
+       PANELL
   ========================= -->
 
   <div
@@ -763,221 +783,303 @@
     </div>
 
 
-    <div class="panel-content">
+    <!-- MENU PRINCIPAL -->
 
-      <div class="panel-title">
-        Major
+    <div
+      class="section"
+      id="mainSection"
+      style="display:block;"
+    >
+
+      <div class="panel-main">
+
+        <div class="panel-title">
+          Què farem avui?
+        </div>
+
+        <div class="panel-description">
+          Digues-me què necessites i Major ho organitzarà.
+        </div>
+
+
+        <div class="panel-options">
+
+          <button
+            class="panel-option"
+            onclick="showRequests()"
+          >
+            <span class="option-icon">📋</span>
+            Demandes
+          </button>
+
+
+          <button
+            class="panel-option"
+            onclick="showGallery()"
+          >
+            <span class="option-icon">📸</span>
+            Fotos i àlbums
+          </button>
+
+        </div>
+
+
+        <!-- MICRO -->
+
+        <div class="micro-section">
+
+          <button
+            class="mic-button"
+            id="micButton"
+            onclick="startMicrophone()"
+          >
+            🎙️
+          </button>
+
+          <div
+            class="mic-text"
+            id="micText"
+          >
+            Prem el micròfon i parla
+          </div>
+
+        </div>
+
       </div>
-
-      <div class="panel-question">
-        Què farem avui? ✨
-      </div>
-
-      <div class="panel-description">
-        Parla amb Major i jo guardaré<br>
-        les teves demandes.
-      </div>
-
-
-      <!-- MICROFON -->
-
-      <button
-        class="mic-button"
-        id="micButton"
-        onclick="startMicrophone()"
-      >
-        🎙️
-      </button>
-
-      <div
-        class="mic-text"
-        id="micText"
-      >
-        Prem el micròfon i parla
-      </div>
-
-
-      <!-- DEMANDES -->
-
-      <button
-        class="demands-button"
-        onclick="openDemandsBox()"
-      >
-        📋 Les meves demandes
-      </button>
 
     </div>
 
 
-    <!-- + -->
-
-    <button
-      class="add-button"
-      onclick="openAddBox()"
-    >
-      +
-    </button>
-
-
-    <!-- AFEGIR -->
+    <!-- =========================
+         DEMANDES
+    ========================= -->
 
     <div
-      class="add-box"
-      id="addBox"
+      class="section"
+      id="requestsSection"
     >
-
-      <h3>
-        Afegir una demanda
-      </h3>
-
-      <input
-        type="text"
-        id="newThing"
-        placeholder="Què vols afegir?"
-      >
 
       <button
-        class="save-button"
-        onclick="saveThing()"
+        class="back-button"
+        onclick="showMain()"
       >
-        Afegir
+        ← Tornar
       </button>
 
-    </div>
+      <div class="section-title">
+        📋 Demandes
+      </div>
 
 
-    <!-- LLISTA DEMANDES -->
+      <div class="filters">
 
-    <div
-      class="demands-box"
-      id="demandsBox"
-    >
+        <button
+          class="filter-button active"
+          onclick="filterRequests('totes', this)"
+        >
+          Totes
+        </button>
 
-      <h3>
-        📋 Les meves demandes
-      </h3>
+        <button
+          class="filter-button"
+          onclick="filterRequests('tasca', this)"
+        >
+          Tasques
+        </button>
+
+        <button
+          class="filter-button"
+          onclick="filterRequests('llista', this)"
+        >
+          Llistes
+        </button>
+
+        <button
+          class="filter-button"
+          onclick="filterRequests('recordatori', this)"
+        >
+          Recordatoris
+        </button>
+
+        <button
+          class="filter-button"
+          onclick="filterRequests('data', this)"
+        >
+          Dates
+        </button>
+
+      </div>
+
 
       <div
-        class="panel-demand-list"
-        id="panelDemandList"
+        class="request-list"
+        id="requestList"
       ></div>
 
     </div>
 
-  </div>
 
+    <!-- =========================
+         GALERIA
+    ========================= -->
 
-  <!-- =========================
-       EDITOR PERFIL
-  ========================= -->
-
-  <div
-    class="profile-box"
-    id="profileBox"
-  >
-
-    <h3>
-      Personalitza el teu perfil
-    </h3>
-
-
-    <div class="profile-options">
+    <div
+      class="section"
+      id="gallerySection"
+    >
 
       <button
-        class="emoji-option"
-        onclick="chooseEmoji('😀')"
+        class="back-button"
+        onclick="showMain()"
       >
-        😀
+        ← Tornar
       </button>
 
-      <button
-        class="emoji-option"
-        onclick="chooseEmoji('😎')"
-      >
-        😎
-      </button>
+      <div class="section-title">
+        📸 Fotos i àlbums
+      </div>
 
-      <button
-        class="emoji-option"
-        onclick="chooseEmoji('🐶')"
-      >
-        🐶
-      </button>
 
-      <button
-        class="emoji-option"
-        onclick="chooseEmoji('🐱')"
-      >
-        🐱
-      </button>
+      <div class="gallery-actions">
 
-      <button
-        class="emoji-option"
-        onclick="chooseEmoji('🦊')"
-      >
-        🦊
-      </button>
+        <button
+          onclick="createAlbum()"
+        >
+          📁 Nou àlbum
+        </button>
 
-      <button
-        class="emoji-option"
-        onclick="chooseEmoji('🌸')"
-      >
-        🌸
-      </button>
+        <button
+          onclick="uploadPhoto()"
+        >
+          📷 Afegir foto
+        </button>
 
-      <button
-        class="emoji-option"
-        onclick="chooseEmoji('⭐')"
-      >
-        ⭐
-      </button>
+      </div>
 
-      <button
-        class="emoji-option"
-        onclick="chooseEmoji('💜')"
-      >
-        💜
-      </button>
 
-      <button
-        class="emoji-option"
-        onclick="chooseEmoji('⚽')"
-      >
-        ⚽
-      </button>
+      <div
+        class="album-list"
+        id="albumList"
+      ></div>
 
-      <button
-        class="emoji-option"
-        onclick="chooseEmoji('🎮')"
-      >
-        🎮
-      </button>
+
+      <div
+        class="photo-grid"
+        id="photoGrid"
+      ></div>
 
     </div>
 
 
-    <button
-      class="photo-button"
-      onclick="document.getElementById('photoInput').click()"
-    >
-      📷 Escollir una foto
-    </button>
+    <!-- =========================
+         EDITOR PERFIL
+    ========================= -->
 
-
-    <input
-      type="file"
-      id="photoInput"
-      accept="image/*"
-      onchange="choosePhoto(event)"
+    <div
+      class="section"
+      id="profileSection"
     >
 
+      <button
+        class="back-button"
+        onclick="showMain()"
+      >
+        ← Tornar
+      </button>
 
-    <button
-      class="close-profile"
-      onclick="closeProfileEditor()"
-    >
-      Tancar
-    </button>
+      <div class="section-title">
+        ✏️ Perfil
+      </div>
+
+
+      <div class="profile-editor">
+
+        <div
+          class="profile-preview"
+          id="profilePreview"
+        >
+          😊
+        </div>
+
+
+        <div class="emoji-options">
+
+          <button
+            class="emoji-choice"
+            onclick="chooseEmoji('😊')"
+          >
+            😊
+          </button>
+
+          <button
+            class="emoji-choice"
+            onclick="chooseEmoji('😎')"
+          >
+            😎
+          </button>
+
+          <button
+            class="emoji-choice"
+            onclick="chooseEmoji('🥰')"
+          >
+            🥰
+          </button>
+
+          <button
+            class="emoji-choice"
+            onclick="chooseEmoji('🤓')"
+          >
+            🤓
+          </button>
+
+          <button
+            class="emoji-choice"
+            onclick="chooseEmoji('🐶')"
+          >
+            🐶
+          </button>
+
+          <button
+            class="emoji-choice"
+            onclick="chooseEmoji('🐱')"
+          >
+            🐱
+          </button>
+
+          <button
+            class="emoji-choice"
+            onclick="chooseEmoji('🦊')"
+          >
+            🦊
+          </button>
+
+          <button
+            class="emoji-choice"
+            onclick="chooseEmoji('⭐')"
+          >
+            ⭐
+          </button>
+
+        </div>
+
+
+        <input
+          class="name-input"
+          id="profileName"
+          placeholder="El teu nom"
+        >
+
+
+        <button
+          class="save-profile"
+          onclick="saveProfile()"
+        >
+          Guardar
+        </button>
+
+      </div>
+
+    </div>
 
   </div>
 
@@ -1002,213 +1104,32 @@
 
 
     /* =========================
-       DEMANDES
+       DADES LOCALS
     ========================= */
 
-    let demands =
+    let requests =
       JSON.parse(
-        localStorage.getItem("majorDemands") || "[]"
+        localStorage.getItem("majorRequests") || "[]"
+      );
+
+    let albums =
+      JSON.parse(
+        localStorage.getItem("majorAlbums") || "[]"
+      );
+
+    let photos =
+      JSON.parse(
+        localStorage.getItem("majorPhotos") || "[]"
+      );
+
+    let profile =
+      JSON.parse(
+        localStorage.getItem("majorProfile") ||
+        '{"name":"El teu nom","emoji":"😊"}'
       );
 
 
-    function saveDemands() {
-
-      localStorage.setItem(
-        "majorDemands",
-        JSON.stringify(demands)
-      );
-
-    }
-
-
-    function renderDemands() {
-
-      const list =
-        document.getElementById(
-          "demandList"
-        );
-
-      list.innerHTML = "";
-
-
-      if (demands.length === 0) {
-
-        list.innerHTML =
-          '<div class="empty-demands">Encara no tens cap demanda. 😊</div>';
-
-        return;
-      }
-
-
-      demands.forEach(
-        function(demand, index) {
-
-          const element =
-            document.createElement("div");
-
-          element.className =
-            "demand";
-
-
-          const text =
-            document.createElement("div");
-
-          text.className =
-            "demand-text";
-
-          text.textContent =
-            demand;
-
-
-          const deleteButton =
-            document.createElement("button");
-
-          deleteButton.className =
-            "delete-demand";
-
-          deleteButton.textContent =
-            "🗑️";
-
-
-          deleteButton.onclick =
-            function() {
-
-              deleteDemand(index);
-
-            };
-
-
-          element.appendChild(
-            text
-          );
-
-          element.appendChild(
-            deleteButton
-          );
-
-
-          list.appendChild(
-            element
-          );
-
-        }
-      );
-
-    }
-
-
-    function renderPanelDemands() {
-
-      const list =
-        document.getElementById(
-          "panelDemandList"
-        );
-
-      list.innerHTML = "";
-
-
-      if (demands.length === 0) {
-
-        list.innerHTML =
-          '<div class="empty-demands">Encara no tens cap demanda. 😊</div>';
-
-        return;
-      }
-
-
-      demands.forEach(
-        function(demand, index) {
-
-          const element =
-            document.createElement("div");
-
-          element.className =
-            "panel-demand";
-
-
-          const text =
-            document.createElement("div");
-
-          text.className =
-            "panel-demand-text";
-
-          text.textContent =
-            demand;
-
-
-          const deleteButton =
-            document.createElement("button");
-
-          deleteButton.className =
-            "panel-delete-button";
-
-          deleteButton.textContent =
-            "🗑️";
-
-
-          deleteButton.onclick =
-            function() {
-
-              deleteDemand(index);
-
-            };
-
-
-          element.appendChild(
-            text
-          );
-
-          element.appendChild(
-            deleteButton
-          );
-
-
-          list.appendChild(
-            element
-          );
-
-        }
-      );
-
-    }
-
-
-    function addDemand(text) {
-
-      if (!text || !text.trim()) {
-        return;
-      }
-
-
-      demands.push(
-        text.trim()
-      );
-
-
-      saveDemands();
-
-      renderDemands();
-
-      renderPanelDemands();
-
-    }
-
-
-    function deleteDemand(index) {
-
-      demands.splice(
-        index,
-        1
-      );
-
-
-      saveDemands();
-
-      renderDemands();
-
-      renderPanelDemands();
-
-    }
+    let currentFilter = "totes";
 
 
     /* =========================
@@ -1219,8 +1140,7 @@
 
       document.getElementById(
         "message"
-      ).textContent =
-        text;
+      ).textContent = text;
 
     }
 
@@ -1257,7 +1177,6 @@
         await supabaseClient.auth.signInWithPassword({
 
           email: email,
-
           password: password
 
         });
@@ -1320,7 +1239,6 @@
         await supabaseClient.auth.signUp({
 
           email: email,
-
           password: password
 
         });
@@ -1355,17 +1273,140 @@
 
       document.getElementById(
         "loginScreen"
-      ).style.display =
-        "none";
-
+      ).style.display = "none";
 
       document.getElementById(
         "appScreen"
+      ).style.display = "block";
+
+
+      loadProfile();
+
+      updateClock();
+
+      setInterval(
+        updateClock,
+        1000
+      );
+
+    }
+
+
+    /* =========================
+       HORA
+    ========================= */
+
+    function updateClock() {
+
+      const now =
+        new Date();
+
+
+      const hours =
+        String(
+          now.getHours()
+        ).padStart(2,"0");
+
+
+      const minutes =
+        String(
+          now.getMinutes()
+        ).padStart(2,"0");
+
+
+      document.getElementById(
+        "currentTime"
+      ).textContent =
+        hours + ":" + minutes;
+
+    }
+
+
+    /* =========================
+       PERFIL
+    ========================= */
+
+    function loadProfile() {
+
+      document.getElementById(
+        "userButton"
+      ).textContent =
+        profile.emoji;
+
+
+      document.getElementById(
+        "userName"
+      ).textContent =
+        profile.name;
+
+
+      document.getElementById(
+        "profilePreview"
+      ).textContent =
+        profile.emoji;
+
+
+      document.getElementById(
+        "profileName"
+      ).value =
+        profile.name;
+
+    }
+
+
+    function openProfileEditor() {
+
+      openPanel();
+
+      hideAllSections();
+
+      document.getElementById(
+        "profileSection"
       ).style.display =
         "block";
 
+    }
 
-      renderDemands();
+
+    function chooseEmoji(emoji) {
+
+      profile.emoji =
+        emoji;
+
+
+      document.getElementById(
+        "profilePreview"
+      ).textContent =
+        emoji;
+
+    }
+
+
+    function saveProfile() {
+
+      const name =
+        document.getElementById(
+          "profileName"
+        ).value.trim();
+
+
+      if (name) {
+
+        profile.name =
+          name;
+
+      }
+
+
+      localStorage.setItem(
+        "majorProfile",
+        JSON.stringify(profile)
+      );
+
+
+      loadProfile();
+
+      showMain();
 
     }
 
@@ -1381,8 +1422,7 @@
       ).style.display =
         "block";
 
-
-      renderPanelDemands();
+      showMain();
 
     }
 
@@ -1394,17 +1434,42 @@
       ).style.display =
         "none";
 
+    }
+
+
+    function hideAllSections() {
 
       document.getElementById(
-        "addBox"
+        "mainSection"
       ).style.display =
         "none";
 
-
       document.getElementById(
-        "demandsBox"
+        "requestsSection"
       ).style.display =
         "none";
+
+      document.getElementById(
+        "gallerySection"
+      ).style.display =
+        "none";
+
+      document.getElementById(
+        "profileSection"
+      ).style.display =
+        "none";
+
+    }
+
+
+    function showMain() {
+
+      hideAllSections();
+
+      document.getElementById(
+        "mainSection"
+      ).style.display =
+        "block";
 
     }
 
@@ -1413,95 +1478,391 @@
        DEMANDES
     ========================= */
 
-    function openDemandsBox() {
+    function showRequests() {
 
-      const box =
-        document.getElementById(
-          "demandsBox"
+      hideAllSections();
+
+      document.getElementById(
+        "requestsSection"
+      ).style.display =
+        "block";
+
+      renderRequests();
+
+    }
+
+
+    function addRequest(text, type) {
+
+      const request = {
+
+        id:
+          Date.now(),
+
+        text:
+          text,
+
+        type:
+          type,
+
+        created:
+          new Date().toISOString()
+
+      };
+
+
+      requests.unshift(
+        request
+      );
+
+
+      localStorage.setItem(
+        "majorRequests",
+        JSON.stringify(requests)
+      );
+
+
+      renderRequests();
+
+    }
+
+
+    function deleteRequest(id) {
+
+      requests =
+        requests.filter(
+          function(request) {
+
+            return request.id !== id;
+
+          }
         );
 
 
-      renderPanelDemands();
+      localStorage.setItem(
+        "majorRequests",
+        JSON.stringify(requests)
+      );
 
 
-      if (box.style.display === "block") {
+      renderRequests();
 
-        box.style.display =
-          "none";
+    }
 
-      } else {
 
-        box.style.display =
-          "block";
+    function typeName(type) {
 
+      if (type === "tasca")
+        return "TASCA";
+
+      if (type === "llista")
+        return "LLISTA";
+
+      if (type === "recordatori")
+        return "RECORDATORI";
+
+      if (type === "data")
+        return "DATA IMPORTANT";
+
+      return "DEMANDA";
+
+    }
+
+
+    function typeIcon(type) {
+
+      if (type === "tasca")
+        return "✅";
+
+      if (type === "llista")
+        return "🛒";
+
+      if (type === "recordatori")
+        return "🔔";
+
+      if (type === "data")
+        return "📅";
+
+      return "📝";
+
+    }
+
+
+    function renderRequests() {
+
+      const list =
+        document.getElementById(
+          "requestList"
+        );
+
+
+      list.innerHTML = "";
+
+
+      const filtered =
+        requests.filter(
+          function(request) {
+
+            if (
+              currentFilter ===
+              "totes"
+            ) {
+
+              return true;
+
+            }
+
+            return request.type ===
+              currentFilter;
+
+          }
+        );
+
+
+      if (
+        filtered.length === 0
+      ) {
+
+        list.innerHTML =
+          '<div class="empty">Encara no tens demandes aquí.</div>';
+
+        return;
       }
+
+
+      filtered.forEach(
+        function(request) {
+
+          const item =
+            document.createElement(
+              "div"
+            );
+
+
+          item.className =
+            "request";
+
+
+          item.innerHTML = `
+
+            <div class="request-info">
+
+              <div class="request-type">
+                ${typeIcon(request.type)}
+                ${typeName(request.type)}
+              </div>
+
+              <div class="request-text">
+                ${escapeHTML(request.text)}
+              </div>
+
+            </div>
+
+            <button
+              class="delete-button"
+              onclick="deleteRequest(${request.id})"
+              title="Eliminar"
+            >
+              🗑️
+            </button>
+
+          `;
+
+
+          list.appendChild(
+            item
+          );
+
+        }
+      );
+
+    }
+
+
+    function filterRequests(
+      type,
+      button
+    ) {
+
+      currentFilter =
+        type;
+
+
+      document
+        .querySelectorAll(
+          ".filter-button"
+        )
+        .forEach(
+          function(btn) {
+
+            btn.classList.remove(
+              "active"
+            );
+
+          }
+        );
+
+
+      button.classList.add(
+        "active"
+      );
+
+
+      renderRequests();
 
     }
 
 
     /* =========================
-       BOTÓ +
+       DETECTAR TIPUS DE DEMANDA
     ========================= */
 
-    function openAddBox() {
+    function detectRequestType(text) {
 
-      const box =
-        document.getElementById(
-          "addBox"
-        );
+      const lower =
+        text.toLowerCase();
 
 
-      if (box.style.display === "block") {
+      /* LLISTA */
 
-        box.style.display =
-          "none";
+      const listWords = [
 
-      } else {
+        "llista",
+        "llista de",
+        "compra",
+        "comprar",
+        "afegeix",
+        "afegir",
+        "necessito comprar"
 
-        box.style.display =
-          "block";
+      ];
+
+
+      if (
+        listWords.some(
+          word =>
+            lower.includes(word)
+        )
+      ) {
+
+        return "llista";
 
       }
 
-    }
+
+      /* RECORDATORI */
+
+      const reminderWords = [
+
+        "recorda'm",
+        "recordam",
+        "recorda",
+        "recordatori",
+        "no t'oblidis",
+        "no oblidis"
+
+      ];
 
 
-    function saveThing() {
+      if (
+        reminderWords.some(
+          word =>
+            lower.includes(word)
+        )
+      ) {
 
-      const input =
-        document.getElementById(
-          "newThing"
-        );
+        return "recordatori";
 
-
-      const thing =
-        input.value.trim();
-
-
-      if (!thing) {
-        return;
       }
 
 
-      addDemand(
-        thing
-      );
+      /* DATES */
+
+      const dateWords = [
+
+        "aniversari",
+        "aniversaris",
+        "cumpleanys",
+        "aniversario",
+        "data important",
+        "el dia",
+        "el 1",
+        "el 2",
+        "el 3",
+        "el 4",
+        "el 5",
+        "el 6",
+        "el 7",
+        "el 8",
+        "el 9",
+        "el 10",
+        "el 11",
+        "el 12",
+        "el 13",
+        "el 14",
+        "el 15",
+        "el 16",
+        "el 17",
+        "el 18",
+        "el 19",
+        "el 20",
+        "el 21",
+        "el 22",
+        "el 23",
+        "el 24",
+        "el 25",
+        "el 26",
+        "el 27",
+        "el 28",
+        "el 29",
+        "el 30",
+        "el 31"
+
+      ];
 
 
-      input.value =
-        "";
+      if (
+        dateWords.some(
+          word =>
+            lower.includes(word)
+        )
+      ) {
+
+        return "data";
+
+      }
 
 
-      document.getElementById(
-        "addBox"
-      ).style.display =
-        "none";
+      /* TASQUES */
+
+      const taskWords = [
+
+        "he de",
+        "tinc de",
+        "haig de",
+        "necessito fer",
+        "fer els",
+        "fer la",
+        "fer el",
+        "demà he",
+        "avui he"
+
+      ];
 
 
-      document.getElementById(
-        "micText"
-      ).textContent =
-        "✅ Demanda afegida!";
+      if (
+        taskWords.some(
+          word =>
+            lower.includes(word)
+        )
+      ) {
+
+        return "tasca";
+
+      }
+
+
+      return "demanda";
 
     }
 
@@ -1516,7 +1877,6 @@
         document.getElementById(
           "micText"
         );
-
 
       const button =
         document.getElementById(
@@ -1587,25 +1947,35 @@
               .trim();
 
 
-          if (!resultat) {
-            return;
-          }
+          const type =
+            detectRequestType(
+              resultat
+            );
 
 
-          console.log(
-            "Major ha escoltat:",
-            resultat
-          );
-
-
-          addDemand(
-            resultat
+          addRequest(
+            resultat,
+            type
           );
 
 
           text.textContent =
-            "✅ Demanda guardada: " +
-            resultat;
+            typeIcon(type) +
+            " " +
+            typeName(type) +
+            " detectat";
+
+
+          setTimeout(
+            function() {
+
+              text.textContent =
+                "Has dit: " +
+                resultat;
+
+            },
+            2500
+          );
 
         };
 
@@ -1649,157 +2019,308 @@
 
 
     /* =========================
-       PERFIL
+       GALERIA
     ========================= */
 
-    let profile =
-      JSON.parse(
-        localStorage.getItem(
-          "majorProfile"
-        ) || "null"
-      );
+    function showGallery() {
 
-
-    function saveProfile() {
-
-      localStorage.setItem(
-        "majorProfile",
-        JSON.stringify(profile)
-      );
-
-    }
-
-
-    function renderProfile() {
-
-      const button =
-        document.getElementById(
-          "profileButton"
-        );
-
-
-      button.innerHTML = "";
-
-
-      if (
-        profile &&
-        profile.type === "photo" &&
-        profile.value
-      ) {
-
-        const img =
-          document.createElement(
-            "img"
-          );
-
-
-        img.src =
-          profile.value;
-
-
-        button.appendChild(
-          img
-        );
-
-
-      } else if (
-        profile &&
-        profile.type === "emoji"
-      ) {
-
-        button.textContent =
-          profile.value;
-
-
-      } else {
-
-        button.textContent =
-          "🙂";
-
-      }
-
-    }
-
-
-    function openProfileEditor() {
+      hideAllSections();
 
       document.getElementById(
-        "profileBox"
+        "gallerySection"
       ).style.display =
         "block";
 
-    }
 
+      renderAlbums();
 
-    function closeProfileEditor() {
-
-      document.getElementById(
-        "profileBox"
-      ).style.display =
-        "none";
+      renderPhotos();
 
     }
 
 
-    function chooseEmoji(emoji) {
+    function createAlbum() {
 
-      profile = {
-
-        type: "emoji",
-
-        value: emoji
-
-      };
+      const name =
+        prompt(
+          "Com vols anomenar l'àlbum?"
+        );
 
 
-      saveProfile();
-
-      renderProfile();
-
-      closeProfileEditor();
-
-    }
-
-
-    function choosePhoto(event) {
-
-      const file =
-        event.target.files[0];
-
-
-      if (!file) {
+      if (!name) {
         return;
       }
 
 
-      const reader =
-        new FileReader();
+      albums.push({
+
+        id:
+          Date.now(),
+
+        name:
+          name
+
+      });
 
 
-      reader.onload =
-        function(e) {
-
-          profile = {
-
-            type: "photo",
-
-            value: e.target.result
-
-          };
+      localStorage.setItem(
+        "majorAlbums",
+        JSON.stringify(albums)
+      );
 
 
-          saveProfile();
+      renderAlbums();
 
-          renderProfile();
+    }
 
-          closeProfileEditor();
+
+    function renderAlbums() {
+
+      const list =
+        document.getElementById(
+          "albumList"
+        );
+
+
+      list.innerHTML = "";
+
+
+      if (
+        albums.length === 0
+      ) {
+
+        list.innerHTML =
+          '<div class="empty">Encara no tens cap àlbum.</div>';
+
+        return;
+      }
+
+
+      albums.forEach(
+        function(album) {
+
+          const div =
+            document.createElement(
+              "div"
+            );
+
+
+          div.className =
+            "album";
+
+
+          div.innerHTML = `
+
+            <span>
+              📁 ${escapeHTML(album.name)}
+            </span>
+
+            <button
+              onclick="deleteAlbum(${album.id})"
+            >
+              🗑️
+            </button>
+
+          `;
+
+
+          list.appendChild(
+            div
+          );
+
+        }
+      );
+
+    }
+
+
+    function deleteAlbum(id) {
+
+      albums =
+        albums.filter(
+          album =>
+            album.id !== id
+        );
+
+
+      localStorage.setItem(
+        "majorAlbums",
+        JSON.stringify(albums)
+      );
+
+
+      renderAlbums();
+
+    }
+
+
+    function uploadPhoto() {
+
+      const input =
+        document.createElement(
+          "input"
+        );
+
+
+      input.type =
+        "file";
+
+      input.accept =
+        "image/*";
+
+
+      input.onchange =
+        function(event) {
+
+          const file =
+            event.target.files[0];
+
+
+          if (!file) {
+            return;
+          }
+
+
+          const reader =
+            new FileReader();
+
+
+          reader.onload =
+            function(e) {
+
+              photos.push({
+
+                id:
+                  Date.now(),
+
+                name:
+                  file.name,
+
+                data:
+                  e.target.result
+
+              });
+
+
+              localStorage.setItem(
+                "majorPhotos",
+                JSON.stringify(photos)
+              );
+
+
+              renderPhotos();
+
+            };
+
+
+          reader.readAsDataURL(
+            file
+          );
 
         };
 
 
-      reader.readAsDataURL(
-        file
+      input.click();
+
+    }
+
+
+    function renderPhotos() {
+
+      const grid =
+        document.getElementById(
+          "photoGrid"
+        );
+
+
+      grid.innerHTML = "";
+
+
+      photos.forEach(
+        function(photo) {
+
+          const card =
+            document.createElement(
+              "div"
+            );
+
+
+          card.className =
+            "photo-card";
+
+
+          card.innerHTML = `
+
+            <img
+              src="${photo.data}"
+              alt="${escapeHTML(photo.name)}"
+            >
+
+            <div class="photo-card-bottom">
+
+              <span>
+                📷
+              </span>
+
+              <button
+                class="photo-delete"
+                onclick="deletePhoto(${photo.id})"
+              >
+                🗑️
+              </button>
+
+            </div>
+
+          `;
+
+
+          grid.appendChild(
+            card
+          );
+
+        }
       );
+
+    }
+
+
+    function deletePhoto(id) {
+
+      photos =
+        photos.filter(
+          photo =>
+            photo.id !== id
+        );
+
+
+      localStorage.setItem(
+        "majorPhotos",
+        JSON.stringify(photos)
+      );
+
+
+      renderPhotos();
+
+    }
+
+
+    /* =========================
+       SEGURETAT HTML
+    ========================= */
+
+    function escapeHTML(text) {
+
+      const div =
+        document.createElement(
+          "div"
+        );
+
+
+      div.textContent =
+        text;
+
+
+      return div.innerHTML;
 
     }
 
@@ -1815,30 +2336,25 @@
           "language"
         ).value;
 
-
       const subtitle =
         document.getElementById(
           "subtitle"
         );
-
 
       const email =
         document.getElementById(
           "email"
         );
 
-
       const password =
         document.getElementById(
           "password"
         );
 
-
       const button =
         document.querySelector(
           ".login-button"
         );
-
 
       const create =
         document.querySelector(
@@ -1865,7 +2381,6 @@
 
       }
 
-
       else if (language === "es") {
 
         subtitle.textContent =
@@ -1884,7 +2399,6 @@
           '¿Todavía no tienes cuenta? <span onclick="createAccount()">Crear cuenta</span>';
 
       }
-
 
       else {
 
@@ -1906,15 +2420,6 @@
       }
 
     }
-
-
-    /* =========================
-       INICIAR
-    ========================= */
-
-    renderDemands();
-
-    renderProfile();
 
   </script>
 
