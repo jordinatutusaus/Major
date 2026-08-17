@@ -3,11 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Major</title>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -18,7 +20,6 @@
     body {
       min-height: 100vh;
       background: linear-gradient(135deg, #eef4ff, #f4edff);
-      color: #222;
     }
 
     button {
@@ -32,30 +33,43 @@
     .login {
       width: 90%;
       max-width: 420px;
+
       background: white;
+
       padding: 40px 32px;
+
       border-radius: 24px;
+
       box-shadow: 0 15px 40px rgba(0,0,0,.12);
+
       text-align: center;
 
       position: absolute;
+
       top: 50%;
       left: 50%;
+
       transform: translate(-50%, -50%);
     }
 
     .logo {
       width: 85px;
       height: 85px;
+
       margin: 0 auto 20px;
+
       border-radius: 50%;
-      background: linear-gradient(135deg, #4f7cff, #8b5cf6);
+
+      background:
+        linear-gradient(135deg, #4f7cff, #8b5cf6);
 
       display: flex;
+
       align-items: center;
       justify-content: center;
 
       color: white;
+
       font-size: 38px;
       font-weight: bold;
     }
@@ -70,18 +84,20 @@
       margin-bottom: 30px;
     }
 
-    input,
-    select {
+    input {
       width: 100%;
-      padding: 14px;
+
+      padding: 15px;
+
       margin-bottom: 14px;
 
       border: 1px solid #ddd;
+
       border-radius: 12px;
 
       font-size: 16px;
+
       outline: none;
-      background: white;
     }
 
     input:focus {
@@ -90,27 +106,35 @@
 
     .login-button {
       width: 100%;
+
       padding: 15px;
 
       border: none;
+
       border-radius: 12px;
 
       background: #5b6cff;
+
       color: white;
 
       font-size: 17px;
+
       font-weight: bold;
     }
 
     .create {
       margin-top: 20px;
+
       color: #555;
+
       font-size: 14px;
     }
 
     .create span {
       color: #6d5dfc;
+
       font-weight: bold;
+
       cursor: pointer;
     }
 
@@ -118,67 +142,100 @@
       margin-top: 25px;
     }
 
-    .language select {
-      width: auto;
+    select {
+      padding: 9px 14px;
+
+      border-radius: 10px;
+
+      border: 1px solid #ddd;
+
+      background: white;
     }
 
     .message {
       margin-top: 15px;
+
       min-height: 20px;
+
       font-size: 14px;
     }
 
-
     /* =========================
-       APP PRINCIPAL
+       APP
     ========================= */
 
     .app {
       display: none;
+
       min-height: 100vh;
+
       padding: 25px;
     }
 
     .topbar {
       display: flex;
+
       justify-content: flex-end;
+
+      align-items: center;
     }
 
     .user-button {
-      width: 62px;
-      height: 62px;
+      width: 58px;
+      height: 58px;
 
       border-radius: 50%;
+
       border: none;
 
-      background: white;
+      background:
+        linear-gradient(135deg, #4f7cff, #8b5cf6);
 
-      font-size: 30px;
+      color: white;
 
-      box-shadow: 0 8px 20px rgba(91,108,255,.25);
+      font-size: 23px;
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      font-weight: bold;
+
+      box-shadow:
+        0 8px 20px rgba(91,108,255,.3);
+
+      position: relative;
     }
 
     .welcome {
       text-align: center;
-      margin-top: 150px;
+
+      margin-top: 130px;
     }
 
-    .clock {
-      font-size: 64px;
-      font-weight: bold;
-      letter-spacing: -2px;
+    .welcome h2 {
+      font-size: 46px;
+
+      margin-bottom: 12px;
     }
 
-    .username-display {
-      margin-top: 8px;
+    .welcome p {
       color: #777;
-      font-size: 17px;
+
+      font-size: 18px;
     }
 
+    .current-time {
+      font-size: 52px !important;
+
+      color: #222 !important;
+
+      font-weight: bold;
+
+      margin-bottom: 6px;
+    }
+
+    .user-name {
+      font-size: 17px !important;
+
+      color: #777 !important;
+    }
 
     /* =========================
        PANELL LILA
@@ -188,36 +245,33 @@
       display: none;
 
       position: fixed;
+
       top: 0;
       right: 0;
 
-      width: 430px;
-      max-width: 94%;
+      width: 390px;
+
+      max-width: 90%;
 
       height: 100vh;
 
-      background: linear-gradient(160deg, #725cff, #9b5de5);
+      background:
+        linear-gradient(160deg, #725cff, #9b5de5);
 
       color: white;
 
       padding: 25px;
 
-      box-shadow: -10px 0 35px rgba(0,0,0,.2);
+      box-shadow:
+        -10px 0 35px rgba(0,0,0,.2);
 
       z-index: 10;
-
-      overflow-y: auto;
     }
 
     .panel-header {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
 
-    .panel-logo {
-      font-size: 25px;
-      font-weight: bold;
+      justify-content: flex-end;
     }
 
     .close-button {
@@ -225,51 +279,99 @@
       height: 45px;
 
       border-radius: 50%;
+
       border: none;
 
-      background: rgba(255,255,255,.18);
+      background:
+        rgba(255,255,255,.18);
 
       color: white;
 
       font-size: 28px;
     }
 
-    .panel-main {
-      padding-top: 35px;
+    .panel-menu {
+      height: calc(100% - 70px);
+
+      display: flex;
+
+      flex-direction: column;
+
+      justify-content: center;
+
+      gap: 18px;
     }
 
-    .panel-question {
-      text-align: center;
+    .menu-button {
+      width: 100%;
 
-      font-size: 29px;
-      font-weight: bold;
+      padding: 18px;
 
-      margin-bottom: 25px;
+      border: none;
+
+      border-radius: 18px;
+
+      background:
+        rgba(255,255,255,.16);
+
+      color: white;
+
+      font-size: 18px;
+
+      text-align: left;
+
+      transition: .2s;
     }
 
+    .menu-button:hover {
+      background:
+        rgba(255,255,255,.25);
+
+      transform: translateY(-2px);
+    }
+
+    .menu-icon {
+      margin-right: 12px;
+
+      font-size: 24px;
+    }
 
     /* =========================
        MICROFON
     ========================= */
 
-    .mic-area {
+    .mic-section {
+      display: flex;
+
+      flex-direction: column;
+
+      align-items: center;
+
+      justify-content: center;
+
+      height: 100%;
+
       text-align: center;
-      margin-bottom: 35px;
     }
 
     .mic-button {
-      width: 115px;
-      height: 115px;
+      width: 125px;
+      height: 125px;
 
       border-radius: 50%;
+
       border: none;
 
       background: white;
+
       color: #765cff;
 
-      font-size: 48px;
+      font-size: 50px;
 
-      box-shadow: 0 12px 30px rgba(0,0,0,.22);
+      box-shadow:
+        0 12px 30px rgba(0,0,0,.22);
+
+      margin-bottom: 30px;
 
       transition: transform .15s;
     }
@@ -287,107 +389,23 @@
     }
 
     .mic-text {
-      margin-top: 18px;
-
       font-size: 15px;
+
       opacity: .9;
+
+      text-align: center;
+
+      max-width: 280px;
 
       line-height: 1.5;
     }
 
-
     /* =========================
-       SECCIONS
-    ========================= */
-
-    .section {
-      margin-top: 25px;
-    }
-
-    .section-title {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-      margin-bottom: 12px;
-    }
-
-    .section-title h3 {
-      font-size: 20px;
-    }
-
-    .section-card {
-      background: rgba(255,255,255,.14);
-
-      border-radius: 16px;
-
-      padding: 14px;
-
-      margin-bottom: 10px;
-    }
-
-
-    /* =========================
-       DEMANDES
-    ========================= */
-
-    .request {
-      background: white;
-      color: #222;
-
-      border-radius: 14px;
-
-      padding: 13px;
-
-      margin-bottom: 10px;
-
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .request-info {
-      flex: 1;
-    }
-
-    .request-type {
-      font-size: 12px;
-      color: #765cff;
-      font-weight: bold;
-      margin-bottom: 4px;
-    }
-
-    .request-text {
-      font-size: 15px;
-      line-height: 1.35;
-    }
-
-    .delete-button {
-      width: 35px;
-      height: 35px;
-
-      border: none;
-      border-radius: 9px;
-
-      background: #f3f3f3;
-
-      font-size: 17px;
-    }
-
-    .empty {
-      text-align: center;
-      opacity: .75;
-      font-size: 14px;
-      padding: 15px;
-    }
-
-
-    /* =========================
-       BOTÓ +
+       +
     ========================= */
 
     .add-button {
-      position: fixed;
+      position: absolute;
 
       bottom: 30px;
       right: 30px;
@@ -396,52 +414,47 @@
       height: 62px;
 
       border-radius: 50%;
+
       border: none;
 
       background: white;
+
       color: #765cff;
 
       font-size: 38px;
 
-      box-shadow: 0 10px 25px rgba(0,0,0,.2);
-
-      z-index: 20;
+      box-shadow:
+        0 10px 25px rgba(0,0,0,.2);
     }
 
-
     /* =========================
-       CAIXA AFEGIR
+       AFEGIR MANUALMENT
     ========================= */
 
     .add-box {
       display: none;
 
-      position: fixed;
+      position: absolute;
 
       bottom: 105px;
+
+      left: 25px;
       right: 25px;
 
-      width: 360px;
-      max-width: calc(100% - 50px);
-
       background: white;
+
       color: #222;
 
       border-radius: 18px;
 
       padding: 20px;
 
-      box-shadow: 0 10px 30px rgba(0,0,0,.25);
-
-      z-index: 30;
+      box-shadow:
+        0 10px 30px rgba(0,0,0,.25);
     }
 
     .add-box h3 {
       margin-bottom: 15px;
-    }
-
-    .add-box select {
-      margin-bottom: 10px;
     }
 
     .save-button {
@@ -450,116 +463,242 @@
       padding: 12px;
 
       border: none;
+
       border-radius: 10px;
 
       background: #765cff;
+
       color: white;
 
       font-weight: bold;
     }
 
+    /* =========================
+       PANELL BLANC DE DEMANDES
+    ========================= */
+
+    .demands-panel {
+      display: none;
+
+      position: fixed;
+
+      top: 0;
+      right: 0;
+
+      width: 460px;
+
+      max-width: 94%;
+
+      height: 100vh;
+
+      background: white;
+
+      color: #222;
+
+      padding: 25px;
+
+      box-shadow:
+        -10px 0 35px rgba(0,0,0,.18);
+
+      z-index: 20;
+
+      overflow-y: auto;
+    }
+
+    .demands-header {
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      margin-bottom: 30px;
+    }
+
+    .demands-header h2 {
+      font-size: 28px;
+    }
+
+    .white-close {
+      width: 42px;
+      height: 42px;
+
+      border-radius: 50%;
+
+      border: none;
+
+      background: #f0f0f5;
+
+      color: #555;
+
+      font-size: 25px;
+    }
+
+    .category {
+      margin-bottom: 28px;
+    }
+
+    .category-title {
+      display: flex;
+
+      align-items: center;
+
+      gap: 10px;
+
+      font-size: 20px;
+
+      font-weight: bold;
+
+      margin-bottom: 12px;
+    }
+
+    .category-list {
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 8px;
+    }
+
+    .empty-category {
+      color: #999;
+
+      font-size: 14px;
+
+      padding: 12px;
+
+      background: #f7f7fa;
+
+      border-radius: 10px;
+    }
+
+    .demand-item {
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 10px;
+
+      background: #f7f7fa;
+
+      padding: 13px;
+
+      border-radius: 12px;
+    }
+
+    .demand-text {
+      flex: 1;
+
+      line-height: 1.4;
+    }
+
+    .delete-button {
+      width: 34px;
+      height: 34px;
+
+      flex-shrink: 0;
+
+      border: none;
+
+      border-radius: 9px;
+
+      background: #ffe8e8;
+
+      font-size: 17px;
+    }
 
     /* =========================
        PERFIL
     ========================= */
 
-    .profile-editor {
+    .profile-panel {
       display: none;
 
+      position: fixed;
+
+      top: 0;
+      right: 0;
+
+      width: 390px;
+
+      max-width: 90%;
+
+      height: 100vh;
+
       background: white;
+
       color: #222;
 
-      border-radius: 18px;
+      padding: 25px;
 
-      padding: 20px;
+      box-shadow:
+        -10px 0 35px rgba(0,0,0,.18);
 
-      margin-top: 15px;
+      z-index: 20;
     }
 
-    .profile-editor h3 {
-      margin-bottom: 15px;
-    }
-
-    .emoji-grid {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 8px;
-
-      margin-bottom: 15px;
-    }
-
-    .emoji-option {
-      border: none;
-      background: #f4f4f4;
-
-      border-radius: 10px;
-
-      padding: 8px;
-
-      font-size: 24px;
-    }
-
-    .emoji-option:hover {
-      background: #e9e5ff;
-    }
-
-
-    /* =========================
-       GALERIA
-    ========================= */
-
-    .gallery-box {
-      background: rgba(255,255,255,.14);
-
-      border-radius: 16px;
-
-      padding: 15px;
-    }
-
-    .gallery-button {
-      width: 100%;
-
-      padding: 12px;
-
-      border: none;
-      border-radius: 10px;
-
-      background: white;
-      color: #765cff;
-
-      font-weight: bold;
-    }
-
-    .gallery-preview {
-      display: grid;
-
-      grid-template-columns: repeat(3, 1fr);
-
-      gap: 8px;
-
-      margin-top: 12px;
-    }
-
-    .gallery-preview div {
-      height: 80px;
-
-      background: rgba(255,255,255,.2);
-
-      border-radius: 10px;
-
+    .profile-header {
       display: flex;
-      align-items: center;
-      justify-content: center;
 
+      justify-content: space-between;
+
+      align-items: center;
+
+      margin-bottom: 50px;
+    }
+
+    .profile-header h2 {
       font-size: 28px;
     }
 
-    .album-title {
-      font-size: 14px;
-      opacity: .8;
-      margin-top: 12px;
+    .profile-avatar {
+      width: 110px;
+      height: 110px;
+
+      margin: 30px auto;
+
+      border-radius: 50%;
+
+      background:
+        linear-gradient(135deg, #4f7cff, #8b5cf6);
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      color: white;
+
+      font-size: 55px;
     }
 
+    .profile-name {
+      text-align: center;
+
+      font-size: 23px;
+
+      font-weight: bold;
+
+      margin-bottom: 30px;
+    }
+
+    .edit-profile {
+      width: 100%;
+
+      padding: 14px;
+
+      border: none;
+
+      border-radius: 12px;
+
+      background: #765cff;
+
+      color: white;
+
+      font-weight: bold;
+    }
 
     /* =========================
        RESPONSIVE
@@ -567,161 +706,981 @@
 
     @media (max-width: 500px) {
 
-      .clock {
-        font-size: 50px;
+      .welcome h2 {
+        font-size: 38px;
       }
 
-      .welcome {
-        margin-top: 130px;
-      }
-
-      .panel {
-        width: 100%;
-        max-width: 100%;
-      }
-
-      .add-box {
-        width: auto;
+      .current-time {
+        font-size: 42px !important;
       }
 
     }
+
   </style>
 </head>
 
 <body>
 
 
-  <!-- =========================
-       LOGIN
-  ========================= -->
+<!-- =========================
+     LOGIN
+========================= -->
 
-  <div class="login" id="loginScreen">
+<div class="login" id="loginScreen">
 
-    <div class="logo">
-      M
-    </div>
+  <div class="logo">
+    M
+  </div>
 
-    <h1>
-      Major
-    </h1>
+  <h1>
+    Major
+  </h1>
 
-    <p class="subtitle" id="subtitle">
-      El teu assistent personal
-    </p>
+  <p class="subtitle" id="subtitle">
+    El teu assistent personal
+  </p>
 
-    <input
-      type="email"
-      id="email"
-      placeholder="Correu electrònic"
+  <input
+    type="email"
+    id="email"
+    placeholder="Correu electrònic"
+  >
+
+  <input
+    type="password"
+    id="password"
+    placeholder="Contrasenya"
+  >
+
+  <button
+    class="login-button"
+    onclick="login()"
+  >
+    Iniciar sessió
+  </button>
+
+  <p class="create">
+    Encara no tens compte?
+
+    <span onclick="createAccount()">
+      Crear compte
+    </span>
+  </p>
+
+  <div class="language">
+
+    <select
+      id="language"
+      onchange="changeLanguage()"
     >
 
-    <input
-      type="password"
-      id="password"
-      placeholder="Contrasenya"
-    >
+      <option value="ca">
+        Català
+      </option>
+
+      <option value="es">
+        Castellà
+      </option>
+
+      <option value="en">
+        English
+      </option>
+
+    </select>
+
+  </div>
+
+  <div
+    class="message"
+    id="message"
+  ></div>
+
+</div>
+
+
+<!-- =========================
+     APP
+========================= -->
+
+<div
+  class="app"
+  id="appScreen"
+>
+
+  <div class="topbar">
 
     <button
-      class="login-button"
-      onclick="login()"
+      class="user-button"
+      id="userButton"
+      onclick="openPanel()"
     >
-      Iniciar sessió
+      🙂
     </button>
 
-    <p class="create">
-      Encara no tens compte?
-      <span onclick="createAccount()">
-        Crear compte
-      </span>
+  </div>
+
+  <div class="welcome">
+
+    <p
+      class="current-time"
+      id="currentTime"
+    >
+      00:00
     </p>
 
-    <div class="language">
+    <p
+      class="user-name"
+      id="userName"
+    >
+      Usuari
+    </p>
 
-      <select
-        id="language"
-        onchange="changeLanguage()"
-      >
+  </div>
 
-        <option value="ca">
-          Català
-        </option>
+</div>
 
-        <option value="es">
-          Castellà
-        </option>
 
-        <option value="en">
-          English
-        </option>
+<!-- =========================
+     PANELL LILA
+========================= -->
 
-      </select>
+<div
+  class="panel"
+  id="panel"
+>
 
+  <div class="panel-header">
+
+    <button
+      class="close-button"
+      onclick="closePanel()"
+    >
+      ×
+    </button>
+
+  </div>
+
+
+  <div class="panel-menu">
+
+    <button
+      class="menu-button"
+      onclick="openProfile()"
+    >
+
+      <span class="menu-icon">
+        👤
+      </span>
+
+      Perfil
+
+    </button>
+
+
+    <button
+      class="menu-button"
+      onclick="openDemands()"
+    >
+
+      <span class="menu-icon">
+        📋
+      </span>
+
+      Demandes
+
+    </button>
+
+
+    <button
+      class="menu-button"
+      onclick="openMicrophone()"
+    >
+
+      <span class="menu-icon">
+        🎙️
+      </span>
+
+      Microfon
+
+    </button>
+
+  </div>
+
+
+  <!-- + -->
+
+  <button
+    class="add-button"
+    onclick="openAddBox()"
+  >
+    +
+  </button>
+
+
+  <!-- AFEGIR MANUALMENT -->
+
+  <div
+    class="add-box"
+    id="addBox"
+  >
+
+    <h3>
+      Afegir una demanda
+    </h3>
+
+    <input
+      type="text"
+      id="newThing"
+      placeholder="Què vols afegir?"
+    >
+
+    <select
+      id="manualCategory"
+      style="width:100%; padding:12px; margin-bottom:12px;"
+    >
+
+      <option value="tasques">
+        📝 Tasques
+      </option>
+
+      <option value="compra">
+        🛒 Llista de la compra
+      </option>
+
+      <option value="recordatoris">
+        🔔 Recordatoris
+      </option>
+
+      <option value="dates">
+        📅 Dates importants
+      </option>
+
+      <option value="galeria">
+        📸 Galeria
+      </option>
+
+      <option value="altres">
+        📂 Altres
+      </option>
+
+    </select>
+
+    <button
+      class="save-button"
+      onclick="saveThing()"
+    >
+      Afegir
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     DEMANDES
+========================= -->
+
+<div
+  class="demands-panel"
+  id="demandsPanel"
+>
+
+  <div class="demands-header">
+
+    <h2>
+      Les meves demandes
+    </h2>
+
+    <button
+      class="white-close"
+      onclick="closeDemands()"
+    >
+      ×
+    </button>
+
+  </div>
+
+
+  <!-- TASQUES -->
+
+  <div class="category">
+
+    <div class="category-title">
+      📝 Tasques
     </div>
 
     <div
-      class="message"
-      id="message"
+      class="category-list"
+      id="tasquesList"
     ></div>
 
   </div>
 
 
-  <!-- =========================
-       APP
-  ========================= -->
+  <!-- COMPRA -->
 
-  <div
-    class="app"
-    id="appScreen"
-  >
+  <div class="category">
 
-    <div class="topbar">
-
-      <button
-        class="user-button"
-        id="userButton"
-        onclick="openPanel()"
-      >
-        🙂
-      </button>
-
+    <div class="category-title">
+      🛒 Llista de la compra
     </div>
 
-    <div class="welcome">
-
-      <div
-        class="clock"
-        id="clock"
-      >
-        00:00
-      </div>
-
-      <div
-        class="username-display"
-        id="usernameDisplay"
-      >
-        Usuari
-      </div>
-
-    </div>
+    <div
+      class="category-list"
+      id="compraList"
+    ></div>
 
   </div>
 
 
-  <!-- =========================
-       PANELL
-  ========================= -->
+  <!-- RECORDATORIS -->
+
+  <div class="category">
+
+    <div class="category-title">
+      🔔 Recordatoris
+    </div>
+
+    <div
+      class="category-list"
+      id="recordatorisList"
+    ></div>
+
+  </div>
+
+
+  <!-- DATES -->
+
+  <div class="category">
+
+    <div class="category-title">
+      📅 Dates importants
+    </div>
+
+    <div
+      class="category-list"
+      id="datesList"
+    ></div>
+
+  </div>
+
+
+  <!-- GALERIA -->
+
+  <div class="category">
+
+    <div class="category-title">
+      📸 Galeria
+    </div>
+
+    <div
+      class="category-list"
+      id="galeriaList"
+    ></div>
+
+  </div>
+
+
+  <!-- ALTRES -->
+
+  <div class="category">
+
+    <div class="category-title">
+      📂 Altres
+    </div>
+
+    <div
+      class="category-list"
+      id="altresList"
+    ></div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     PERFIL
+========================= -->
+
+<div
+  class="profile-panel"
+  id="profilePanel"
+>
+
+  <div class="profile-header">
+
+    <h2>
+      Perfil
+    </h2>
+
+    <button
+      class="white-close"
+      onclick="closeProfile()"
+    >
+      ×
+    </button>
+
+  </div>
+
 
   <div
-    class="panel"
-    id="panel"
+    class="profile-avatar"
+    id="profileAvatar"
   >
+    🙂
+  </div>
+
+
+  <div
+    class="profile-name"
+    id="profileName"
+  >
+    Usuari
+  </div>
+
+
+  <button
+    class="edit-profile"
+    onclick="changeEmoji()"
+  >
+    ✏️ Canviar emoji
+  </button>
+
+</div>
+
+
+<script>
+
+/* =========================
+   SUPABASE
+========================= */
+
+const SUPABASE_URL =
+  "https://vogfwuvdlusuzofvlmoj.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable__F0Kohyak7yCiF5pSDe2uw_wKJkJnfn";
+
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+
+/* =========================
+   DADES LOCALS
+========================= */
+
+let demandes =
+  JSON.parse(
+    localStorage.getItem("majorDemandes") || "[]"
+  );
+
+let userEmoji =
+  localStorage.getItem("majorEmoji") || "🙂";
+
+
+/* =========================
+   LOGIN
+========================= */
+
+function showMessage(text) {
+
+  document.getElementById(
+    "message"
+  ).textContent = text;
+
+}
+
+
+async function login() {
+
+  const email =
+    document.getElementById(
+      "email"
+    ).value.trim();
+
+  const password =
+    document.getElementById(
+      "password"
+    ).value;
+
+  if (!email || !password) {
+
+    showMessage(
+      "Escriu el correu i la contrasenya."
+    );
+
+    return;
+  }
+
+  showMessage(
+    "Iniciant sessió..."
+  );
+
+  const { data, error } =
+    await supabaseClient.auth.signInWithPassword({
+
+      email: email,
+      password: password
+
+    });
+
+  if (error) {
+
+    showMessage(
+      "El correu o la contrasenya no són correctes."
+    );
+
+    return;
+  }
+
+  entrar(data.user);
+
+}
+
+
+async function createAccount() {
+
+  const email =
+    document.getElementById(
+      "email"
+    ).value.trim();
+
+  const password =
+    document.getElementById(
+      "password"
+    ).value;
+
+  if (!email || !password) {
+
+    showMessage(
+      "Escriu un correu i una contrasenya."
+    );
+
+    return;
+  }
+
+  if (password.length < 6) {
+
+    showMessage(
+      "La contrasenya ha de tenir almenys 6 caràcters."
+    );
+
+    return;
+  }
+
+  showMessage(
+    "Creant el compte..."
+  );
+
+  const { data, error } =
+    await supabaseClient.auth.signUp({
+
+      email: email,
+      password: password
+
+    });
+
+  if (error) {
+
+    showMessage(
+      error.message
+    );
+
+    return;
+  }
+
+  if (data.session) {
+
+    entrar(data.user);
+
+  } else {
+
+    showMessage(
+      "Compte creat! Revisa el teu correu."
+    );
+
+  }
+
+}
+
+
+function entrar(user) {
+
+  document.getElementById(
+    "loginScreen"
+  ).style.display = "none";
+
+  document.getElementById(
+    "appScreen"
+  ).style.display = "block";
+
+
+  let nom =
+    user.email
+      ? user.email.split("@")[0]
+      : "Usuari";
+
+
+  document.getElementById(
+    "userName"
+  ).textContent = nom;
+
+
+  actualitzarPerfil();
+
+  actualitzarHora();
+
+  setInterval(
+    actualitzarHora,
+    1000
+  );
+
+}
+
+
+/* =========================
+   HORA
+========================= */
+
+function actualitzarHora() {
+
+  const ara =
+    new Date();
+
+  const hores =
+    String(
+      ara.getHours()
+    ).padStart(2, "0");
+
+  const minuts =
+    String(
+      ara.getMinutes()
+    ).padStart(2, "0");
+
+  document.getElementById(
+    "currentTime"
+  ).textContent =
+    hores + ":" + minuts;
+
+}
+
+
+/* =========================
+   PANELL LILA
+========================= */
+
+function openPanel() {
+
+  document.getElementById(
+    "panel"
+  ).style.display = "block";
+
+}
+
+
+function closePanel() {
+
+  document.getElementById(
+    "panel"
+  ).style.display = "none";
+
+  document.getElementById(
+    "addBox"
+  ).style.display = "none";
+
+}
+
+
+/* =========================
+   DEMANDES
+========================= */
+
+function openDemands() {
+
+  document.getElementById(
+    "panel"
+  ).style.display = "none";
+
+  document.getElementById(
+    "demandsPanel"
+  ).style.display = "block";
+
+  renderDemands();
+
+}
+
+
+function closeDemands() {
+
+  document.getElementById(
+    "demandsPanel"
+  ).style.display = "none";
+
+}
+
+
+function renderDemands() {
+
+  const categories = [
+    "tasques",
+    "compra",
+    "recordatoris",
+    "dates",
+    "galeria",
+    "altres"
+  ];
+
+
+  categories.forEach(
+    function(category) {
+
+      const list =
+        document.getElementById(
+          category + "List"
+        );
+
+      list.innerHTML = "";
+
+
+      const filtered =
+        demandes.filter(
+          function(demanda) {
+
+            return demanda.category === category;
+
+          }
+        );
+
+
+      if (filtered.length === 0) {
+
+        const empty =
+          document.createElement(
+            "div"
+          );
+
+        empty.className =
+          "empty-category";
+
+        empty.textContent =
+          "Encara no hi ha cap demanda.";
+
+        list.appendChild(
+          empty
+        );
+
+        return;
+      }
+
+
+      filtered.forEach(
+        function(demanda) {
+
+          const item =
+            document.createElement(
+              "div"
+            );
+
+          item.className =
+            "demand-item";
+
+
+          const text =
+            document.createElement(
+              "div"
+            );
+
+          text.className =
+            "demand-text";
+
+          text.textContent =
+            demanda.text;
+
+
+          const deleteButton =
+            document.createElement(
+              "button"
+            );
+
+          deleteButton.className =
+            "delete-button";
+
+          deleteButton.textContent =
+            "🗑️";
+
+
+          deleteButton.onclick =
+            function() {
+
+              eliminarDemanda(
+                demanda.id
+              );
+
+            };
+
+
+          item.appendChild(
+            text
+          );
+
+          item.appendChild(
+            deleteButton
+          );
+
+          list.appendChild(
+            item
+          );
+
+        }
+      );
+
+    }
+  );
+
+}
+
+
+function eliminarDemanda(id) {
+
+  demandes =
+    demandes.filter(
+      function(demanda) {
+
+        return demanda.id !== id;
+
+      }
+    );
+
+
+  localStorage.setItem(
+    "majorDemandes",
+    JSON.stringify(demandes)
+  );
+
+
+  renderDemands();
+
+}
+
+
+/* =========================
+   + AFEGIR MANUALMENT
+========================= */
+
+function openAddBox() {
+
+  const box =
+    document.getElementById(
+      "addBox"
+    );
+
+
+  if (
+    box.style.display === "block"
+  ) {
+
+    box.style.display =
+      "none";
+
+  } else {
+
+    box.style.display =
+      "block";
+
+  }
+
+}
+
+
+function saveThing() {
+
+  const thing =
+    document.getElementById(
+      "newThing"
+    ).value.trim();
+
+
+  const category =
+    document.getElementById(
+      "manualCategory"
+    ).value;
+
+
+  if (!thing) {
+
+    return;
+  }
+
+
+  afegirDemanda(
+    thing,
+    category
+  );
+
+
+  document.getElementById(
+    "newThing"
+  ).value = "";
+
+
+  document.getElementById(
+    "addBox"
+  ).style.display =
+    "none";
+
+}
+
+
+function afegirDemanda(
+  text,
+  category
+) {
+
+  const nova =
+    {
+
+      id:
+        Date.now() +
+        Math.random(),
+
+      text:
+        text,
+
+      category:
+        category
+
+    };
+
+
+  demandes.push(
+    nova
+  );
+
+
+  localStorage.setItem(
+    "majorDemandes",
+    JSON.stringify(demandes)
+  );
+
+}
+
+
+/* =========================
+   MICROFON
+========================= */
+
+function openMicrophone() {
+
+  document.getElementById(
+    "panel"
+  ).innerHTML = `
 
     <div class="panel-header">
-
-      <div class="panel-logo">
-        Major
-      </div>
 
       <button
         class="close-button"
@@ -732,1360 +1691,484 @@
 
     </div>
 
+    <div class="mic-section">
 
-    <div class="panel-main">
-
-      <div class="panel-question">
-        Què farem avui?
+      <div
+        style="
+          font-size:30px;
+          margin-bottom:10px;
+        "
+      >
+        Major
       </div>
 
-
-      <!-- MICRO -->
-
-      <div class="mic-area">
-
-        <button
-          class="mic-button"
-          id="micButton"
-          onclick="startMicrophone()"
-        >
-          🎙️
-        </button>
-
-        <div
-          class="mic-text"
-          id="micText"
-        >
-          Prem el micròfon i explica'm què necessites
-        </div>
-
+      <div
+        style="
+          opacity:.85;
+          margin-bottom:40px;
+          text-align:center;
+        "
+      >
+        Digues-me una demanda
+        i jo intentaré organitzar-la.
       </div>
 
+      <button
+        class="mic-button"
+        id="micButton"
+        onclick="startMicrophone()"
+      >
+        🎙️
+      </button>
 
-      <!-- PERFIL -->
-
-      <div class="section">
-
-        <div class="section-title">
-
-          <h3>
-            👤 Perfil
-          </h3>
-
-          <button
-            onclick="toggleProfileEditor()"
-            style="
-              border:none;
-              background:rgba(255,255,255,.18);
-              color:white;
-              border-radius:8px;
-              padding:7px 10px;
-            "
-          >
-            ✏️
-          </button>
-
-        </div>
-
-
-        <div
-          class="profile-editor"
-          id="profileEditor"
-        >
-
-          <h3>
-            Escull el teu emoji
-          </h3>
-
-          <div class="emoji-grid">
-
-            <button class="emoji-option" onclick="changeEmoji('🙂')">🙂</button>
-            <button class="emoji-option" onclick="changeEmoji('😀')">😀</button>
-            <button class="emoji-option" onclick="changeEmoji('😎')">😎</button>
-            <button class="emoji-option" onclick="changeEmoji('🥰')">🥰</button>
-            <button class="emoji-option" onclick="changeEmoji('🤩')">🤩</button>
-            <button class="emoji-option" onclick="changeEmoji('😂')">😂</button>
-
-            <button class="emoji-option" onclick="changeEmoji('😇')">😇</button>
-            <button class="emoji-option" onclick="changeEmoji('🤓')">🤓</button>
-            <button class="emoji-option" onclick="changeEmoji('😜')">😜</button>
-            <button class="emoji-option" onclick="changeEmoji('🥳')">🥳</button>
-            <button class="emoji-option" onclick="changeEmoji('🤠')">🤠</button>
-            <button class="emoji-option" onclick="changeEmoji('👻')">👻</button>
-
-            <button class="emoji-option" onclick="changeEmoji('🐶')">🐶</button>
-            <button class="emoji-option" onclick="changeEmoji('🐱')">🐱</button>
-            <button class="emoji-option" onclick="changeEmoji('🐼')">🐼</button>
-            <button class="emoji-option" onclick="changeEmoji('🦊')">🦊</button>
-            <button class="emoji-option" onclick="changeEmoji('🐸')">🐸</button>
-            <button class="emoji-option" onclick="changeEmoji('🦄')">🦄</button>
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <!-- DEMANDES -->
-
-      <div class="section">
-
-        <div class="section-title">
-
-          <h3>
-            📋 Demandes
-          </h3>
-
-        </div>
-
-        <div id="requestsList">
-
-          <div class="empty">
-            Encara no tens demandes.
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <!-- GALERIA -->
-
-      <div class="section">
-
-        <div class="section-title">
-
-          <h3>
-            📸 Galeria
-          </h3>
-
-        </div>
-
-        <div class="gallery-box">
-
-          <button
-            class="gallery-button"
-            onclick="openGallery()"
-          >
-            📸 Afegir fotos
-          </button>
-
-          <input
-            type="file"
-            id="photoInput"
-            accept="image/*"
-            multiple
-            style="display:none"
-            onchange="addPhotos(event)"
-          >
-
-          <div
-            class="album-title"
-            id="albumTitle"
-          >
-            Àlbum principal
-          </div>
-
-          <div
-            class="gallery-preview"
-            id="galleryPreview"
-          >
-          </div>
-
-        </div>
-
+      <div
+        class="mic-text"
+        id="micText"
+      >
+        Prem el micròfon i parla
       </div>
 
     </div>
 
-
-    <!-- =========================
-         BOTÓ +
-    ========================= -->
-
     <button
       class="add-button"
-      onclick="openAddBox()"
+      onclick="restorePanel()"
     >
       +
     </button>
 
+  `;
 
-    <!-- =========================
-         AFEGIR MANUALMENT
-    ========================= -->
-
-    <div
-      class="add-box"
-      id="addBox"
-    >
-
-      <h3>
-        ➕ Afegir una demanda
-      </h3>
-
-      <select id="newType">
-
-        <option value="Demanda">
-          Demanda
-        </option>
-
-        <option value="Tasca">
-          Tasca
-        </option>
-
-        <option value="Recordatori">
-          Recordatori
-        </option>
-
-        <option value="Data important">
-          Data important
-        </option>
-
-        <option value="Llista">
-          Llista
-        </option>
-
-        <option value="Compra">
-          Llista de la compra
-        </option>
-
-      </select>
-
-      <input
-        type="text"
-        id="newThing"
-        placeholder="Què vols afegir?"
-      >
-
-      <button
-        class="save-button"
-        onclick="saveThing()"
-      >
-        Afegir
-      </button>
-
-    </div>
-
-  </div>
+}
 
 
-  <script>
+function restorePanel() {
 
-    /* =========================
-       SUPABASE
-    ========================= */
+  location.reload();
 
-    const SUPABASE_URL =
-      "https://vogfwuvdlusuzofvlmoj.supabase.co";
+}
 
-    const SUPABASE_KEY =
-      "sb_publishable__F0Kohyak7yCiF5pSDe2uw_wKJkJnfn";
 
-    const supabaseClient =
-      window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY
+/* =========================
+   RECONÈIXER LA DEMANDA
+========================= */
+
+function detectarCategoria(text) {
+
+  const t =
+    text.toLowerCase();
+
+
+  if (
+    t.includes("compra") ||
+    t.includes("comprar") ||
+    t.includes("necessito") ||
+    t.includes("falta")
+  ) {
+
+    return "compra";
+
+  }
+
+
+  if (
+    t.includes("recorda") ||
+    t.includes("recordatori") ||
+    t.includes("recorda'm")
+  ) {
+
+    return "recordatoris";
+
+  }
+
+
+  if (
+    t.includes("aniversari") ||
+    t.includes("aniversario") ||
+    t.includes("data") ||
+    t.includes("demà") ||
+    t.includes("dilluns") ||
+    t.includes("dimarts") ||
+    t.includes("dimecres") ||
+    t.includes("dijous") ||
+    t.includes("divendres") ||
+    t.includes("dissabte") ||
+    t.includes("diumenge")
+  ) {
+
+    return "dates";
+
+  }
+
+
+  if (
+    t.includes("foto") ||
+    t.includes("fotografia") ||
+    t.includes("imatge")
+  ) {
+
+    return "galeria";
+
+  }
+
+
+  if (
+    t.includes("he de") ||
+    t.includes("tinc de") ||
+    t.includes("fer")
+  ) {
+
+    return "tasques";
+
+  }
+
+
+  return "altres";
+
+}
+
+
+function startMicrophone() {
+
+  const text =
+    document.getElementById(
+      "micText"
+    );
+
+  const button =
+    document.getElementById(
+      "micButton"
+    );
+
+
+  const SpeechRecognition =
+    window.SpeechRecognition ||
+    window.webkitSpeechRecognition;
+
+
+  if (!SpeechRecognition) {
+
+    text.textContent =
+      "El teu navegador no suporta el reconeixement de veu.";
+
+    return;
+  }
+
+
+  const recognition =
+    new SpeechRecognition();
+
+
+  recognition.lang =
+    "ca-ES";
+
+  recognition.continuous =
+    false;
+
+  recognition.interimResults =
+    false;
+
+
+  text.textContent =
+    "🎙️ T'estic escoltant...";
+
+
+  button.classList.add(
+    "listening"
+  );
+
+
+  try {
+
+    recognition.start();
+
+  } catch (error) {
+
+    button.classList.remove(
+      "listening"
+    );
+
+    text.textContent =
+      "Torna a prémer el micròfon.";
+
+    return;
+
+  }
+
+
+  recognition.onresult =
+    function(event) {
+
+      const resultat =
+        event.results[0][0].transcript
+          .trim();
+
+
+      const categoria =
+        detectarCategoria(
+          resultat
+        );
+
+
+      afegirDemanda(
+        resultat,
+        categoria
       );
 
 
-    /* =========================
-       DADES TEMPORALS
-    ========================= */
+      const noms = {
 
-    let requests = [];
+        tasques:
+          "📝 Tasca",
 
-    let photos = [];
+        compra:
+          "🛒 Llista de la compra",
 
-    let currentUser = null;
+        recordatoris:
+          "🔔 Recordatori",
 
+        dates:
+          "📅 Data important",
 
-    /* =========================
-       LOGIN
-    ========================= */
+        galeria:
+          "📸 Galeria",
 
-    function showMessage(text) {
-
-      document.getElementById(
-        "message"
-      ).textContent = text;
-
-    }
-
-
-    async function login() {
-
-      const email =
-        document.getElementById(
-          "email"
-        ).value.trim();
-
-      const password =
-        document.getElementById(
-          "password"
-        ).value;
-
-
-      if (!email || !password) {
-
-        showMessage(
-          "Escriu el correu i la contrasenya."
-        );
-
-        return;
-      }
-
-
-      showMessage(
-        "Iniciant sessió..."
-      );
-
-
-      const { data, error } =
-        await supabaseClient.auth.signInWithPassword({
-
-          email: email,
-          password: password
-
-        });
-
-
-      if (error) {
-
-        showMessage(
-          "El correu o la contrasenya no són correctes."
-        );
-
-        return;
-      }
-
-
-      entrar(data.user);
-
-    }
-
-
-    async function createAccount() {
-
-      const email =
-        document.getElementById(
-          "email"
-        ).value.trim();
-
-      const password =
-        document.getElementById(
-          "password"
-        ).value;
-
-
-      if (!email || !password) {
-
-        showMessage(
-          "Escriu un correu i una contrasenya."
-        );
-
-        return;
-      }
-
-
-      if (password.length < 6) {
-
-        showMessage(
-          "La contrasenya ha de tenir almenys 6 caràcters."
-        );
-
-        return;
-      }
-
-
-      showMessage(
-        "Creant el compte..."
-      );
-
-
-      const { data, error } =
-        await supabaseClient.auth.signUp({
-
-          email: email,
-          password: password
-
-        });
-
-
-      if (error) {
-
-        showMessage(
-          error.message
-        );
-
-        return;
-      }
-
-
-      if (data.session) {
-
-        entrar(data.user);
-
-      } else {
-
-        showMessage(
-          "Compte creat! Revisa el teu correu."
-        );
-
-      }
-
-    }
-
-
-    function entrar(user) {
-
-      currentUser = user;
-
-
-      document.getElementById(
-        "loginScreen"
-      ).style.display = "none";
-
-
-      document.getElementById(
-        "appScreen"
-      ).style.display = "block";
-
-
-      const email =
-        user.email || "Usuari";
-
-
-      document.getElementById(
-        "usernameDisplay"
-      ).textContent = email;
-
-
-      carregarDades();
-
-      updateClock();
-
-      setInterval(
-        updateClock,
-        1000
-      );
-
-    }
-
-
-    /* =========================
-       HORA
-    ========================= */
-
-    function updateClock() {
-
-      const now =
-        new Date();
-
-
-      const hours =
-        String(
-          now.getHours()
-        ).padStart(2, "0");
-
-
-      const minutes =
-        String(
-          now.getMinutes()
-        ).padStart(2, "0");
-
-
-      document.getElementById(
-        "clock"
-      ).textContent =
-        hours + ":" + minutes;
-
-    }
-
-
-    /* =========================
-       PANELL
-    ========================= */
-
-    function openPanel() {
-
-      document.getElementById(
-        "panel"
-      ).style.display = "block";
-
-      renderRequests();
-
-      renderPhotos();
-
-    }
-
-
-    function closePanel() {
-
-      document.getElementById(
-        "panel"
-      ).style.display = "none";
-
-
-      document.getElementById(
-        "addBox"
-      ).style.display = "none";
-
-
-      document.getElementById(
-        "profileEditor"
-      ).style.display = "none";
-
-    }
-
-
-    /* =========================
-       PERFIL
-    ========================= */
-
-    function toggleProfileEditor() {
-
-      const editor =
-        document.getElementById(
-          "profileEditor"
-        );
-
-
-      if (
-        editor.style.display === "block"
-      ) {
-
-        editor.style.display = "none";
-
-      } else {
-
-        editor.style.display = "block";
-
-      }
-
-    }
-
-
-    function changeEmoji(emoji) {
-
-      document.getElementById(
-        "userButton"
-      ).textContent = emoji;
-
-
-      localStorage.setItem(
-        "majorEmoji",
-        emoji
-      );
-
-
-      document.getElementById(
-        "profileEditor"
-      ).style.display = "none";
-
-    }
-
-
-    /* =========================
-       CARREGAR DADES
-    ========================= */
-
-    function carregarDades() {
-
-      const savedRequests =
-        localStorage.getItem(
-          "majorRequests"
-        );
-
-
-      const savedPhotos =
-        localStorage.getItem(
-          "majorPhotos"
-        );
-
-
-      const savedEmoji =
-        localStorage.getItem(
-          "majorEmoji"
-        );
-
-
-      if (savedRequests) {
-
-        requests =
-          JSON.parse(
-            savedRequests
-          );
-
-      }
-
-
-      if (savedPhotos) {
-
-        photos =
-          JSON.parse(
-            savedPhotos
-          );
-
-      }
-
-
-      if (savedEmoji) {
-
-        document.getElementById(
-          "userButton"
-        ).textContent =
-          savedEmoji;
-
-      }
-
-
-      renderRequests();
-
-      renderPhotos();
-
-    }
-
-
-    /* =========================
-       DEMANDES
-    ========================= */
-
-    function addRequest(
-      text,
-      type
-    ) {
-
-      const request = {
-
-        id:
-          Date.now(),
-
-        text:
-          text,
-
-        type:
-          type,
-
-        date:
-          new Date().toLocaleString(
-            "ca-ES"
-          )
+        altres:
+          "📂 Altres"
 
       };
 
 
-      requests.unshift(
-        request
-      );
-
-
-      localStorage.setItem(
-        "majorRequests",
-        JSON.stringify(
-          requests
-        )
-      );
-
-
-      renderRequests();
-
-    }
-
-
-    function renderRequests() {
-
-      const container =
-        document.getElementById(
-          "requestsList"
-        );
-
-
-      if (!requests.length) {
-
-        container.innerHTML =
-          '<div class="empty">Encara no tens demandes.</div>';
-
-        return;
-      }
-
-
-      container.innerHTML = "";
-
-
-      requests.forEach(
-        function(request) {
-
-          const item =
-            document.createElement(
-              "div"
-            );
-
-
-          item.className =
-            "request";
-
-
-          const info =
-            document.createElement(
-              "div"
-            );
-
-
-          info.className =
-            "request-info";
-
-
-          const type =
-            document.createElement(
-              "div"
-            );
-
-
-          type.className =
-            "request-type";
-
-
-          type.textContent =
-            request.type;
-
-
-          const text =
-            document.createElement(
-              "div"
-            );
-
-
-          text.className =
-            "request-text";
-
-
-          text.textContent =
-            request.text;
-
-
-          info.appendChild(
-            type
-          );
-
-
-          info.appendChild(
-            text
-          );
-
-
-          const deleteButton =
-            document.createElement(
-              "button"
-            );
-
-
-          deleteButton.className =
-            "delete-button";
-
-
-          deleteButton.textContent =
-            "🗑️";
-
-
-          deleteButton.onclick =
-            function() {
-
-              deleteRequest(
-                request.id
-              );
-
-            };
-
-
-          item.appendChild(
-            info
-          );
-
-
-          item.appendChild(
-            deleteButton
-          );
-
-
-          container.appendChild(
-            item
-          );
-
-        }
-      );
-
-    }
-
-
-    function deleteRequest(id) {
-
-      requests =
-        requests.filter(
-          function(request) {
-
-            return request.id !== id;
-
-          }
-        );
-
-
-      localStorage.setItem(
-        "majorRequests",
-        JSON.stringify(
-          requests
-        )
-      );
-
-
-      renderRequests();
-
-    }
-
-
-    /* =========================
-       BOTÓ +
-    ========================= */
-
-    function openAddBox() {
-
-      const box =
-        document.getElementById(
-          "addBox"
-        );
-
-
-      if (
-        box.style.display === "block"
-      ) {
-
-        box.style.display =
-          "none";
-
-      } else {
-
-        box.style.display =
-          "block";
-
-      }
-
-    }
-
-
-    function saveThing() {
-
-      const thing =
-        document.getElementById(
-          "newThing"
-        ).value.trim();
-
-
-      const type =
-        document.getElementById(
-          "newType"
-        ).value;
-
-
-      if (!thing) {
-
-        return;
-
-      }
-
-
-      addRequest(
-        thing,
-        type
-      );
-
-
-      document.getElementById(
-        "newThing"
-      ).value = "";
-
-
-      document.getElementById(
-        "addBox"
-      ).style.display =
-        "none";
-
-    }
-
-
-    /* =========================
-       MICROFON
-    ========================= */
-
-    function startMicrophone() {
-
-      const text =
-        document.getElementById(
-          "micText"
-        );
-
-
-      const button =
-        document.getElementById(
-          "micButton"
-        );
-
-
-      const SpeechRecognition =
-        window.SpeechRecognition ||
-        window.webkitSpeechRecognition;
-
-
-      if (!SpeechRecognition) {
-
-        text.textContent =
-          "El teu navegador no suporta el reconeixement de veu.";
-
-        return;
-
-      }
-
-
-      const recognition =
-        new SpeechRecognition();
-
-
-      recognition.lang =
-        "ca-ES";
-
-
-      recognition.continuous =
-        false;
-
-
-      recognition.interimResults =
-        false;
-
-
       text.textContent =
-        "🎙️ T'estic escoltant...";
+        "✅ " +
+        noms[categoria] +
+        ": " +
+        resultat;
+
+    };
 
 
-      button.classList.add(
+  recognition.onerror =
+    function(event) {
+
+      button.classList.remove(
         "listening"
       );
 
 
-      try {
-
-        recognition.start();
-
-      } catch (error) {
-
-        button.classList.remove(
-          "listening"
-        );
-
+      if (
+        event.error ===
+        "not-allowed"
+      ) {
 
         text.textContent =
-          "Torna a prémer el micròfon.";
+          "Has de donar permís al micròfon.";
 
-        return;
+      } else {
+
+        text.textContent =
+          "No he pogut escoltar-te. Torna-ho a provar.";
 
       }
 
+    };
 
-      recognition.onresult =
-        function(event) {
 
-          const resultat =
-            event.results[0][0]
-              .transcript
-              .trim();
+  recognition.onend =
+    function() {
 
-
-          const resultatMinuscules =
-            resultat.toLowerCase();
-
-
-          console.log(
-            "Major ha escoltat:",
-            resultat
-          );
-
-
-          /*
-             Detectem el tipus
-             de demanda.
-          */
-
-          let tipus =
-            "Demanda";
-
-
-          /* TASCA */
-
-          if (
-            resultatMinuscules.includes("he de") ||
-            resultatMinuscules.includes("tinc de") ||
-            resultatMinuscules.includes("fer ")
-          ) {
-
-            tipus =
-              "Tasca";
-
-          }
-
-
-          /* RECORDATORI */
-
-          else if (
-            resultatMinuscules.includes("recorda") ||
-            resultatMinuscules.includes("recorda'm") ||
-            resultatMinuscules.includes("no t'oblidis")
-          ) {
-
-            tipus =
-              "Recordatori";
-
-          }
-
-
-          /* COMPRA */
-
-          else if (
-            resultatMinuscules.includes("comprar") ||
-            resultatMinuscules.includes("compra") ||
-            resultatMinuscules.includes("necessito comprar") ||
-            resultatMinuscules.includes("llista de la compra")
-          ) {
-
-            tipus =
-              "Compra";
-
-          }
-
-
-          /* LLISTA */
-
-          else if (
-            resultatMinuscules.includes("llista") ||
-            resultatMinuscules.includes("apunta")
-          ) {
-
-            tipus =
-              "Llista";
-
-          }
-
-
-          /* DATA */
-
-          else if (
-            resultatMinuscules.includes("demà") ||
-            resultatMinuscules.includes("dilluns") ||
-            resultatMinuscules.includes("dimarts") ||
-            resultatMinuscules.includes("dimecres") ||
-            resultatMinuscules.includes("dijous") ||
-            resultatMinuscules.includes("divendres") ||
-            resultatMinuscules.includes("dissabte") ||
-            resultatMinuscules.includes("diumenge") ||
-            resultatMinuscules.includes("dia") ||
-            resultatMinuscules.includes("aniversari") ||
-            resultatMinuscules.includes("data important")
-          ) {
-
-            tipus =
-              "Data important";
-
-          }
-
-
-          /*
-             Guardem la demanda.
-          */
-
-          addRequest(
-            resultat,
-            tipus
-          );
-
-
-          text.textContent =
-            "✅ " +
-            tipus +
-            ": " +
-            resultat;
-
-
-        };
-
-
-      recognition.onerror =
-        function(event) {
-
-          button.classList.remove(
-            "listening"
-          );
-
-
-          if (
-            event.error ===
-            "not-allowed"
-          ) {
-
-            text.textContent =
-              "Has de donar permís al micròfon.";
-
-          } else {
-
-            text.textContent =
-              "No he pogut escoltar-te. Torna-ho a provar.";
-
-          }
-
-        };
-
-
-      recognition.onend =
-        function() {
-
-          button.classList.remove(
-            "listening"
-          );
-
-        };
-
-    }
-
-
-    /* =========================
-       GALERIA
-    ========================= */
-
-    function openGallery() {
-
-      document.getElementById(
-        "photoInput"
-      ).click();
-
-    }
-
-
-    function addPhotos(event) {
-
-      const files =
-        Array.from(
-          event.target.files
-        );
-
-
-      files.forEach(
-        function(file) {
-
-          const reader =
-            new FileReader();
-
-
-          reader.onload =
-            function(e) {
-
-              photos.push(
-                {
-                  id: Date.now() +
-                    Math.random(),
-
-                  name: file.name,
-
-                  src: e.target.result,
-
-                  album:
-                    "Àlbum principal"
-                }
-              );
-
-
-              localStorage.setItem(
-                "majorPhotos",
-                JSON.stringify(
-                  photos
-                )
-              );
-
-
-              renderPhotos();
-
-            };
-
-
-          reader.readAsDataURL(
-            file
-          );
-
-        }
+      button.classList.remove(
+        "listening"
       );
 
+    };
 
-      event.target.value = "";
+}
 
-    }
 
+/* =========================
+   PERFIL
+========================= */
 
-    function renderPhotos() {
+function openProfile() {
 
-      const container =
-        document.getElementById(
-          "galleryPreview"
-        );
+  document.getElementById(
+    "panel"
+  ).style.display =
+    "none";
 
 
-      container.innerHTML = "";
+  document.getElementById(
+    "profilePanel"
+  ).style.display =
+    "block";
 
 
-      photos
-        .slice(0, 9)
-        .forEach(
-          function(photo) {
+  actualitzarPerfil();
 
-            const image =
-              document.createElement(
-                "img"
-              );
+}
 
 
-            image.src =
-              photo.src;
+function closeProfile() {
 
+  document.getElementById(
+    "profilePanel"
+  ).style.display =
+    "none";
 
-            image.style.width =
-              "100%";
+}
 
 
-            image.style.height =
-              "80px";
+function actualitzarPerfil() {
 
+  document.getElementById(
+    "userButton"
+  ).textContent =
+    userEmoji;
 
-            image.style.objectFit =
-              "cover";
 
+  document.getElementById(
+    "profileAvatar"
+  ).textContent =
+    userEmoji;
 
-            image.style.borderRadius =
-              "10px";
+}
 
 
-            container.appendChild(
-              image
-            );
+function changeEmoji() {
 
-          }
-        );
+  const nou =
+    prompt(
+      "Escriu el teu emoji de perfil:"
+    );
 
-    }
 
+  if (!nou) {
 
-    /* =========================
-       IDIOMES
-    ========================= */
+    return;
 
-    function changeLanguage() {
+  }
 
-      const language =
-        document.getElementById(
-          "language"
-        ).value;
 
+  userEmoji =
+    nou.trim();
 
-      const subtitle =
-        document.getElementById(
-          "subtitle"
-        );
 
+  localStorage.setItem(
+    "majorEmoji",
+    userEmoji
+  );
 
-      const email =
-        document.getElementById(
-          "email"
-        );
 
+  actualitzarPerfil();
 
-      const password =
-        document.getElementById(
-          "password"
-        );
+}
 
 
-      const button =
-        document.querySelector(
-          ".login-button"
-        );
+/* =========================
+   IDIOMES
+========================= */
 
+function changeLanguage() {
 
-      const create =
-        document.querySelector(
-          ".create"
-        );
+  const language =
+    document.getElementById(
+      "language"
+    ).value;
 
 
-      if (
-        language === "ca"
-      ) {
+  const subtitle =
+    document.getElementById(
+      "subtitle"
+    );
 
-        subtitle.textContent =
-          "El teu assistent personal";
+  const email =
+    document.getElementById(
+      "email"
+    );
 
-        email.placeholder =
-          "Correu electrònic";
+  const password =
+    document.getElementById(
+      "password"
+    );
 
-        password.placeholder =
-          "Contrasenya";
+  const button =
+    document.querySelector(
+      ".login-button"
+    );
 
-        button.textContent =
-          "Iniciar sessió";
+  const create =
+    document.querySelector(
+      ".create"
+    );
 
-        create.innerHTML =
-          'Encara no tens compte? <span onclick="createAccount()">Crear compte</span>';
 
-      }
+  if (
+    language === "ca"
+  ) {
 
+    subtitle.textContent =
+      "El teu assistent personal";
 
-      else if (
-        language === "es"
-      ) {
+    email.placeholder =
+      "Correu electrònic";
 
-        subtitle.textContent =
-          "Tu asistente personal";
+    password.placeholder =
+      "Contrasenya";
 
-        email.placeholder =
-          "Correo electrónico";
+    button.textContent =
+      "Iniciar sessió";
 
-        password.placeholder =
-          "Contraseña";
+    create.innerHTML =
+      'Encara no tens compte? <span onclick="createAccount()">Crear compte</span>';
 
-        button.textContent =
-          "Iniciar sesión";
+  }
 
-        create.innerHTML =
-          '¿Todavía no tienes cuenta? <span onclick="createAccount()">Crear cuenta</span>';
 
-      }
+  else if (
+    language === "es"
+  ) {
 
+    subtitle.textContent =
+      "Tu asistente personal";
 
-      else {
+    email.placeholder =
+      "Correo electrónico";
 
-        subtitle.textContent =
-          "Your personal assistant";
+    password.placeholder =
+      "Contraseña";
 
-        email.placeholder =
-          "Email";
+    button.textContent =
+      "Iniciar sesión";
 
-        password.placeholder =
-          "Password";
+    create.innerHTML =
+      '¿Todavía no tienes cuenta? <span onclick="createAccount()">Crear cuenta</span>';
 
-        button.textContent =
-          "Log in";
+  }
 
-        create.innerHTML =
-          'Don’t have an account? <span onclick="createAccount()">Create account</span>';
 
-      }
+  else {
 
-    }
+    subtitle.textContent =
+      "Your personal assistant";
 
-  </script>
+    email.placeholder =
+      "Email";
+
+    password.placeholder =
+      "Password";
+
+    button.textContent =
+      "Log in";
+
+    create.innerHTML =
+      'Don’t have an account? <span onclick="createAccount()">Create account</span>';
+
+  }
+
+}
+
+</script>
 
 </body>
 </html>
